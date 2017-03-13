@@ -14,23 +14,60 @@ namespace WindowsFormsApplication1
         [STAThread]
         static void Main()
         {
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
     }
-    class search
+    public class searchQuery
     {
-        static void __init__()
+        string currentSearch = null;
+
+    }
+    public class database
+    {
+        public database()
         { 
             //creates structure
         }
-        string search(string value)
+        public string search(string value)
         { 
             //returns searched value
             return "";
         }
 
+    }
+    public class activity
+    {
+        string code;
+        string shortTitle;
+        string longTitle;
+        string location;
+        string startTime;
+        string endTime;
+
+        public activity()
+        { 
+            //initialize activity
+        }
+    }
+    public class course : activity
+    {
+        int enrollment;
+        int capacity;
+        public course() : base() 
+        {
+            //initialize course
+        }
+    }
+
+    public class extracurricular : activity
+    { 
+        public extracurricular() : base() 
+        {
+            //initialize extra-curricular
+        }
     }
 
 }
