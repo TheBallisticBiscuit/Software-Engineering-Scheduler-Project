@@ -8,7 +8,12 @@ namespace WindowsFormsApplication1
 {
     public class searchQuery
     {
-        string currentSearch = null;
-
+        searchResults currentSearch = null;
+        public searchResults searchByName(database d)
+        {
+            //searchByName implemented here
+            return null; //<--- here to prevent compile errors for now
+        }
+        //other searches here
     }
 }

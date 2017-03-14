@@ -11,6 +11,7 @@ namespace WindowsFormsApplication1
     {
         int lineCount;
         string[,] courseObject;
+        private List<course> coursesList;
         public database()
         {
             //Console.Write("TEST\n");
@@ -63,6 +64,12 @@ namespace WindowsFormsApplication1
             }
 
             //creates structure
+            coursesList = new List<course>();
+            coursesList.Add(new WindowsFormsApplication1.course(10, 30, "course1", "course1Short", "course1Long", 10.00f, 10.50f, "MWF", "STEM", "376"));
+            coursesList.Add(new WindowsFormsApplication1.course(10, 30, "course2", "course2Short", "course2Long", 10.00f, 10.50f, "MWF", "STEM", "376"));
+            coursesList.Add(new WindowsFormsApplication1.course(10, 30, "course3", "course3Short", "course3Long", 10.00f, 10.50f, "MWF", "STEM", "376"));
+            coursesList.Add(new WindowsFormsApplication1.course(10, 30, "course4", "course4Short", "course4Long", 10.00f, 10.50f, "MWF", "STEM", "376"));
+
         }
         public int[] search(string searchValue,int searchType = 2)
         {
