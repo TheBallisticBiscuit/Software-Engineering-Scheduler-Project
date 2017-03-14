@@ -29,7 +29,7 @@ namespace WindowsFormsApplication1
             StreamReader data = null;
             try
             {
-                data = new StreamReader("C:/Users/BensingJM1/Documents/COMP 350/TestCSharp/WindowsFormsApplication1/CourseDB_WithFictionalCapacities.csv");
+                data = new StreamReader("CourseDB_WithFictionalCapacities.csv");
             }
             catch (Exception e)
             {
@@ -38,8 +38,8 @@ namespace WindowsFormsApplication1
             }
 
             
-            lineCount = File.ReadLines("C:/Users/BensingJM1/Documents/COMP 350/TestCSharp/WindowsFormsApplication1/CourseDB_WithFictionalCapacities.csv").Count();
-            //Console.WriteLine(lineCount);
+            lineCount = File.ReadLines("CourseDB_WithFictionalCapacities.csv").Count();
+            Console.WriteLine(lineCount);
             courseObject = new string[lineCount,10];
             for (int i = 0; i < lineCount; i++)
             {
@@ -52,14 +52,14 @@ namespace WindowsFormsApplication1
                 }
             }
 
-            //Console.WriteLine(courseObject[100,0]);
+           // Console.WriteLine(courseObject[100,0]);
 
             data.Close();
 
             // Test to print out data results
             for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine(courseObject[100, i]);
+               // Console.WriteLine(courseObject[100, i]);
             }
 
             //creates structure
