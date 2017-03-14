@@ -14,7 +14,8 @@ namespace WindowsFormsApplication1
         [STAThread]
         static void Main()
         {
-            
+            database courselist = new database();
+            searchQuery courseSearch = new searchQuery(courselist.getCourses(), courselist.getLineCount());
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
