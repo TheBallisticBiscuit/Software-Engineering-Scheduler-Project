@@ -64,48 +64,14 @@ namespace WindowsFormsApplication1
 
             //creates structure
         }
-        public int[] search(string searchValue,int searchType = 2)
+
+        public string[,] getCourses()
         {
-            // These are the index values in the data structure
-            // 0 : Course Code
-            // 2 : Name (short)
-            searchValue = searchValue.ToUpper();
-
-            int[] indexArray = new int[lineCount];
-            int count=0;
-
-            // This will only work for code and name
-            for (int i = 0; i < lineCount; i++)
-            {
-                if (courseObject[i, searchType].Contains(searchValue))
-                {
-                    indexArray[count] = i;
-                    count++;
-                }
-            }
-            
-            //returns search results
-
-            if (count > 0)
-            {
-                return indexArray;
-            }
-            else
-            {
-                return null;
-            }
+            return courseObject;
         }
-        // Search by time
-        public int[] search(string searchValue, int startTime, int stopTime)
+        public int getLineCount()
         {
-
-            return null;
-        }
-        //Search by department
-        public int[] search(string searchValue)
-        {
-
-            return null;
+            return lineCount;
         }
     }
 }
