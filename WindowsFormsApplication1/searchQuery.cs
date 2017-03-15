@@ -10,15 +10,16 @@ namespace WindowsFormsApplication1
     {
 
         string currentSearch = null;
-        string[,] courseObject;
+        string[,] courseList;
         int lineCount;
+        
         public searchQuery(string[,] crslst, int lineCount)
         {
-            this.courseObject = crslst;
+            this.courseList = crslst;
             this.lineCount = lineCount;
         }
 
-        public int[] search(string searchValue, int searchType = 2)
+        public int[] searchByCode(string searchValue)
         {
             // These are the index values in the data structure
             // 0 : Course Code
@@ -31,7 +32,7 @@ namespace WindowsFormsApplication1
             // This will only work for code and name
             for (int i = 0; i < lineCount; i++)
             {
-                if (courseObject[i, searchType].Contains(searchValue))
+                if (courseList[i, 0].Contains(searchValue))
                 {
                     indexArray[count] = i;
                     count++;
@@ -50,23 +51,50 @@ namespace WindowsFormsApplication1
             }
         }
         // Search by time
-        public int[] search(string searchValue, int startTime, int stopTime)
+        public int[] searchByTime(string searchValue, int startTime, int stopTime)
         {
-
             return null;
         }
         //Search by department
-        public int[] search(string searchValue)
+        public int[] searchByDepartment(string searchValue)
         {
 
             return null;
         }
-        searchResults currentSearch = null;
-        public searchResults searchByName(database d)
+
+        public int[] searchByName(string searchValue)
         {
-            //searchByName implemented here
-            return null; //<--- here to prevent compile errors for now
+            // These are the index values in the data structure
+            // 0 : Course Code
+            // 2 : Name (short)
+            searchValue = searchValue.ToUpper();
+
+            int[] indexArray = new int[lineCount];
+            int count = 0;
+
+            // This will only work for code and name
+            for (int i = 0; i < lineCount; i++)
+            {
+                if (courseList[i, 2].Contains(searchValue))
+                {
+                    indexArray[count] = i;
+                    count++;
+                }
+            }
+
+            //returns search results
+
+            if (count > 0)
+            {
+                return indexArray;
+            }
+            else
+            {
+                return null;
+            }
         }
+
+
         //other searches here
     }
 }
