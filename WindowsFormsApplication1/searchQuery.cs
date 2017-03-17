@@ -10,10 +10,10 @@ namespace WindowsFormsApplication1
     {
 
         string currentSearch = null;
-        string[,] courseList;
+        List<course> courseList;
         int lineCount;
         
-        public searchQuery(string[,] crslst, int lineCount)
+        public searchQuery(List<course> crslst, int lineCount)
         {
             this.courseList = crslst;
             this.lineCount = lineCount;
@@ -32,7 +32,7 @@ namespace WindowsFormsApplication1
             // This will only work for code and name
             for (int i = 0; i < lineCount; i++)
             {
-                if (courseList[i, 0].Contains(searchValue))
+                if (courseList[i].getCourseCode().Contains(searchValue))
                 {
                     indexArray[count] = i;
                     count++;
@@ -75,7 +75,7 @@ namespace WindowsFormsApplication1
             // This will only work for code and name
             for (int i = 0; i < lineCount; i++)
             {
-                if (courseList[i, 2].Contains(searchValue))
+                if (courseList[i].getCourseCode().Contains(searchValue))
                 {
                     indexArray[count] = i;
                     count++;

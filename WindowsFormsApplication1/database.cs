@@ -10,23 +10,11 @@ namespace WindowsFormsApplication1
     public class database
     {
         int lineCount;
-        string[,] courseObject;
+        string[,] courseDBObject;
         private List<course> coursesList;
+        private List<course> testCoursesList;
         public database()
         {
-            //Console.Write("TEST\n");
-            //Console.Write("TEST\n");
-            /*FileStream fs;
-            try
-            {
-                fs = new FileStream("C:/Users/BensingJM1/Documents/COMP 350/TestCSharp/WindowsFormsApplication1/CourseDB_WithFictionalCapacities.xlsx", FileMode.Open, FileAccess.Read);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("The file could not be read:");
-                Console.WriteLine(e.Message);   
-            }*/
-
             StreamReader data = null;
             try
             {
@@ -37,44 +25,47 @@ namespace WindowsFormsApplication1
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);   
             }
-
             
             lineCount = File.ReadLines("CourseDB_WithFictionalCapacities.csv").Count();
-            Console.WriteLine(lineCount);
-            courseObject = new string[lineCount,10];
-            for (int i = 0; i < lineCount; i++)
+            courseDBObject = new string[lineCount,10];
+            coursesList = new List<course>();
+            data.ReadLine(); //Ignores titles of columns
+            for (int i = 0; i < lineCount-1; i++)
             {
                 string test = data.ReadLine();
                 string[] temp = test.Split(',');
                 for (int j = 0; j < 10; j++)
                 {
-                    courseObject[i, j] = temp[j];
-                    //Console.WriteLine(courseObject[i, j]);
+                    courseDBObject[i, j] = temp[j];
                 }
+              
+                int enrollment = Int32.Parse(courseDBObject[i, 8]);
+                
+                int capacity = Int32.Parse(courseDBObject[i, 9]);
+                
+                coursesList.Add(new WindowsFormsApplication1.course(enrollment, capacity, courseDBObject[i, 0],courseDBObject[i, 1],courseDBObject[i, 2],courseDBObject[i, 3],courseDBObject[i, 4],courseDBObject[i, 5],courseDBObject[i, 6],courseDBObject[i, 7]));
             }
-
-           // Console.WriteLine(courseObject[100,0]);
 
             data.Close();
 
-            // Test to print out data results
-            for (int i = 0; i < 10; i++)
-            {
-               // Console.WriteLine(courseObject[100, i]);
-            }
-
             //creates structure
-            coursesList = new List<course>();
-            coursesList.Add(new WindowsFormsApplication1.course(10, 30, "course1", "course1Short", "course1Long", 10.00f, 10.50f, "MWF", "STEM", "376"));
-            coursesList.Add(new WindowsFormsApplication1.course(10, 30, "course2", "course2Short", "course2Long", 10.00f, 10.50f, "MWF", "STEM", "376"));
-            coursesList.Add(new WindowsFormsApplication1.course(10, 30, "course3", "course3Short", "course3Long", 10.00f, 10.50f, "MWF", "STEM", "376"));
-            coursesList.Add(new WindowsFormsApplication1.course(10, 30, "course4", "course4Short", "course4Long", 10.00f, 10.50f, "MWF", "STEM", "376"));
+            testCoursesList = new List<course>();
+            testCoursesList.Add(new WindowsFormsApplication1.course(10, 30, "course1", "course1Short", "course1Long", "10:00", "10:50", "MWF", "STEM", "376"));
+            testCoursesList.Add(new WindowsFormsApplication1.course(10, 30, "course2", "course2Short", "course2Long", "10:00", "10:50", "MWF", "STEM", "376"));
+            testCoursesList.Add(new WindowsFormsApplication1.course(10, 30, "course3", "course3Short", "course3Long", "10:00", "10:50", "MWF", "STEM", "376"));
+            testCoursesList.Add(new WindowsFormsApplication1.course(10, 30, "course4", "course4Short", "course4Long", "10:05", "11:15", "TH", "STEM", "376"));
 
         }
 
-        public string[,] getCourses()
+        public List<course> getCourses()
         {
-            return courseObject;
+            //return courseDBObject;
+            return coursesList;
+        }
+        public List<course> getTestCourses()
+        {
+            //return courseDBObject;
+            return testCoursesList;
         }
         public int getLineCount()
         {
