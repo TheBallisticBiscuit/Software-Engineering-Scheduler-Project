@@ -16,9 +16,14 @@ namespace WindowsFormsApplication1
         {
             database courselist = new database();
             searchQuery courseSearch = new searchQuery(courselist.getCourses(), courselist.getLineCount());
+            searchResults results = new searchResults(courselist.getCourses());
+            TestClass t = new TestClass();
+            t.test();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+            t.SearchTest();
+            
         }
     }
 }

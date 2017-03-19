@@ -69,7 +69,7 @@ namespace WindowsFormsApplication1
         }
         public int getLineCount()
         {
-            return lineCount;
+            return lineCount-1;
         }
     }
 }

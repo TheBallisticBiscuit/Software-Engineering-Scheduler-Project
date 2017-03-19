@@ -10,12 +10,15 @@ namespace WindowsFormsApplication1
     {
 
         string currentSearch = null;
-        List<course> courseList;
+        List<course> courseList = new List<course>();
         int lineCount;
         
         public searchQuery(List<course> crslst, int lineCount)
         {
             this.courseList = crslst;
+            Console.WriteLine(courseList[1].getCourseCode().Contains("COMP"));
+            Console.WriteLine(courseList[100].getCourseCode());
+            Console.WriteLine(courseList[200].getCourseCode());
             this.lineCount = lineCount;
         }
 
@@ -34,16 +37,21 @@ namespace WindowsFormsApplication1
             {
                 if (courseList[i].getCourseCode().Contains(searchValue))
                 {
+                    //Console.WriteLine(courseList[i].getCourseCode());
                     indexArray[count] = i;
                     count++;
+
                 }
             }
-
             //returns search results
-
+            int[] returnArray = new int[count];
+            for(int i = 0; i < count; i++)
+            {
+                returnArray[i] = indexArray[i];
+            }
             if (count > 0)
             {
-                return indexArray;
+                return returnArray;
             }
             else
             {
@@ -75,7 +83,7 @@ namespace WindowsFormsApplication1
             // This will only work for code and name
             for (int i = 0; i < lineCount; i++)
             {
-                if (courseList[i].getCourseCode().Contains(searchValue))
+                if (this.courseList[i].getLongTitle().Contains(searchValue))
                 {
                     indexArray[count] = i;
                     count++;
@@ -84,9 +92,14 @@ namespace WindowsFormsApplication1
 
             //returns search results
 
+            int[] returnArray = new int[count];
+            for (int i = 0; i < count; i++)
+            {
+                returnArray[i] = indexArray[i];
+            }
             if (count > 0)
             {
-                return indexArray;
+                return returnArray;
             }
             else
             {
