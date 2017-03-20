@@ -83,8 +83,87 @@ namespace WindowsFormsApplication1
         //Search by department
         public int[] searchByDepartment(string searchValue)
         {
+            string mapResult = "";
+            var map = new Dictionary<string, string>();
+            map["COMPUTER SCIENCE"] = "COMP";
+            map["COMPUTER"] = "COMP";
+            map["ACCOUNTING AND FINANCE"] = "ACCT";
+            map["ACCOUNTING"] = "ACCT";
+            map["BIBLICAL AND RELIGOUS STUDIES"] = "RELI";
+            map["BIBLICAL STUDIES"] = "RELI";
+            map["RELIGOUS STUDIES"] = "RELI";
+            map["BIBLICAL"] = "RELI";
+            map["RELIGOUS"] = "RELI";
+            map["PHILOSOPHY"] = "PHIL";
+            map["BIOLOGY"] = "BIOL";
+            map["MANAGEMENT AND MARKETING"] = "BUSA";
+            map["MANAGEMENT"] = "BUSA";
+            map["MARKETING"] = "BUSA";
+            map["CHEMISTRY"] = "CHEM";
+            map["COMMUNICATION"] = "COMM";
+            map["VISUAL ARTS"] = "ART";
+            map["ECONOMICS"] = "ECON";
+            map["SOCIOLOGY"] = "SOCI";
+            map["EDUCATION"] = "EDUC";
+            map["SPECIAL EDUCATION"] = "SEDU";
+            map["ELECTRICAL ENGINEERING"] = "ELEE";
+            map["ELECTRICAL"] = "ELEE";
+            map["ENGLISH"] = "ENGL";
+            map["ENTREPRENEURSHIP"] = "ENTR";
+            map["HISTORY"] = "HIST";
+            map["HUMANITIES"] = "HUMA";
+            map["MATHEMATICS"] = "MATH";
+            map["MECHANICAL ENGINEERING"] = "MECE";
+            map["MECHANICAL"] = "MECE";
+            map["MUSIC"] = "MUSI";
+            map["EXERCISE SCIENCE"] = "EXER";
+            map["PHYSICAL EDUCATION"] = "PHYE";
+            map["PHYSICAL"] = "PHYE";
+            map["PHYSICS"] = "PHYS";
+            map["POLITICAL SCIENCE"] = "POLS";
+            map["PSYCHOLOGY"] = "PSYC";
+            map["SOCIAL WORK"] = "SOCW";
+            map["SOCIAL"] = "SOCW";
+            map["SOCIOLOGY"] = "SOCI";
+            map["SCIENCE"] = "SCIC";
 
-            return null;
+            searchValue = searchValue.ToUpper();
+
+            int[] indexArray = new int[lineCount];
+            int count = 0;
+
+            map.TryGetValue((searchValue), out mapResult);
+
+
+            if (!map.Values.Contains(mapResult))
+            {
+                mapResult = "DNE";
+            }
+
+            for (int i = 0; i < lineCount; i++)
+            {
+                if (courseList[i].getCourseCode().Contains(mapResult))
+                {
+                    indexArray[count] = i;
+                    count++;
+                }
+            }
+
+            //returns search results
+
+            int[] returnArray = new int[count];
+            for (int i = 0; i < count; i++)
+            {
+                returnArray[i] = indexArray[i];
+            }
+            if (count > 0)
+            {
+                return returnArray;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public int[] searchByName(string searchValue)

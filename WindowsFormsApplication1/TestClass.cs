@@ -82,6 +82,21 @@ namespace WindowsFormsApplication1
                 else if (type == 4)
                 {
                     Console.WriteLine("Search Department");
+                    search = Console.ReadLine();
+                    int[] arr = courseSearch.searchByDepartment(search);
+                    List<course> temp = results.updateResults(arr);
+                    if (temp != null)
+                    {
+                        for (int i = 0; i < temp.Count; i++)
+                        {
+                            Console.WriteLine(temp[i].getLongTitle());
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("DNE");
+                    }
+
                 }
                 else
                 {
