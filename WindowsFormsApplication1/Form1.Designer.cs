@@ -76,6 +76,7 @@ namespace WindowsFormsApplication1
             this.addCourseButton.TabIndex = 5;
             this.addCourseButton.Text = "Add";
             this.addCourseButton.UseVisualStyleBackColor = true;
+            this.addCourseButton.Click += new EventHandler(update_calendar_add);
             // 
             // removeCourseBox
             // 
@@ -85,6 +86,7 @@ namespace WindowsFormsApplication1
             this.removeCourseBox.TabIndex = 6;
             this.removeCourseBox.Text = "Remove";
             this.removeCourseBox.UseVisualStyleBackColor = true;
+            this.removeCourseBox.Click += new EventHandler(update_calendar_add);
             // 
             // searchMenu
             // 

@@ -155,6 +155,14 @@ namespace WindowsFormsApplication1
                                       "Time: " + selectedCourse.getStartTime()+ " - " + selectedCourse.getEndTime();
         }
 
+        private void update_calendar_add(object sender, EventArgs e)
+        {
+
+        }
+        private void update_calendar_remove(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
