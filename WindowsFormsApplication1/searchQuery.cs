@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowsFormsApplication1;
 
 namespace WindowsFormsApplication1
 {
@@ -59,9 +60,25 @@ namespace WindowsFormsApplication1
             }
         }
         // Search by time
-        public int[] searchByTime(string searchValue, int startTime, int stopTime)
+        public searchResults searchByTime(string searchValue)
         {
-            return null;
+            searchValue = searchValue.ToUpper();
+            char[] delimiterChars = { ' ', ',' };
+            string[] searchComponents = searchValue.Split(delimiterChars);
+            List<course> results = new List<course>();
+            for(int i = 0; i < lineCount; i++) //cycles through database
+            {
+                for(int j = 0; j < searchComponents.Length; j++) //cycles through words entered
+                {
+                    if (courseList[i].getDays().Contains(searchComponents[j])
+                        || courseList[i].getEndTime().Contains(searchComponents[j])
+                        || courseList[i].getStartTime().Contains(searchComponents[j]))
+                    {
+                        results.Add(new course(courseList[i]));
+                    }
+                }
+            }
+            return new searchResults(results);
         }
         //Search by department
         public int[] searchByDepartment(string searchValue)

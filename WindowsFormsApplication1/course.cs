@@ -38,6 +38,19 @@ namespace WindowsFormsApplication1
             building = newBuilding;
             room = newRoom;
         }
+        public course(course copyCourse)
+        {
+            enrollment = copyCourse.enrollment;
+            capacity = copyCourse.capacity;
+            courseCode = copyCourse.courseCode;
+            shortTitle = copyCourse.shortTitle;
+            longTitle = copyCourse.longTitle;
+            beginTime = copyCourse.beginTime;
+            endTime = copyCourse.endTime;
+            daysMeeting = copyCourse.daysMeeting;
+            building = copyCourse.building;
+            room = copyCourse.room;
+        }
         public string getCourseCode()
         {
             return courseCode;
