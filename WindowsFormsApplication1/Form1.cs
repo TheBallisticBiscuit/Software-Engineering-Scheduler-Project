@@ -42,9 +42,7 @@ namespace WindowsFormsApplication1
 
             string csvFile = System.IO.File.ReadAllText(file);
 
-            csvFile = csvFile.Replace('\n', '\r');
-
-            String[] csvData = csvFile.Split(new char[] { '\r' });
+            String[] csvData = csvFile.Split(new char[] { '\n' });
 
             String[] headers = csvData[0].Split(',');
             int index = 0;
