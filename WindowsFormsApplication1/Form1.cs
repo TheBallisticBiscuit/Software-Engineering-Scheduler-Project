@@ -110,17 +110,28 @@ namespace WindowsFormsApplication1
                     searchIndex = this.courseSearch.searchByDepartment(searchString);
                     this.searchResultList = results.updateResults(searchIndex);
                 }
-                if (this.searchResultList.Count > 0)
+                if (this.searchResultList != null)
+                {
+                    if (this.searchResultList.Count > 0)
+                    {
+                        if (this.searchResultsBox.Items.Count > 0)
+                        {
+                            this.searchResultsBox.Items.Clear();
+                        }
+                        for (int i = 0; i < this.searchResultList.Count; i++)
+                        {
+                            Console.WriteLine(this.searchResultList[i].getCourseCode());
+                            this.searchResultsBox.Items.Add(this.searchResultList[i].getCourseCode());
+                        }
+                    }
+                }
+                else
                 {
                     if (this.searchResultsBox.Items.Count > 0)
                     {
                         this.searchResultsBox.Items.Clear();
                     }
-                    for (int i = 0; i < this.searchResultList.Count; i++)
-                    {
-                        Console.WriteLine(this.searchResultList[i].getCourseCode());
-                        this.searchResultsBox.Items.Add(this.searchResultList[i].getCourseCode());
-                    }
+                    Console.WriteLine("DNE");
                 }
             }
             
