@@ -50,5 +50,17 @@ namespace WindowsFormsApplication1
         {
             return longTitle;
         }
+        public string getStartTime()
+        {
+            return beginTime;
+        }
+        public string getEndTime()
+        {
+            return endTime;
+        }
+        public string getDays()
+        {
+            return daysMeeting;
+        }
     }
 }

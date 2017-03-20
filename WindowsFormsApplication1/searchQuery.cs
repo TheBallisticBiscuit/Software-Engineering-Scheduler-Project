@@ -109,5 +109,10 @@ namespace WindowsFormsApplication1
 
 
         //other searches here
+
+        internal int[] searchByCode()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace WindowsFormsApplication1
 {
     public class searchResults
     {
-        public List<course> results = new List<course>();
+        private List<course> results = new List<course>();
         private List<course> courseList;
         //private int selected;
         public searchResults(List<course> courseList)

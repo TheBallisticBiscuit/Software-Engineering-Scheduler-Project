@@ -1,4 +1,6 @@
-﻿namespace WindowsFormsApplication1
+﻿using System;
+using System.Windows.Forms;
+namespace WindowsFormsApplication1
 {
     partial class Form1
     {
@@ -46,6 +48,8 @@
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(190, 20);
             this.searchBox.TabIndex = 0;
+            this.searchBox.AcceptsReturn = true;
+            this.searchBox.KeyPress += new KeyPressEventHandler(this.searchBox_Enter);
             // 
             // searchResultsBox
             // 
@@ -54,6 +58,7 @@
             this.searchResultsBox.Name = "searchResultsBox";
             this.searchResultsBox.Size = new System.Drawing.Size(190, 121);
             this.searchResultsBox.TabIndex = 2;
+            this.searchResultsBox.SelectedIndexChanged += new EventHandler(course_Description_Update);
             // 
             // courseDataBox
             // 
@@ -61,7 +66,7 @@
             this.courseDataBox.Name = "courseDataBox";
             this.courseDataBox.Size = new System.Drawing.Size(190, 96);
             this.courseDataBox.TabIndex = 4;
-            this.courseDataBox.Text = "";
+            this.courseDataBox.ReadOnly=true;
             // 
             // addCourseButton
             // 
@@ -83,11 +88,18 @@
             // 
             // searchMenu
             // 
+            this.searchMenu.AccessibleRole = System.Windows.Forms.AccessibleRole.ComboBox;
             this.searchMenu.FormattingEnabled = true;
+            this.searchMenu.Items.AddRange(new object[] {
+            "Course Code",
+            "Course Name",
+            "Day & Time",
+            "Department"});
             this.searchMenu.Location = new System.Drawing.Point(2, 33);
             this.searchMenu.Name = "searchMenu";
             this.searchMenu.Size = new System.Drawing.Size(190, 21);
             this.searchMenu.TabIndex = 7;
+            this.searchMenu.SelectedIndexChanged += new EventHandler(searchMenu_NewSelect);
             // 
             // compareButton
             // 
