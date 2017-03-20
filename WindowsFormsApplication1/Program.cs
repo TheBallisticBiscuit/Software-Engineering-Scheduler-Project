@@ -15,8 +15,8 @@ namespace WindowsFormsApplication1
         static void Main()
         {
             database courselist = new database();
-            searchQuery courseSearch = new searchQuery(courselist.getCourses(), courselist.getLineCount());
-            searchResults results = new searchResults(courselist.getCourses());
+            searchQuery courseSearch = new searchQuery(courselist);
+            searchResults results = new searchResults(new List<course>());
             TestClass t = new TestClass();
             t.test();
             Application.EnableVisualStyles();

@@ -9,56 +9,39 @@ namespace WindowsFormsApplication1
 {
     public class searchQuery
     {
-
+        database courseList;
         string currentSearch = null;
-        List<course> courseList = new List<course>();
         int lineCount;
-        
-        public searchQuery(List<course> crslst, int lineCount)
+        public searchQuery(database data)
         {
-            this.courseList = crslst;
-            Console.WriteLine(courseList[1].getCourseCode().Contains("COMP"));
-            Console.WriteLine(courseList[100].getCourseCode());
-            Console.WriteLine(courseList[200].getCourseCode());
-            this.lineCount = lineCount;
+            courseList = data;
+            Console.WriteLine(data.getCourses()[1].getCourseCode().Contains("COMP"));
+            Console.WriteLine(data.getCourses()[100].getCourseCode());
+            Console.WriteLine(data.getCourses()[200].getCourseCode());
+            this.lineCount = data.getLineCount();
         }
 
-        public int[] searchByCode(string searchValue)
+        public searchResults searchByCode(string searchValue)
         {
             // These are the index values in the data structure
             // 0 : Course Code
             // 2 : Name (short)
             searchValue = searchValue.ToUpper();
 
-            int[] indexArray = new int[lineCount];
-            int count = 0;
+            List<course> results = new List<course>();
 
             // This will only work for code and name
             for (int i = 0; i < lineCount; i++)
             {
-                if (courseList[i].getCourseCode().Contains(searchValue))
+                if (courseList.getCourses()[i].getCourseCode().Contains(searchValue))
                 {
-                    //Console.WriteLine(courseList[i].getCourseCode());
-                    indexArray[count] = i;
-                    count++;
+                    results.Add(new course(courseList.getCourses()[i]));
 
                 }
             }
-            //returns search results
-            int[] returnArray = new int[count];
-            for(int i = 0; i < count; i++)
-            {
-                returnArray[i] = indexArray[i];
-            }
-            if (count > 0)
-            {
-                return returnArray;
-            }
-            else
-            {
-                return null;
-            }
+            return new searchResults(results);
         }
+
         // Search by time
         public searchResults searchByTime(string searchValue)
         {
@@ -70,58 +53,43 @@ namespace WindowsFormsApplication1
             {
                 for(int j = 0; j < searchComponents.Length; j++) //cycles through words entered
                 {
-                    if (courseList[i].getDays().Contains(searchComponents[j])
-                        || courseList[i].getEndTime().Contains(searchComponents[j])
-                        || courseList[i].getStartTime().Contains(searchComponents[j]))
+                    if (courseList.getCourses()[i].getDays().Contains(searchComponents[j])
+                        || courseList.getCourses()[i].getEndTime().Contains(searchComponents[j])
+                        || courseList.getCourses()[i].getStartTime().Contains(searchComponents[j]))
                     {
-                        results.Add(new course(courseList[i]));
+                        results.Add(new course(courseList.getCourses()[i]));
                     }
                 }
             }
             return new searchResults(results);
         }
         //Search by department
-        public int[] searchByDepartment(string searchValue)
+        public searchResults searchByDepartment(string searchValue)
         {
 
             return null;
         }
 
-        public int[] searchByName(string searchValue)
+        public searchResults searchByName(string searchValue)
         {
             // These are the index values in the data structure
             // 0 : Course Code
             // 2 : Name (short)
             searchValue = searchValue.ToUpper();
 
-            int[] indexArray = new int[lineCount];
-            int count = 0;
+            List<course> results = new List<course>();
 
             // This will only work for code and name
             for (int i = 0; i < lineCount; i++)
             {
-                if (this.courseList[i].getLongTitle().Contains(searchValue))
+                if (this.courseList.getCourses()[i].getLongTitle().Contains(searchValue))
                 {
-                    indexArray[count] = i;
-                    count++;
+                    results.Add(courseList.getCourses()[i]);
                 }
             }
 
             //returns search results
-
-            int[] returnArray = new int[count];
-            for (int i = 0; i < count; i++)
-            {
-                returnArray[i] = indexArray[i];
-            }
-            if (count > 0)
-            {
-                return returnArray;
-            }
-            else
-            {
-                return null;
-            }
+            return new searchResults(results);
         }
 
 
