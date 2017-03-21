@@ -16,14 +16,15 @@ namespace WindowsFormsApplication1
         searchQuery courseSearch;
         searchResults results;
         List<course> searchResultList;
+        calendar courseCalendar = new calendar();
         int searchType = 1;
         public Form1()
         {
             InitializeComponent();
 
             this.courselist = new database();
-            this.courseSearch = new searchQuery(courselist.getCourses(), courselist.getLineCount());
-            this.results = new searchResults(courselist.getCourses());
+            this.courseSearch = new searchQuery(courselist);
+            this.results = new searchResults();
 
             DataTable data = csvToTable("blankCalendar.csv", true);
 
@@ -84,43 +85,44 @@ namespace WindowsFormsApplication1
 
         private void searchBox_Enter(object sender, KeyPressEventArgs e)
         {
-            int[] searchIndex;
+            //int[] searchIndex;
             if (e.KeyChar == (char)Keys.Return)
             {
                 Console.WriteLine("ENTER PRESSED!");
                 string searchString = this.searchBox.Text;
                 if (searchType == 0)
                 {
-                    searchIndex = this.courseSearch.searchByCode(searchString);
-                    this.searchResultList = results.updateResults(searchIndex);
+                    //searchIndex = this.courseSearch.searchByCode(searchString);
+                    //this.searchResultList = results.updateResults(searchIndex);
+                    this.results = this.courseSearch.searchByCode(searchString);
                 }
                 else if (searchType == 1)
                 {
-                    searchIndex = this.courseSearch.searchByName(searchString);
-                    this.searchResultList = results.updateResults(searchIndex);
+                    //searchIndex = this.courseSearch.searchByName(searchString);
+                    //this.searchResultList = results.updateResults(searchIndex);
+                    this.results = this.results = this.courseSearch.searchByName(searchString);
                 }
                 else if (searchType == 2)
                 {
                     //searchIndex = this.courseSearch.searchByTime(searchString);
+                    this.results = this.results = this.courseSearch.searchByTime(searchString);
                 }
                 else if (searchType == 3)
                 {
-                    searchIndex = this.courseSearch.searchByDepartment(searchString);
-                    this.searchResultList = results.updateResults(searchIndex);
+                    //searchIndex = this.courseSearch.searchByDepartment(searchString);
+                    //this.searchResultList = results.updateResults(searchIndex);
+                    this.results = this.courseSearch.searchByDepartment(searchString);
                 }
-                if (this.searchResultList != null)
+                if (this.results.hasCourses())
                 {
-                    if (this.searchResultList.Count > 0)
+                    if (this.searchResultsBox.Items.Count > 0)
                     {
-                        if (this.searchResultsBox.Items.Count > 0)
-                        {
-                            this.searchResultsBox.Items.Clear();
-                        }
-                        for (int i = 0; i < this.searchResultList.Count; i++)
-                        {
-                            Console.WriteLine(this.searchResultList[i].getCourseCode());
-                            this.searchResultsBox.Items.Add(this.searchResultList[i].getCourseCode());
-                        }
+                        this.searchResultsBox.Items.Clear();
+                    }
+                    for (int i = 0; i < this.results.size(); i++)
+                    {
+                        Console.WriteLine(this.results.getIndex(i).getCourseCode());
+                        this.searchResultsBox.Items.Add(this.results.getIndex(i).getCourseCode());
                     }
                 }
                 else
@@ -132,7 +134,7 @@ namespace WindowsFormsApplication1
                     Console.WriteLine("DNE");
                 }
             }
-            
+            this.courseDataBox.Text = "";
         }
 
         private void searchMenu_NewSelect(object sender, EventArgs e)
@@ -147,7 +149,7 @@ namespace WindowsFormsApplication1
         private void course_Description_Update(object sender, EventArgs e)
         {
             Console.WriteLine("NEW SELECTION!");
-            course selectedCourse = searchResultList[this.searchResultsBox.SelectedIndex];
+            course selectedCourse = this.results.getIndex(this.searchResultsBox.SelectedIndex);
             Console.WriteLine(selectedCourse.getCourseCode());
             this.courseDataBox.Text = "Code: " + selectedCourse.getCourseCode()+"\n"+
                                       "Title: " + selectedCourse.getShortTitle()+"\n"+
@@ -157,11 +159,33 @@ namespace WindowsFormsApplication1
 
         private void update_calendar_add(object sender, EventArgs e)
         {
+            
+            bool added = false;
+            if (this.searchResultsBox.SelectedIndex < 0)
+            {
+                // Nothing to add to list (no selection)
+                return;
+            }
+            added = this.courseCalendar.addCourse(this.results.getIndex(this.searchResultsBox.SelectedIndex));
 
+            if (added == true)
+            { Console.WriteLine("Course Added"); }
+            else
+            { Console.WriteLine("Course could not be added due to a conflict"); }
         }
         private void update_calendar_remove(object sender, EventArgs e)
         {
-
+            bool removed = false;
+            if (this.searchResultsBox.SelectedIndex < 0)
+            {
+                // Nothing to remove to list (no selection)
+                return;
+            }
+            removed = this.courseCalendar.removeCourse(this.results.getIndex(this.searchResultsBox.SelectedIndex));
+            if (removed == true)
+            { Console.WriteLine("Course Removed"); }
+            else
+            { Console.WriteLine("Course could not be removed due to an error"); }
         }
     }
 

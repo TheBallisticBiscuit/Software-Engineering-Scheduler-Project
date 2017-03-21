@@ -8,41 +8,75 @@ namespace WindowsFormsApplication1
 {
     public class calendar
     {
-        public course[] addCourse(course[] courseList, course newCourse)
+        List<course> courseList;
+
+        public calendar()
+        {
+            courseList = new List<course>();
+        }
+        // Adds a selected course to the calander class
+        public bool addCourse(course newCourse)
         {
             if (courseList.Contains(newCourse))
             {
                 Console.Write("ALREADY EXISTS");
-                return null;
             }
             else
             {
-                //Creates space for the new course
-                int newLength = courseList.Length + 1;
-
-                //Creating a deep copy of array
-                course[] newList = new course[newLength];
-                for (int i = 0; i < courseList.Length; i++)
+                for(int i = 0; i < courseList.Count; i++)
                 {
-                    newList[i] = courseList[i];
+                    if(courseList[i].getStartTime() == newCourse.getStartTime() && courseList[i].getDays() == newCourse.getDays())
+                    {
+                        Console.WriteLine("Date/Time conflict");
+                        return false; 
+                    }
                 }
-
-                //Adding new course to the empty spot
-                newList[newLength - 1] = newCourse;
-
-                //NEED TO CALL UPDATE CAL BEFORE RETURN?
-
-                return newList;
+                courseList.Add(newCourse);
+                return true;
             }
+            return false;
         }
 
-        public course removeCourse(course[] courseList, course oldCourse)
+        // Removes a selected course from the calander class
+        public bool removeCourse(course oldCourse)
         {
-            return null;
+            if (courseList.Contains(oldCourse))
+            {
+                courseList.Remove(oldCourse);
+                return true;
+            }
+            return false;
         }
 
-        public calendar updateCalander(calendar Update)
+        // Returns the lists of courses in the calander class
+        public List<course> returnList()
         {
+            return courseList;
+        }
+
+        // Returns whether or not a course has been added based on course code
+        public bool hasCourse(string courseCode)
+        {
+            for (int i = 0; i < courseList.Count; i++)
+            {
+                if (courseList[i].getCourseCode() == courseCode)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // returns a course based on course code
+        public course getCourse(string courseCode)
+        {
+            for(int i = 0; i < courseList.Count; i++)
+            {
+                if (courseList[i].getCourseCode() == courseCode)
+                {
+                    return courseList[i];
+                }
+            }
             return null;
         }
     }

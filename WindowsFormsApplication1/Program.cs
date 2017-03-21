@@ -17,12 +17,12 @@ namespace WindowsFormsApplication1
             database courselist = new database();
             searchQuery courseSearch = new searchQuery(courselist);
             searchResults results = new searchResults(new List<course>());
-            TestClass t = new TestClass();
-            t.test();
+            //TestClass t = new TestClass();
+            //t.test();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            t.SearchTest();
+            //t.SearchTest();
             
         }
     }

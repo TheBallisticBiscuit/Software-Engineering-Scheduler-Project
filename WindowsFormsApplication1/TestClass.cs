@@ -11,7 +11,7 @@ namespace WindowsFormsApplication1
         private database courselist;
         private searchQuery courseSearch;
         private searchResults results;
-        public TestClass()
+        /*public TestClass()
         {
             this.courselist = new database();
             this.courseSearch = new searchQuery(courselist.getCourses(), courselist.getLineCount());
@@ -120,6 +120,6 @@ namespace WindowsFormsApplication1
 
             }
             Console.WriteLine(te);
-        }
+        }*/
     }
 }

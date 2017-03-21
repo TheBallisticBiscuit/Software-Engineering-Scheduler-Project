@@ -9,16 +9,21 @@ namespace WindowsFormsApplication1
 {
     public class searchResults
     {
-        private List<course> results = new List<course>();
+        //private List<course> results = new List<course>();
         private List<course> courseList;
         //private int selected;
+        public searchResults()
+        {
+            this.courseList = new List<course>();
+        }
         public searchResults(List<course> courseList)
         {
             this.courseList = courseList;
         }
         // Clears the results and returns a new list base on
         // the search results.
-        public List<course> updateResults(int[] resultIndex)
+        // OBSOLETE
+        /*public List<course> updateResults(int[] resultIndex)
         {
             if (this.results.Count() > 0)
             {
@@ -36,11 +41,27 @@ namespace WindowsFormsApplication1
             {
                 return null;
             }
-        }
+        }*/
+        //-----------------------------------
+
         // returns the course based on the selected int
-        public course getSelected(int selected)
+        public course getIndex(int index)
         {
-            return this.results[selected];
+            return this.courseList[index];
+        }
+
+        public bool hasCourses()
+        {
+            if (courseList.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public int size()
+        {
+            return courseList.Count;
         }
     }
 }

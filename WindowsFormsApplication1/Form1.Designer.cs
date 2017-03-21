@@ -86,7 +86,7 @@ namespace WindowsFormsApplication1
             this.removeCourseBox.TabIndex = 6;
             this.removeCourseBox.Text = "Remove";
             this.removeCourseBox.UseVisualStyleBackColor = true;
-            this.removeCourseBox.Click += new EventHandler(update_calendar_add);
+            this.removeCourseBox.Click += new EventHandler(update_calendar_remove);
             // 
             // searchMenu
             // 

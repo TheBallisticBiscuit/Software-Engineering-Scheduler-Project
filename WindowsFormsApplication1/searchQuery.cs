@@ -36,7 +36,6 @@ namespace WindowsFormsApplication1
                 if (courseList.getCourses()[i].getCourseCode().Contains(searchValue))
                 {
                     results.Add(new course(courseList.getCourses()[i]));
-
                 }
             }
             return new searchResults(results);
@@ -96,6 +95,7 @@ namespace WindowsFormsApplication1
             map["HISTORY"] = "HIST";
             map["HUMANITIES"] = "HUMA";
             map["MATHEMATICS"] = "MATH";
+            map["MATH"] = "MATH";
             map["MECHANICAL ENGINEERING"] = "MECE";
             map["MECHANICAL"] = "MECE";
             map["MUSIC"] = "MUSI";
@@ -122,31 +122,18 @@ namespace WindowsFormsApplication1
             {
                 mapResult = "DNE";
             }
-
+            List<course> results = new List<course>();
             for (int i = 0; i < lineCount; i++)
             {
-                if (courseList[i].getCourseCode().Contains(mapResult))
+                if (courseList.getCourses()[i].getCourseCode().Contains(mapResult))
                 {
-                    indexArray[count] = i;
-                    count++;
+                    results.Add(courseList.getCourses()[i]);
                 }
             }
 
             //returns search results
 
-            int[] returnArray = new int[count];
-            for (int i = 0; i < count; i++)
-            {
-                returnArray[i] = indexArray[i];
-            }
-            if (count > 0)
-            {
-                return returnArray;
-            }
-            else
-            {
-                return null;
-            }
+            return new searchResults(results);
         }
 
         public searchResults searchByName(string searchValue)
