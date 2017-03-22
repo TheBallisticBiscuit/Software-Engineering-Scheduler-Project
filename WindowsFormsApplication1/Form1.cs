@@ -187,6 +187,12 @@ namespace WindowsFormsApplication1
             else
             { Console.WriteLine("Course could not be removed due to an error"); }
         }
+
+        private void createTimeslotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 win2 = new Form2();
+            win2.Show();
+        }
     }
 
 }

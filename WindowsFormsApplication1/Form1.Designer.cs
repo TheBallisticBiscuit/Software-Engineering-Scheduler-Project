@@ -39,54 +39,64 @@ namespace WindowsFormsApplication1
             this.compareButton = new System.Windows.Forms.Button();
             this.exportButton = new System.Windows.Forms.Button();
             this.calendarView = new System.Windows.Forms.DataGridView();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createTimeslotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editTimeslotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.calendarView)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // searchBox
             // 
-            this.searchBox.Location = new System.Drawing.Point(2, 12);
+            this.searchBox.AcceptsReturn = true;
+            this.searchBox.Location = new System.Drawing.Point(2, 26);
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(190, 20);
             this.searchBox.TabIndex = 0;
-            this.searchBox.AcceptsReturn = true;
-            this.searchBox.KeyPress += new KeyPressEventHandler(this.searchBox_Enter);
+            this.searchBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_Enter);
             // 
             // searchResultsBox
             // 
             this.searchResultsBox.FormattingEnabled = true;
-            this.searchResultsBox.Location = new System.Drawing.Point(2, 60);
+            this.searchResultsBox.Location = new System.Drawing.Point(2, 79);
             this.searchResultsBox.Name = "searchResultsBox";
             this.searchResultsBox.Size = new System.Drawing.Size(190, 121);
             this.searchResultsBox.TabIndex = 2;
-            this.searchResultsBox.SelectedIndexChanged += new EventHandler(course_Description_Update);
+            this.searchResultsBox.SelectedIndexChanged += new System.EventHandler(this.course_Description_Update);
             // 
             // courseDataBox
             // 
-            this.courseDataBox.Location = new System.Drawing.Point(2, 187);
+            this.courseDataBox.Location = new System.Drawing.Point(2, 206);
             this.courseDataBox.Name = "courseDataBox";
+            this.courseDataBox.ReadOnly = true;
             this.courseDataBox.Size = new System.Drawing.Size(190, 96);
             this.courseDataBox.TabIndex = 4;
-            this.courseDataBox.ReadOnly=true;
+            this.courseDataBox.Text = "";
             // 
             // addCourseButton
             // 
-            this.addCourseButton.Location = new System.Drawing.Point(2, 299);
+            this.addCourseButton.Location = new System.Drawing.Point(2, 308);
             this.addCourseButton.Name = "addCourseButton";
             this.addCourseButton.Size = new System.Drawing.Size(75, 23);
             this.addCourseButton.TabIndex = 5;
             this.addCourseButton.Text = "Add";
             this.addCourseButton.UseVisualStyleBackColor = true;
-            this.addCourseButton.Click += new EventHandler(update_calendar_add);
+            this.addCourseButton.Click += new System.EventHandler(this.update_calendar_add);
             // 
             // removeCourseBox
             // 
-            this.removeCourseBox.Location = new System.Drawing.Point(117, 299);
+            this.removeCourseBox.Location = new System.Drawing.Point(117, 308);
             this.removeCourseBox.Name = "removeCourseBox";
             this.removeCourseBox.Size = new System.Drawing.Size(75, 23);
             this.removeCourseBox.TabIndex = 6;
             this.removeCourseBox.Text = "Remove";
             this.removeCourseBox.UseVisualStyleBackColor = true;
-            this.removeCourseBox.Click += new EventHandler(update_calendar_remove);
+            this.removeCourseBox.Click += new System.EventHandler(this.update_calendar_remove);
             // 
             // searchMenu
             // 
@@ -97,15 +107,15 @@ namespace WindowsFormsApplication1
             "Course Name",
             "Day & Time",
             "Department"});
-            this.searchMenu.Location = new System.Drawing.Point(2, 33);
+            this.searchMenu.Location = new System.Drawing.Point(2, 52);
             this.searchMenu.Name = "searchMenu";
             this.searchMenu.Size = new System.Drawing.Size(190, 21);
             this.searchMenu.TabIndex = 7;
-            this.searchMenu.SelectedIndexChanged += new EventHandler(searchMenu_NewSelect);
+            this.searchMenu.SelectedIndexChanged += new System.EventHandler(this.searchMenu_NewSelect);
             // 
             // compareButton
             // 
-            this.compareButton.Location = new System.Drawing.Point(329, 299);
+            this.compareButton.Location = new System.Drawing.Point(325, 308);
             this.compareButton.Name = "compareButton";
             this.compareButton.Size = new System.Drawing.Size(75, 23);
             this.compareButton.TabIndex = 8;
@@ -114,7 +124,7 @@ namespace WindowsFormsApplication1
             // 
             // exportButton
             // 
-            this.exportButton.Location = new System.Drawing.Point(467, 299);
+            this.exportButton.Location = new System.Drawing.Point(467, 308);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(75, 23);
             this.exportButton.TabIndex = 9;
@@ -124,17 +134,78 @@ namespace WindowsFormsApplication1
             // calendarView
             // 
             this.calendarView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.calendarView.Location = new System.Drawing.Point(209, 12);
+            this.calendarView.Location = new System.Drawing.Point(209, 26);
             this.calendarView.Name = "calendarView";
             this.calendarView.Size = new System.Drawing.Size(435, 271);
             this.calendarView.TabIndex = 10;
             this.calendarView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.calendarView_CellContentClick);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.editToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(656, 24);
+            this.menuStrip1.TabIndex = 11;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem,
+            this.openToolStripMenuItem,
+            this.exportToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.exportToolStripMenuItem.Text = "Export";
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createTimeslotToolStripMenuItem,
+            this.editTimeslotToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // createTimeslotToolStripMenuItem
+            // 
+            this.createTimeslotToolStripMenuItem.Name = "createTimeslotToolStripMenuItem";
+            this.createTimeslotToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.createTimeslotToolStripMenuItem.Text = "Create Timeslot";
+            this.createTimeslotToolStripMenuItem.Click += new System.EventHandler(this.createTimeslotToolStripMenuItem_Click);
+            // 
+            // editTimeslotToolStripMenuItem
+            // 
+            this.editTimeslotToolStripMenuItem.Name = "editTimeslotToolStripMenuItem";
+            this.editTimeslotToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.editTimeslotToolStripMenuItem.Text = "Edit Timeslot";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 334);
+            this.ClientSize = new System.Drawing.Size(656, 336);
             this.Controls.Add(this.calendarView);
             this.Controls.Add(this.exportButton);
             this.Controls.Add(this.compareButton);
@@ -144,10 +215,14 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.courseDataBox);
             this.Controls.Add(this.searchResultsBox);
             this.Controls.Add(this.searchBox);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Course Scheduler";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.calendarView)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,6 +239,14 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button compareButton;
         private System.Windows.Forms.Button exportButton;
         private System.Windows.Forms.DataGridView calendarView;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem saveToolStripMenuItem;
+        private ToolStripMenuItem openToolStripMenuItem;
+        private ToolStripMenuItem exportToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem createTimeslotToolStripMenuItem;
+        private ToolStripMenuItem editTimeslotToolStripMenuItem;
 
 
     }
