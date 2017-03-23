@@ -159,7 +159,7 @@
             this.Controls.Add(this.timeslotTitleText);
             this.Controls.Add(this.TitleLabel);
             this.Name = "Form2";
-            this.Text = "        New Timeslot";
+            this.Text = "Timeslot";
             this.ResumeLayout(false);
             this.PerformLayout();
 

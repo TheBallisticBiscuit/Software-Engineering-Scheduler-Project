@@ -190,8 +190,8 @@ namespace WindowsFormsApplication1
 
         private void createTimeslotToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2 win2 = new Form2();
-            win2.Show();
+            Form2 win2 = new Form2(); //creates the new timeslot window
+            win2.Show(); //displays the window
         }
     }
 
