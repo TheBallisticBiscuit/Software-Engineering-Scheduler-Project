@@ -31,7 +31,8 @@ namespace WindowsFormsApplication1
 
             calendarView.DataSource = data;
 
-            Console.Write(courseCalendar.fixEndTime("14:45:00"));
+            Console.Write(courseCalendar.fixEndTime("14:50:00"));
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -81,9 +82,7 @@ namespace WindowsFormsApplication1
 
         private void calendarView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataTable data = csvToTable("blankCalendar.csv", true);
-
-            calendarView.DataSource = data;
+            calendarView.Rows[e.RowIndex].ReadOnly = true;
         }
 
         private void searchBox_Enter(object sender, KeyPressEventArgs e)
