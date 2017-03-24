@@ -213,38 +213,20 @@ namespace WindowsFormsApplication1
                 // Nothing to remove to list (no selection)
                 return;
             }
+            course toRemove = this.results.getIndex(this.searchResultsBox.SelectedIndex);
             removed = this.courseCalendar.removeCourse(this.results.getIndex(this.searchResultsBox.SelectedIndex));
             if (removed == true)
             { 
-                foreach(course c in courseCalendar.courseList)
-                {
-                    string fixedStartTime = c.getStartTime();
-                    string fixedEndTime = c.getEndTime();
-                    List<int> daysCols = new List<int>();
-                    daysCols = findDaysCols(c.getDays());
-                    bool inSession = false;
-                    foreach(DataRow dr in data.Rows)
+                    foreach(DataColumn col in data.Columns)
                     {
-                        if(inSession && dr[0].ToString() != fixedEndTime)
+                        foreach(DataRow row in data.Rows)
                         {
-                            foreach (int i in daysCols)
+                            if (row[col.ColumnName].ToString() == toRemove.getCourseCode())
                             {
-                                dr[i] = "";
+                                row[col.ColumnName] = "";
                             }
-                        }
-                        else if (dr[0].ToString() == fixedStartTime){
-                            foreach(int i in daysCols)
-                            {
-                                dr[i] = "";
-                            }
-                            inSession = true;
-                        }
-                        else if(dr[0].ToString() == fixedEndTime)
-                        {
-                            inSession = false;
                         }
                     }
-                }
             }
             else
             { Console.WriteLine("Course could not be removed due to an error"); }
