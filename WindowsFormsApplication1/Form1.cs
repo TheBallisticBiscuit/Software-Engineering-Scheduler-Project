@@ -17,6 +17,7 @@ namespace WindowsFormsApplication1
         searchResults results;
         List<course> searchResultList;
         calendar courseCalendar = new calendar();
+        DataTable data = new DataTable();
         int searchType = 1;
         public Form1()
         {
@@ -26,7 +27,7 @@ namespace WindowsFormsApplication1
             this.courseSearch = new searchQuery(courselist);
             this.results = new searchResults();
 
-            DataTable data = csvToTable("blankCalendar.csv", true);
+            data = csvToTable("blankCalendar.csv", true);
 
             calendarView.DataSource = data;
 
@@ -169,9 +170,26 @@ namespace WindowsFormsApplication1
                 return;
             }
             added = this.courseCalendar.addCourse(this.results.getIndex(this.searchResultsBox.SelectedIndex));
-
             if (added == true)
-            { Console.WriteLine("Course Added"); }
+            {
+                foreach (course c in courseCalendar.courseList)
+                {
+                    string fixedStartTime = c.getStartTime();
+                    string fixedEndTime = c.getEndTime();
+                    List<int> daysCols = new List<int>();
+                    daysCols = findDaysCols(c.getDays());
+                    foreach (DataRow dr in data.Rows)
+                    {
+                        if (dr[1].ToString() == fixedStartTime)
+                        {
+                            foreach (int i in daysCols)
+                            {
+                                dr[i] = c.getCourseCode();
+                            }
+                        }
+                    }
+                }
+            }
             else
             { Console.WriteLine("Course could not be added due to a conflict"); }
         }
@@ -185,7 +203,24 @@ namespace WindowsFormsApplication1
             }
             removed = this.courseCalendar.removeCourse(this.results.getIndex(this.searchResultsBox.SelectedIndex));
             if (removed == true)
-            { Console.WriteLine("Course Removed"); }
+            { 
+                foreach(course c in courseCalendar.courseList)
+                {
+                    string fixedStartTime = c.getStartTime();
+                    string fixedEndTime = c.getEndTime();
+                    List<int> daysCols = new List<int>();
+                    daysCols = findDaysCols(c.getDays());
+                    foreach(DataRow dr in data.Rows)
+                    {
+                        if (dr[1].ToString() == fixedStartTime){
+                            foreach(int i in daysCols)
+                            {
+                                dr[i] = "";
+                            }
+                        }
+                    }
+                }
+            }
             else
             { Console.WriteLine("Course could not be removed due to an error"); }
         }
@@ -195,6 +230,32 @@ namespace WindowsFormsApplication1
             Form2 win2 = new Form2(); //creates the new timeslot window
             win2.Show(); //displays the window
         }
+        private List<int> findDaysCols(string days)
+        {
+            char[] toFind = days.ToCharArray();
+            List<int> results = new List<int>();
+            foreach(char c in toFind)
+            {
+                switch (c)
+                {
+                    case 'M':
+                        results.Add(2);
+                        break;
+                    case 'T':
+                        results.Add(3);
+                        break;
+                    case 'W':
+                        results.Add(4);
+                        break;
+                    case 'R':
+                        results.Add(5);
+                        break;
+                    case 'F':
+                        results.Add(6);
+                        break;
+                }
+            }
+            return results;
+        }
     }
-
 }

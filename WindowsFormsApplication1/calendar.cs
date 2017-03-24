@@ -8,7 +8,7 @@ namespace WindowsFormsApplication1
 {
     public class calendar
     {
-        List<course> courseList;
+        public List<course> courseList;
 
         public calendar()
         {
