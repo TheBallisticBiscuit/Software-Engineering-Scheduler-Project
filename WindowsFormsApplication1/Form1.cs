@@ -31,7 +31,7 @@ namespace WindowsFormsApplication1
 
             calendarView.DataSource = data;
 
-            Console.Write(courseCalendar.fixEndTime("2:45:00 PM"));
+            Console.Write(courseCalendar.fixEndTime("14:45:00"));
         }
 
         private void Form1_Load(object sender, EventArgs e)
