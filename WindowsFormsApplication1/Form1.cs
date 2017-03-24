@@ -82,6 +82,7 @@ namespace WindowsFormsApplication1
 
         private void calendarView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             calendarView.Rows[e.RowIndex].ReadOnly = true;
         }
 
@@ -102,12 +103,12 @@ namespace WindowsFormsApplication1
                 {
                     //searchIndex = this.courseSearch.searchByName(searchString);
                     //this.searchResultList = results.updateResults(searchIndex);
-                    this.results = this.results = this.courseSearch.searchByName(searchString);
+                    this.results = this.courseSearch.searchByName(searchString);
                 }
                 else if (searchType == 2)
                 {
                     //searchIndex = this.courseSearch.searchByTime(searchString);
-                    this.results = this.results = this.courseSearch.searchByTime(searchString);
+                    this.results = this.courseSearch.searchByTime(searchString);
                 }
                 else if (searchType == 3)
                 {
@@ -208,28 +209,35 @@ namespace WindowsFormsApplication1
         private void update_calendar_remove(object sender, EventArgs e)
         {
             bool removed = false;
-            if (this.searchResultsBox.SelectedIndex < 0)
+            // Ensures only one cell is selected to removed a certain course
+            if (this.calendarView.SelectedCells.Count != 1)
             {
-                // Nothing to remove to list (no selection)
                 return;
             }
-            course toRemove = this.results.getIndex(this.searchResultsBox.SelectedIndex);
-            removed = this.courseCalendar.removeCourse(this.results.getIndex(this.searchResultsBox.SelectedIndex));
-            if (removed == true)
-            { 
-                    foreach(DataColumn col in data.Columns)
+
+            else if (this.calendarView.SelectedCells.Count == 1 && this.courseCalendar.hasCourse(this.calendarView.SelectedCells[0].Value.ToString()))
+            {                  
+                course toRemove = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString());
+                Console.WriteLine(toRemove.getCourseCode());
+                string removeName = toRemove.getCourseCode();
+                removed = this.courseCalendar.removeCourse(toRemove);
+                if (removed == true)
+                {
+                    Console.WriteLine("COURSE REMOVED!");
+                    foreach (DataColumn col in data.Columns)
                     {
-                        foreach(DataRow row in data.Rows)
+                        foreach (DataRow row in data.Rows)
                         {
-                            if (row[col.ColumnName].ToString() == toRemove.getCourseCode())
+                            if (row[col.ColumnName].ToString() == removeName)
                             {
                                 row[col.ColumnName] = "";
                             }
                         }
                     }
+                }
+                else
+                { Console.WriteLine("Course could not be removed due to an error"); }
             }
-            else
-            { Console.WriteLine("Course could not be removed due to an error"); }
         }
 
         private void createTimeslotToolStripMenuItem_Click(object sender, EventArgs e)
@@ -263,6 +271,16 @@ namespace WindowsFormsApplication1
                 }
             }
             return results;
+        }
+
+        private void do_not_sort(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            Console.WriteLine("do not sort");
+        }
+
+        private void selected_cell(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            Console.WriteLine("SELECTED CELL");
         }
     }
 }

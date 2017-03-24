@@ -19,7 +19,7 @@ namespace WindowsFormsApplication1
         {
             if (courseList.Contains(newCourse))
             {
-                Console.Write("ALREADY EXISTS");
+                Console.WriteLine("COURSE ALREADY EXISTS");
             }
             else
             {
