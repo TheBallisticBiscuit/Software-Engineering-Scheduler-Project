@@ -178,14 +178,27 @@ namespace WindowsFormsApplication1
                     string fixedEndTime = courseCalendar.fixEndTime(c.getEndTime());
                     List<int> daysCols = new List<int>();
                     daysCols = findDaysCols(c.getDays());
+                    bool inSession = false;
                     foreach (DataRow dr in data.Rows)
                     {
-                        if (dr[0].ToString() == fixedStartTime)
+                        if (inSession && dr[0].ToString() != fixedEndTime)
                         {
                             foreach (int i in daysCols)
                             {
                                 dr[i] = c.getCourseCode();
                             }
+                        }
+                        else if (dr[0].ToString() == fixedStartTime)
+                        {
+                            foreach (int i in daysCols)
+                            {
+                                dr[i] = c.getCourseCode();
+                            }
+                            inSession = true;
+                        }
+                        else if(dr[0].ToString() == fixedEndTime)
+                        {
+                            inSession = false;
                         }
                     }
                 }
@@ -210,13 +223,26 @@ namespace WindowsFormsApplication1
                     string fixedEndTime = c.getEndTime();
                     List<int> daysCols = new List<int>();
                     daysCols = findDaysCols(c.getDays());
+                    bool inSession = false;
                     foreach(DataRow dr in data.Rows)
                     {
-                        if (dr[0].ToString() == fixedStartTime){
+                        if(inSession && dr[0].ToString() != fixedEndTime)
+                        {
+                            foreach (int i in daysCols)
+                            {
+                                dr[i] = "";
+                            }
+                        }
+                        else if (dr[0].ToString() == fixedStartTime){
                             foreach(int i in daysCols)
                             {
                                 dr[i] = "";
                             }
+                            inSession = true;
+                        }
+                        else if(dr[0].ToString() == fixedEndTime)
+                        {
+                            inSession = false;
                         }
                     }
                 }
@@ -230,7 +256,7 @@ namespace WindowsFormsApplication1
             Form2 win2 = new Form2(); //creates the new timeslot window
             win2.Show(); //displays the window
         }
-        private List<int> findDaysCols(string days)
+        private List<int> findDaysCols(string days) //formats a list of days into indices in our data table
         {
             char[] toFind = days.ToCharArray();
             List<int> results = new List<int>();
