@@ -174,13 +174,13 @@ namespace WindowsFormsApplication1
             {
                 foreach (course c in courseCalendar.courseList)
                 {
-                    string fixedStartTime = c.getStartTime();
-                    string fixedEndTime = c.getEndTime();
+                    string fixedStartTime = courseCalendar.fixStartTime(c.getStartTime());
+                    string fixedEndTime = courseCalendar.fixEndTime(c.getEndTime());
                     List<int> daysCols = new List<int>();
                     daysCols = findDaysCols(c.getDays());
                     foreach (DataRow dr in data.Rows)
                     {
-                        if (dr[1].ToString() == fixedStartTime)
+                        if (dr[0].ToString() == fixedStartTime)
                         {
                             foreach (int i in daysCols)
                             {
@@ -212,7 +212,7 @@ namespace WindowsFormsApplication1
                     daysCols = findDaysCols(c.getDays());
                     foreach(DataRow dr in data.Rows)
                     {
-                        if (dr[1].ToString() == fixedStartTime){
+                        if (dr[0].ToString() == fixedStartTime){
                             foreach(int i in daysCols)
                             {
                                 dr[i] = "";
@@ -239,19 +239,19 @@ namespace WindowsFormsApplication1
                 switch (c)
                 {
                     case 'M':
-                        results.Add(2);
+                        results.Add(1);
                         break;
                     case 'T':
-                        results.Add(3);
+                        results.Add(2);
                         break;
                     case 'W':
-                        results.Add(4);
+                        results.Add(3);
                         break;
                     case 'R':
-                        results.Add(5);
+                        results.Add(4);
                         break;
                     case 'F':
-                        results.Add(6);
+                        results.Add(5);
                         break;
                 }
             }
