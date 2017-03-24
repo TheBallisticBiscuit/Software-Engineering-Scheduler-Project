@@ -29,6 +29,8 @@ namespace WindowsFormsApplication1
             DataTable data = csvToTable("blankCalendar.csv", true);
 
             calendarView.DataSource = data;
+
+            Console.Write(courseCalendar.fixEndTime("2:45:00 PM"));
         }
 
         private void Form1_Load(object sender, EventArgs e)
