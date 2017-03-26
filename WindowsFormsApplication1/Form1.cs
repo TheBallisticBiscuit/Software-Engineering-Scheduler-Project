@@ -220,6 +220,9 @@ namespace WindowsFormsApplication1
                 course toRemove = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString());
                 Console.WriteLine(toRemove.getCourseCode());
                 string removeName = toRemove.getCourseCode();
+
+                
+
                 removed = this.courseCalendar.removeCourse(toRemove);
                 if (removed == true)
                 {
@@ -280,7 +283,21 @@ namespace WindowsFormsApplication1
 
         private void selected_cell(object sender, DataGridViewCellMouseEventArgs e)
         {
-            Console.WriteLine("SELECTED CELL");
+            if (this.courseCalendar.hasCourse(this.calendarView.SelectedCells[0].Value.ToString()) && this.calendarView.SelectedCells.Count == 1)
+            {
+                Console.WriteLine("SELECTED CELL");
+                course selectedCourse = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString());
+                Console.WriteLine(selectedCourse.getCourseCode());
+                this.courseDataBox.Text = "Code: " + selectedCourse.getCourseCode() + "\n" +
+                                          "Title: " + selectedCourse.getShortTitle() + "\n" +
+                                          "Day(s): " + selectedCourse.getDays() + "\n" +
+                                          "Time: " + selectedCourse.getStartTime() + " - " + selectedCourse.getEndTime();
+            }
+            else
+            {
+                this.courseDataBox.Text = "";
+            }
+
         }
     }
 }

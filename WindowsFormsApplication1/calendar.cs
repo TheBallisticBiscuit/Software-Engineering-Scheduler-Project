@@ -25,8 +25,9 @@ namespace WindowsFormsApplication1
             {
                 for(int i = 0; i < courseList.Count; i++)
                 {
-                    if(courseList[i].getStartTime() == newCourse.getStartTime() && courseList[i].getDays() == newCourse.getDays())
+                    if ( (courseList[i].getDays().Contains(newCourse.getDays()) || newCourse.getDays().Contains(courseList[i].getDays()))&& courseList[i].getStartTime() == newCourse.getStartTime() )
                     {
+                        //
                         Console.WriteLine("Date/Time conflict");
                         return false; 
                     }
@@ -40,11 +41,30 @@ namespace WindowsFormsApplication1
         // Removes a selected course from the calander class
         public bool removeCourse(course oldCourse)
         {
-            if (courseList.Contains(oldCourse))
+            //string code = oldCourse.getCourseCode();
+            int count = 0;
+            List<course> toBeRemoved = new List<course>();
+            for(int i = 0; i < courseList.Count;i++)
+            {
+                if (courseList[i].getCourseCode() == oldCourse.getCourseCode())
+                {
+                    toBeRemoved.Add(courseList[i]);
+                    count++;
+                }
+            }
+            foreach (var cs in toBeRemoved)
+            {
+                courseList.Remove(cs);
+            }
+            if (count > 0)
+            {
+                return true;
+            }
+            /*if (courseList.Contains(oldCourse))
             {
                 courseList.Remove(oldCourse);
                 return true;
-            }
+            }*/
             return false;
         }
 
