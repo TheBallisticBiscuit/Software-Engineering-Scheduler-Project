@@ -115,7 +115,7 @@ namespace WindowsFormsApplication1
             // 
             // compareButton
             // 
-            this.compareButton.Location = new System.Drawing.Point(325, 308);
+            this.compareButton.Location = new System.Drawing.Point(2, 337);
             this.compareButton.Name = "compareButton";
             this.compareButton.Size = new System.Drawing.Size(75, 23);
             this.compareButton.TabIndex = 8;
@@ -124,7 +124,7 @@ namespace WindowsFormsApplication1
             // 
             // exportButton
             // 
-            this.exportButton.Location = new System.Drawing.Point(467, 308);
+            this.exportButton.Location = new System.Drawing.Point(117, 337);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(75, 23);
             this.exportButton.TabIndex = 9;
@@ -133,19 +133,17 @@ namespace WindowsFormsApplication1
             // 
             // calendarView
             // 
+            this.calendarView.AllowUserToResizeColumns = false;
+            this.calendarView.AllowUserToResizeRows = false;
             this.calendarView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.calendarView.Location = new System.Drawing.Point(209, 26);
             this.calendarView.Name = "calendarView";
-            this.calendarView.Size = new System.Drawing.Size(675,625);
+            this.calendarView.ReadOnly = true;
+            this.calendarView.Size = new System.Drawing.Size(679, 641);
             this.calendarView.TabIndex = 10;
             this.calendarView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.calendarView_CellContentClick);
-            this.calendarView.ReadOnly = true;
-            this.calendarView.AllowUserToOrderColumns = false;
-            this.calendarView.AllowUserToResizeColumns = false;
-            this.calendarView.AllowUserToResizeRows = false;
-            this.calendarView.ColumnHeadersVisible = true;
-            this.calendarView.CellMouseClick += new DataGridViewCellMouseEventHandler(this.selected_cell);
-            this.calendarView.ColumnHeaderMouseClick += new DataGridViewCellMouseEventHandler(this.do_not_sort);
+            this.calendarView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.selected_cell);
+            this.calendarView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.do_not_sort);
             // 
             // menuStrip1
             // 
@@ -154,7 +152,7 @@ namespace WindowsFormsApplication1
             this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(656, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(900, 24);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -212,7 +210,7 @@ namespace WindowsFormsApplication1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 700);
+            this.ClientSize = new System.Drawing.Size(900, 677);
             this.Controls.Add(this.calendarView);
             this.Controls.Add(this.exportButton);
             this.Controls.Add(this.compareButton);

@@ -20,6 +20,9 @@ namespace WindowsFormsApplication1
             if (courseList.Contains(newCourse))
             {
                 Console.WriteLine("COURSE ALREADY EXISTS");
+                Alert AlertWin = new Alert();
+                AlertWin.Show();
+                AlertWin.set_text_alert("Course already added.");
             }
             else
             {
@@ -29,6 +32,9 @@ namespace WindowsFormsApplication1
                     {
                         //
                         Console.WriteLine("Date/Time conflict");
+                        Alert AlertWin = new Alert();
+                        AlertWin.Show();
+                        AlertWin.set_text_alert("Date/Time conflict\nwith this course.");
                         return false; 
                     }
                 }

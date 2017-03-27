@@ -33,11 +33,13 @@ namespace WindowsFormsApplication1
 
             Console.Write(courseCalendar.fixEndTime("14:50:00"));
 
+            this.searchMenu.SelectedIndex = 0;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
 
