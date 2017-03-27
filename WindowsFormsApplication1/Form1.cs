@@ -18,7 +18,7 @@ namespace WindowsFormsApplication1
         List<course> searchResultList;
         calendar courseCalendar = new calendar();
         DataTable data = new DataTable();
-        int searchType = 1;
+        int searchType = 0;
         public Form1()
         {
             InitializeComponent();
@@ -216,7 +216,8 @@ namespace WindowsFormsApplication1
             }
 
             else if (this.calendarView.SelectedCells.Count == 1 && this.courseCalendar.hasCourse(this.calendarView.SelectedCells[0].Value.ToString()))
-            {                  
+            {
+               
                 course toRemove = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString());
                 Console.WriteLine(toRemove.getCourseCode());
                 string removeName = toRemove.getCourseCode();
@@ -285,9 +286,25 @@ namespace WindowsFormsApplication1
         {
             if (this.courseCalendar.hasCourse(this.calendarView.SelectedCells[0].Value.ToString()) && this.calendarView.SelectedCells.Count == 1)
             {
-                Console.WriteLine("SELECTED CELL");
-                course selectedCourse = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString());
+                
+               // List<course> selectedCourses = new List<course>();
+                string day;
+                if (this.calendarView.SelectedCells[0].ColumnIndex == 2)
+                {
+                    day = "T";
+                }
+                else if (this.calendarView.SelectedCells[0].ColumnIndex == 4)
+                {
+                    day = "R";
+                }
+                else
+                {
+                    day = "MWF";
+                }
+                Console.WriteLine(day);
+                course selectedCourse = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString(), day);
                 Console.WriteLine(selectedCourse.getCourseCode());
+              
                 this.courseDataBox.Text = "Code: " + selectedCourse.getCourseCode() + "\n" +
                                           "Title: " + selectedCourse.getShortTitle() + "\n" +
                                           "Day(s): " + selectedCourse.getDays() + "\n" +

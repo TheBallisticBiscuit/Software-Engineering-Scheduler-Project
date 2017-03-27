@@ -100,6 +100,18 @@ namespace WindowsFormsApplication1
             return null;
         }
 
+        public course getCourse(string courseCode, string day)
+        {
+            for (int i = 0; i < courseList.Count; i++)
+            {
+                if (courseList[i].getCourseCode() == courseCode && courseList[i].getDays().Contains(day))
+                {
+                    return courseList[i];
+                }
+            }
+            return null;
+        }
+
         public string fixStartTime(string oddStart)
         {
             string timeOfDay = " AM";
