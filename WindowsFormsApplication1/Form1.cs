@@ -286,7 +286,7 @@ namespace WindowsFormsApplication1
 
         private void selected_cell(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (this.courseCalendar.hasCourse(this.calendarView.SelectedCells[0].Value.ToString()) && this.calendarView.SelectedCells.Count == 1)
+            if (this.calendarView.SelectedCells.Count == 1 && this.courseCalendar.hasCourse(this.calendarView.SelectedCells[0].Value.ToString()))
             {
                 
                // List<course> selectedCourses = new List<course>();
