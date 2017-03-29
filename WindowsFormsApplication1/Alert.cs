@@ -26,8 +26,18 @@ namespace WindowsFormsApplication1
         {
             this.Close();
         }
-        public void set_text_alert(string txt)
+
+        // Alerts the user what the warning is
+        public void set_text_alert(string txt, bool realine = false)
         {
+            if (realine == false)
+            {
+                this.label1.Location = new System.Drawing.Point(71, 21);
+            }
+            else
+            {
+                this.label1.Location = new System.Drawing.Point(40, 21);
+            }
             this.label1.Text = txt;
         }
 

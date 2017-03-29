@@ -7,6 +7,7 @@ using WindowsFormsApplication1;
 
 namespace WindowsFormsApplication1
 {
+    // searchQuery class is used to determine which search will be used to parse the database.
     public class searchQuery
     {
         database courseList;
@@ -21,16 +22,13 @@ namespace WindowsFormsApplication1
             this.lineCount = data.getLineCount();
         }
 
+        // search by course code
         public searchResults searchByCode(string searchValue)
         {
-            // These are the index values in the data structure
-            // 0 : Course Code
-            // 2 : Name (short)
             searchValue = searchValue.ToUpper();
 
             List<course> results = new List<course>();
 
-            // This will only work for code and name
             for (int i = 0; i < lineCount; i++)
             {
                 if (courseList.getCourses()[i].getCourseCode().Contains(searchValue))
@@ -41,7 +39,6 @@ namespace WindowsFormsApplication1
             return new searchResults(results);
         }
 
-        // Search by time
         public searchResults searchByTime(string searchValue)
         {
             searchValue = searchValue.ToUpper();
@@ -87,6 +84,7 @@ namespace WindowsFormsApplication1
             }
             return new searchResults(results);
         }
+
         //Search by department
         public searchResults searchByDepartment(string searchValue)
         {
@@ -137,11 +135,7 @@ namespace WindowsFormsApplication1
 
             searchValue = searchValue.ToUpper();
 
-            int[] indexArray = new int[lineCount];
-            int count = 0;
-
             map.TryGetValue((searchValue), out mapResult);
-
 
             if (!map.Values.Contains(mapResult))
             {
@@ -157,20 +151,15 @@ namespace WindowsFormsApplication1
             }
 
             //returns search results
-
             return new searchResults(results);
         }
 
         public searchResults searchByName(string searchValue)
         {
-            // These are the index values in the data structure
-            // 0 : Course Code
-            // 2 : Name (short)
             searchValue = searchValue.ToUpper();
 
             List<course> results = new List<course>();
 
-            // This will only work for code and name
             for (int i = 0; i < lineCount; i++)
             {
                 if (this.courseList.getCourses()[i].getLongTitle().Contains(searchValue))
@@ -182,13 +171,8 @@ namespace WindowsFormsApplication1
             //returns search results
             return new searchResults(results);
         }
-
-
+        
         //other searches here
 
-        internal int[] searchByCode()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

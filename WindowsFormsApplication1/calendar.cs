@@ -34,7 +34,8 @@ namespace WindowsFormsApplication1
                         Console.WriteLine("Date/Time conflict");
                         Alert AlertWin = new Alert();
                         AlertWin.Show();
-                        AlertWin.set_text_alert("Date/Time conflict\nwith this course.");
+                        string txt = "Date/Time conflict with this course at\nDay(s): " + newCourse.getDays() + " Time: " + newCourse.getStartTime(); 
+                        AlertWin.set_text_alert(txt,true);
                         return false; 
                     }
                 }
@@ -45,6 +46,8 @@ namespace WindowsFormsApplication1
         }
 
         // Removes a selected course from the calander class
+        // Removes all courses given a course it will remove all
+        // courses with the same course code.
         public bool removeCourse(course oldCourse)
         {
             //string code = oldCourse.getCourseCode();
@@ -66,6 +69,7 @@ namespace WindowsFormsApplication1
             {
                 return true;
             }
+            // Old way of removing courses
             /*if (courseList.Contains(oldCourse))
             {
                 courseList.Remove(oldCourse);
@@ -106,6 +110,7 @@ namespace WindowsFormsApplication1
             return null;
         }
 
+        // returns a course based on course code and day the course is active
         public course getCourse(string courseCode, string day)
         {
             for (int i = 0; i < courseList.Count; i++)

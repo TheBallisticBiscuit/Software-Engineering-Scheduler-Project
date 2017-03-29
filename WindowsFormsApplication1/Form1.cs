@@ -15,10 +15,10 @@ namespace WindowsFormsApplication1
         database courselist;
         searchQuery courseSearch;
         searchResults results;
-        List<course> searchResultList;
         calendar courseCalendar = new calendar();
         DataTable data = new DataTable();
         int searchType = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -84,38 +84,30 @@ namespace WindowsFormsApplication1
 
         private void calendarView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
             calendarView.Rows[e.RowIndex].ReadOnly = true;
         }
 
+        // When a query is entered into the text field and enter is pressed, the database will be searched
         private void searchBox_Enter(object sender, KeyPressEventArgs e)
         {
-            //int[] searchIndex;
             if (e.KeyChar == (char)Keys.Return)
             {
                 Console.WriteLine("ENTER PRESSED!");
                 string searchString = this.searchBox.Text;
                 if (searchType == 0)
                 {
-                    //searchIndex = this.courseSearch.searchByCode(searchString);
-                    //this.searchResultList = results.updateResults(searchIndex);
                     this.results = this.courseSearch.searchByCode(searchString);
                 }
                 else if (searchType == 1)
                 {
-                    //searchIndex = this.courseSearch.searchByName(searchString);
-                    //this.searchResultList = results.updateResults(searchIndex);
                     this.results = this.courseSearch.searchByName(searchString);
                 }
                 else if (searchType == 2)
                 {
-                    //searchIndex = this.courseSearch.searchByTime(searchString);
                     this.results = this.courseSearch.searchByTime(searchString);
                 }
                 else if (searchType == 3)
                 {
-                    //searchIndex = this.courseSearch.searchByDepartment(searchString);
-                    //this.searchResultList = results.updateResults(searchIndex);
                     this.results = this.courseSearch.searchByDepartment(searchString);
                 }
                 if (this.results.hasCourses())
@@ -142,15 +134,16 @@ namespace WindowsFormsApplication1
             this.courseDataBox.Text = "";
         }
 
+        // Changes the search type
         private void searchMenu_NewSelect(object sender, EventArgs e)
         {
-            
             int index = this.searchMenu.SelectedIndex;
             string str = "Selection " + index + "!";
             Console.WriteLine(str);
             this.searchType = index;
         }
 
+        // Writes the course info based a selected class in the search results
         private void course_Description_Update(object sender, EventArgs e)
         {
             Console.WriteLine("NEW SELECTION!");
@@ -162,6 +155,7 @@ namespace WindowsFormsApplication1
                                       "Time: " + selectedCourse.getStartTime()+ " - " + selectedCourse.getEndTime();
         }
 
+        // Updates the calendar when a course is added
         private void update_calendar_add(object sender, EventArgs e)
         {
             
@@ -208,6 +202,8 @@ namespace WindowsFormsApplication1
             else
             { Console.WriteLine("Course could not be added due to a conflict"); }
         }
+
+        // Updates the calendar when a course is removed
         private void update_calendar_remove(object sender, EventArgs e)
         {
             bool removed = false;
@@ -246,11 +242,13 @@ namespace WindowsFormsApplication1
             }
         }
 
+
         private void createTimeslotToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form2 win2 = new Form2(); //creates the new timeslot window
             win2.Show(); //displays the window
         }
+
         private List<int> findDaysCols(string days) //formats a list of days into indices in our data table
         {
             char[] toFind = days.ToCharArray();
@@ -279,11 +277,13 @@ namespace WindowsFormsApplication1
             return results;
         }
 
+        // Test attempt to prevent calendar from sorting when header is clicked
         private void do_not_sort(object sender, DataGridViewCellMouseEventArgs e)
         {
             Console.WriteLine("do not sort");
         }
 
+        // Prints info based of selected cell on on the calendar.
         private void selected_cell(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (this.calendarView.SelectedCells.Count == 1 && this.courseCalendar.hasCourse(this.calendarView.SelectedCells[0].Value.ToString()))

@@ -49,6 +49,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 2;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Alert
             // 

@@ -7,42 +7,20 @@ using System.Windows;
 
 namespace WindowsFormsApplication1
 {
+    // searchResults is the list of course that were found from the searchQuery.
     public class searchResults
     {
-        //private List<course> results = new List<course>();
         private List<course> courseList;
-        //private int selected;
+
         public searchResults()
         {
             this.courseList = new List<course>();
         }
+
         public searchResults(List<course> courseList)
         {
             this.courseList = courseList;
         }
-        // Clears the results and returns a new list base on
-        // the search results.
-        // OBSOLETE
-        /*public List<course> updateResults(int[] resultIndex)
-        {
-            if (this.results.Count() > 0)
-            {
-                this.results.Clear();
-            }
-            if (resultIndex != null)
-            {
-                for (int i = 0; i < resultIndex.Length; i++)
-                {
-                    this.results.Add(courseList[resultIndex[i]]);
-                }
-                return this.results;
-            }
-            else
-            {
-                return null;
-            }
-        }*/
-        //-----------------------------------
 
         // returns the course based on the selected int
         public course getIndex(int index)
@@ -50,6 +28,7 @@ namespace WindowsFormsApplication1
             return this.courseList[index];
         }
 
+        // Checks to see if the courses exist in the results
         public bool hasCourses()
         {
             if (courseList.Count > 0)
@@ -59,6 +38,7 @@ namespace WindowsFormsApplication1
             return false;
         }
 
+        // Size of the list
         public int size()
         {
             return courseList.Count;
