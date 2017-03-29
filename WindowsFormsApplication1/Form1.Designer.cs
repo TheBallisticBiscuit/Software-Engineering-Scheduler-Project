@@ -105,7 +105,7 @@ namespace WindowsFormsApplication1
             this.searchMenu.Items.AddRange(new object[] {
             "Course Code",
             "Course Name",
-            "Day & Time",
+            "Days Meeting",
             "Department"});
             this.searchMenu.Location = new System.Drawing.Point(2, 52);
             this.searchMenu.Name = "searchMenu";

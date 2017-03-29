@@ -45,18 +45,43 @@ namespace WindowsFormsApplication1
         public searchResults searchByTime(string searchValue)
         {
             searchValue = searchValue.ToUpper();
-            char[] delimiterChars = { ' ', ',' };
-            string[] searchComponents = searchValue.Split(delimiterChars);
+            char[] delimiterChars = { ' ', ',', '-', '.' };
+            string[] searchComponents = searchValue.Split(delimiterChars); //splitting string into individual words
             List<course> results = new List<course>();
-            for(int i = 0; i < lineCount; i++) //cycles through database
+            string mapResult = "";
+
+            var map = new Dictionary<string, string>(); //maps abbreviations and variants to day values to check
+            map["MONDAY"] = "M";
+            map["MON"] = "M";
+            map["TUESDAY"] = "T";
+            map["TUE"] = "T";
+            map["TUES"] = "T";
+            map["WEDNESDAY"] = "W";
+            map["WED"] = "W";
+            map["THURSDAY"] = "R";
+            map["TH"] = "R";
+            map["THU"] = "R";
+            map["THUR"] = "R";
+            map["THURS"] = "R";
+            map["FRIDAY"] = "F";
+            map["FRI"] = "F";
+
+            for (int i = 0; i < lineCount; i++) //cycles through database
             {
-                for(int j = 0; j < searchComponents.Length; j++) //cycles through words entered
+                foreach (string j in searchComponents) //for each day input
                 {
-                    if (courseList.getCourses()[i].getDays().Contains(searchComponents[j])
-                        || courseList.getCourses()[i].getEndTime().Contains(searchComponents[j])
-                        || courseList.getCourses()[i].getStartTime().Contains(searchComponents[j]))
+                    if (!map.TryGetValue(j, out mapResult)) //if it's already in MWF format, simply set the checked variable to the string
                     {
-                        results.Add(new course(courseList.getCourses()[i]));
+                        mapResult = j;
+                    }
+                    if (courseList.getCourses()[i].getDays().Contains(mapResult)) //if the course meets on entered day, add it
+                    {
+                        results.Add(courseList.getCourses()[i]);
+                    }
+                    else //if there is a day that is not in the course, remove it, if it was never added in the first place this returns false
+                    {
+                        results.Remove(courseList.getCourses()[i]);
+                        break; //avoids errors with unordered days
                     }
                 }
             }

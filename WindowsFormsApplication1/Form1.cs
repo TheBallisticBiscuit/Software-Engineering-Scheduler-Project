@@ -176,29 +176,29 @@ namespace WindowsFormsApplication1
             {
                 foreach (course c in courseCalendar.courseList)
                 {
-                    string fixedStartTime = courseCalendar.fixStartTime(c.getStartTime());
+                    string fixedStartTime = courseCalendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
                     string fixedEndTime = courseCalendar.fixEndTime(c.getEndTime());
                     List<int> daysCols = new List<int>();
-                    daysCols = findDaysCols(c.getDays());
-                    bool inSession = false;
-                    foreach (DataRow dr in data.Rows)
+                    daysCols = findDaysCols(c.getDays());  //find the columns we need to add this course to
+                    bool inSession = false; //used to indicate when all appropriate timeslots have been filled
+                    foreach (DataRow dr in data.Rows) //cycle through rows
                     {
-                        if (inSession && dr[0].ToString() != fixedEndTime)
+                        if (inSession && dr[0].ToString() != fixedEndTime) //if we haven't hit the end of the class yet, add it to the calendar
                         {
-                            foreach (int i in daysCols)
+                            foreach (int i in daysCols) //adding to appropriate columns
                             {
                                 dr[i] = c.getCourseCode();
                             }
                         }
-                        else if (dr[0].ToString() == fixedStartTime)
+                        else if (dr[0].ToString() == fixedStartTime) //this starts the loop of adding to time slots
                         {
                             foreach (int i in daysCols)
                             {
-                                dr[i] = c.getCourseCode();
+                                dr[i] = c.getCourseCode(); //add first timeslot
                             }
-                            inSession = true;
+                            inSession = true; //set up to add to all timeslots
                         }
-                        else if(dr[0].ToString() == fixedEndTime)
+                        else if(dr[0].ToString() == fixedEndTime) //this ends the loop of adding to timeslots
                         {
                             inSession = false;
                         }
@@ -230,11 +230,11 @@ namespace WindowsFormsApplication1
                 if (removed == true)
                 {
                     Console.WriteLine("COURSE REMOVED!");
-                    foreach (DataColumn col in data.Columns)
+                    foreach (DataColumn col in data.Columns) //cycle through columns
                     {
-                        foreach (DataRow row in data.Rows)
+                        foreach (DataRow row in data.Rows) //cycle through rows
                         {
-                            if (row[col.ColumnName].ToString() == removeName)
+                            if (row[col.ColumnName].ToString() == removeName) //if the course is being removed, then set cell to empty
                             {
                                 row[col.ColumnName] = "";
                             }
@@ -242,7 +242,7 @@ namespace WindowsFormsApplication1
                     }
                 }
                 else
-                { Console.WriteLine("Course could not be removed due to an error"); }
+                { Console.WriteLine("Course could not be removed due to an error"); } //error if course trying to be removed is not there
             }
         }
 
