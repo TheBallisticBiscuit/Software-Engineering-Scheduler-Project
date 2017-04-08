@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WindowsFormsApplication1;
+using CourseScheduler;
 
-namespace WindowsFormsApplication1
+namespace CourseScheduler
 {
     // searchQuery class is used to determine which search will be used to parse the database.
     public class searchQuery

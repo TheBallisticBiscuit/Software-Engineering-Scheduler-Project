@@ -1,0 +1,16 @@
+--INSTALL.txt--
+
+Instructions
+
+If the project has not yet been built, open up TestCSharp.sln file in Visual Studio 2012 in this level. Once opened, press the start button to run the program.
+
+If the program has been built, the Course Scheduler can be run one of two ways.
+
+1. Go into the \WindowsFormsApplication1\bin\Debug and run WindowsFormsApplication1.exe
+
+or
+
+2. In this level open up TestCSharp.sln file in Visual Studio 2012. Once opened, press the start button to run the program.
+
+Notes: 
+- The Search by Day/Time was revised to simply search by Days only due to some complications in the search functionality. 

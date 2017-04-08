@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WindowsFormsApplication1
+namespace CourseScheduler
 {
     // searchResults is the list of course that were found from the searchQuery.
     public class searchResults

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace CourseScheduler
 {
     static class Program
     {
@@ -14,16 +14,9 @@ namespace WindowsFormsApplication1
         [STAThread]
         static void Main()
         {
-            database courselist = new database();
-            searchQuery courseSearch = new searchQuery(courselist);
-            searchResults results = new searchResults(new List<course>());
-            //TestClass t = new TestClass();
-            //t.test();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-            //t.SearchTest();
-            
+            Application.Run(new MainWindow());
         }
     }
 }

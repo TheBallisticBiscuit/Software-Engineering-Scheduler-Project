@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace WindowsFormsApplication1
+namespace CourseScheduler
 {
     // database class is used to get the course database proved to us and store it. 
     public class database
@@ -46,7 +46,7 @@ namespace WindowsFormsApplication1
                 int capacity = Int32.Parse(courseDBObject[i, 9]);
                 
                 // Adds a new course to the list
-                coursesList.Add(new WindowsFormsApplication1.course(enrollment, capacity, courseDBObject[i, 0],courseDBObject[i, 1],courseDBObject[i, 2],courseDBObject[i, 3],courseDBObject[i, 4],courseDBObject[i, 5],courseDBObject[i, 6],courseDBObject[i, 7]));
+                coursesList.Add(new CourseScheduler.course(enrollment, capacity, courseDBObject[i, 0],courseDBObject[i, 1],courseDBObject[i, 2],courseDBObject[i, 3],courseDBObject[i, 4],courseDBObject[i, 5],courseDBObject[i, 6],courseDBObject[i, 7]));
             }
 
             data.Close();
