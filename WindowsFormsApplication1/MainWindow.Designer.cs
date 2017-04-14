@@ -30,6 +30,9 @@ namespace CourseScheduler
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.searchBox = new System.Windows.Forms.TextBox();
             this.searchResultsBox = new System.Windows.Forms.ListBox();
             this.courseDataBox = new System.Windows.Forms.RichTextBox();
@@ -54,7 +57,7 @@ namespace CourseScheduler
             // searchBox
             // 
             this.searchBox.AcceptsReturn = true;
-            this.searchBox.Location = new System.Drawing.Point(2, 26);
+            this.searchBox.Location = new System.Drawing.Point(12, 26);
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(190, 20);
             this.searchBox.TabIndex = 0;
@@ -63,24 +66,24 @@ namespace CourseScheduler
             // searchResultsBox
             // 
             this.searchResultsBox.FormattingEnabled = true;
-            this.searchResultsBox.Location = new System.Drawing.Point(2, 79);
+            this.searchResultsBox.Location = new System.Drawing.Point(12, 79);
             this.searchResultsBox.Name = "searchResultsBox";
-            this.searchResultsBox.Size = new System.Drawing.Size(190, 121);
+            this.searchResultsBox.Size = new System.Drawing.Size(190, 368);
             this.searchResultsBox.TabIndex = 2;
             this.searchResultsBox.SelectedIndexChanged += new System.EventHandler(this.course_Description_Update);
             // 
             // courseDataBox
             // 
-            this.courseDataBox.Location = new System.Drawing.Point(2, 206);
+            this.courseDataBox.Location = new System.Drawing.Point(12, 452);
             this.courseDataBox.Name = "courseDataBox";
             this.courseDataBox.ReadOnly = true;
-            this.courseDataBox.Size = new System.Drawing.Size(190, 96);
+            this.courseDataBox.Size = new System.Drawing.Size(190, 113);
             this.courseDataBox.TabIndex = 4;
             this.courseDataBox.Text = "";
             // 
             // addCourseButton
             // 
-            this.addCourseButton.Location = new System.Drawing.Point(2, 308);
+            this.addCourseButton.Location = new System.Drawing.Point(12, 571);
             this.addCourseButton.Name = "addCourseButton";
             this.addCourseButton.Size = new System.Drawing.Size(75, 23);
             this.addCourseButton.TabIndex = 5;
@@ -90,7 +93,7 @@ namespace CourseScheduler
             // 
             // removeCourseBox
             // 
-            this.removeCourseBox.Location = new System.Drawing.Point(117, 308);
+            this.removeCourseBox.Location = new System.Drawing.Point(127, 571);
             this.removeCourseBox.Name = "removeCourseBox";
             this.removeCourseBox.Size = new System.Drawing.Size(75, 23);
             this.removeCourseBox.TabIndex = 6;
@@ -107,7 +110,7 @@ namespace CourseScheduler
             "Course Name",
             "Days Meeting",
             "Department"});
-            this.searchMenu.Location = new System.Drawing.Point(2, 52);
+            this.searchMenu.Location = new System.Drawing.Point(12, 52);
             this.searchMenu.Name = "searchMenu";
             this.searchMenu.Size = new System.Drawing.Size(190, 21);
             this.searchMenu.TabIndex = 7;
@@ -115,7 +118,7 @@ namespace CourseScheduler
             // 
             // compareButton
             // 
-            this.compareButton.Location = new System.Drawing.Point(2, 337);
+            this.compareButton.Location = new System.Drawing.Point(12, 600);
             this.compareButton.Name = "compareButton";
             this.compareButton.Size = new System.Drawing.Size(75, 23);
             this.compareButton.TabIndex = 8;
@@ -124,7 +127,7 @@ namespace CourseScheduler
             // 
             // exportButton
             // 
-            this.exportButton.Location = new System.Drawing.Point(117, 337);
+            this.exportButton.Location = new System.Drawing.Point(127, 600);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(75, 23);
             this.exportButton.TabIndex = 9;
@@ -133,14 +136,40 @@ namespace CourseScheduler
             // 
             // calendarView
             // 
+            this.calendarView.AllowUserToAddRows = false;
+            this.calendarView.AllowUserToDeleteRows = false;
             this.calendarView.AllowUserToResizeColumns = false;
             this.calendarView.AllowUserToResizeRows = false;
-            this.calendarView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.calendarView.Location = new System.Drawing.Point(209, 26);
+            this.calendarView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.calendarView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.calendarView.DefaultCellStyle = dataGridViewCellStyle1;
+            this.calendarView.Location = new System.Drawing.Point(218, 26);
             this.calendarView.Name = "calendarView";
             this.calendarView.ReadOnly = true;
-            this.calendarView.Size = new System.Drawing.Size(679, 641);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LimeGreen;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.calendarView.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.calendarView.RowHeadersVisible = false;
+            this.calendarView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.calendarView.RowTemplate.ReadOnly = true;
+            this.calendarView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.calendarView.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.calendarView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.calendarView.Size = new System.Drawing.Size(602, 597);
             this.calendarView.TabIndex = 10;
+            this.calendarView.TabStop = false;
             this.calendarView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.calendarView_CellContentClick);
             this.calendarView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.selected_cell);
             this.calendarView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.do_not_sort);
@@ -169,19 +198,19 @@ namespace CourseScheduler
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // editToolStripMenuItem
@@ -221,8 +250,10 @@ namespace CourseScheduler
             this.Controls.Add(this.searchResultsBox);
             this.Controls.Add(this.searchBox);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Course Scheduler";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.calendarView)).EndInit();

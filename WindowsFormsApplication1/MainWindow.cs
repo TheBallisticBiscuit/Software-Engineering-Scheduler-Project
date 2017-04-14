@@ -39,6 +39,7 @@ namespace CourseScheduler
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+
             
         }
 
@@ -86,6 +87,7 @@ namespace CourseScheduler
         {
             calendarView.Rows[e.RowIndex].ReadOnly = true;
         }
+
 
         // When a query is entered into the text field and enter is pressed, the database will be searched
         private void searchBox_Enter(object sender, KeyPressEventArgs e)
