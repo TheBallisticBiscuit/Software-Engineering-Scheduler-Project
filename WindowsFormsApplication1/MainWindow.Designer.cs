@@ -50,8 +50,10 @@ namespace CourseScheduler
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createTimeslotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editTimeslotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.calendarView)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // searchBox
@@ -74,9 +76,11 @@ namespace CourseScheduler
             // 
             // courseDataBox
             // 
+            this.courseDataBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.courseDataBox.Location = new System.Drawing.Point(12, 452);
             this.courseDataBox.Name = "courseDataBox";
             this.courseDataBox.ReadOnly = true;
+            this.courseDataBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.courseDataBox.Size = new System.Drawing.Size(190, 113);
             this.courseDataBox.TabIndex = 4;
             this.courseDataBox.Text = "";
@@ -181,7 +185,7 @@ namespace CourseScheduler
             this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(900, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(831, 24);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -198,19 +202,19 @@ namespace CourseScheduler
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // editToolStripMenuItem
@@ -235,11 +239,27 @@ namespace CourseScheduler
             this.editTimeslotToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.editTimeslotToolStripMenuItem.Text = "Edit Timeslot";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.Image = global::CourseScheduler.Properties.Resources.header_logo;
+            this.pictureBox1.Location = new System.Drawing.Point(362, 643);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(135, 22);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 677);
+            this.ClientSize = new System.Drawing.Size(831, 677);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.calendarView);
             this.Controls.Add(this.exportButton);
             this.Controls.Add(this.compareButton);
@@ -259,6 +279,7 @@ namespace CourseScheduler
             ((System.ComponentModel.ISupportInitialize)(this.calendarView)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,6 +304,7 @@ namespace CourseScheduler
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem createTimeslotToolStripMenuItem;
         private ToolStripMenuItem editTimeslotToolStripMenuItem;
+        private PictureBox pictureBox1;
 
 
     }

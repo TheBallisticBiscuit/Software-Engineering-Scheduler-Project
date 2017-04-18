@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExtraCurWin));
             this.TitleLabel = new System.Windows.Forms.Label();
             this.timeslotTitleText = new System.Windows.Forms.TextBox();
             this.daysLabel = new System.Windows.Forms.Label();
@@ -95,6 +96,7 @@
             this.startTimeBox.Size = new System.Drawing.Size(96, 31);
             this.startTimeBox.TabIndex = 5;
             this.startTimeBox.Text = "Start";
+            this.startTimeBox.TextChanged += new System.EventHandler(this.startTimeBox_TextChanged);
             // 
             // endTimeBox
             // 
@@ -125,7 +127,7 @@
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(217, 198);
+            this.okButton.Location = new System.Drawing.Point(211, 180);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 9;
@@ -134,7 +136,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(315, 198);
+            this.cancelButton.Location = new System.Drawing.Point(292, 180);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 10;
@@ -142,11 +144,11 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // Form2
+            // ExtraCurWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 224);
+            this.ClientSize = new System.Drawing.Size(377, 224);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.textBox1);
@@ -158,7 +160,9 @@
             this.Controls.Add(this.daysLabel);
             this.Controls.Add(this.timeslotTitleText);
             this.Controls.Add(this.TitleLabel);
-            this.Name = "Form2";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "ExtraCurWin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Timeslot";
             this.ResumeLayout(false);
             this.PerformLayout();

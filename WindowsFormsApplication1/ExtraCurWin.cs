@@ -21,5 +21,10 @@ namespace CourseScheduler
         {
             this.Close();  //kills the window without saving anything
         }
+
+        private void startTimeBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -31,6 +31,13 @@ namespace CourseScheduler
 
             calendarView.DataSource = data;
 
+
+            foreach (DataGridViewColumn col in calendarView.Columns)
+            {
+                col.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+            
+
             Console.Write(courseCalendar.fixEndTime("14:50:00"));
 
             this.searchMenu.SelectedIndex = 0;
@@ -39,8 +46,8 @@ namespace CourseScheduler
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-
             
+    
         }
 
 
@@ -63,6 +70,7 @@ namespace CourseScheduler
                     headers[i] = headers[i].Replace(" ", "_");
 
                     csvTable.Columns.Add(headers[i], typeof(string));
+                  
                 }
             }
             else
@@ -83,8 +91,10 @@ namespace CourseScheduler
             return csvTable;
         }
 
+
         private void calendarView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1) return;
             calendarView.Rows[e.RowIndex].ReadOnly = true;
         }
 
@@ -313,6 +323,11 @@ namespace CourseScheduler
             {
                 this.courseDataBox.Text = "";
             }
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
 
         }
     }
