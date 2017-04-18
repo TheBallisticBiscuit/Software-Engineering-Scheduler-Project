@@ -161,10 +161,12 @@ namespace CourseScheduler
             Console.WriteLine("NEW SELECTION!");
             course selectedCourse = this.results.getIndex(this.searchResultsBox.SelectedIndex);
             Console.WriteLine(selectedCourse.getCourseCode());
-            this.courseDataBox.Text = "Code: " + selectedCourse.getCourseCode()+"\n"+
-                                      "Title: " + selectedCourse.getShortTitle()+"\n"+
-                                      "Day(s): " + selectedCourse.getDays() + "\n"+
-                                      "Time: " + selectedCourse.getStartTime()+ " - " + selectedCourse.getEndTime();
+            this.courseDataBox.Text = "Code: " + selectedCourse.getCourseCode() + "\n" +
+                                          "Title: " + selectedCourse.getShortTitle() + "\n" +
+                                          "Day(s): " + selectedCourse.getDays() + "\n" +
+                                          "Time: " + selectedCourse.getStartTime() + " - " + selectedCourse.getEndTime() + "\n" +
+                                          "Building: " + selectedCourse.getBuilding() + " " + selectedCourse.getRoom() + "\n" +
+                                          "Enrollment: " + selectedCourse.getEnrollment() + "/" + selectedCourse.getCapacity();
         }
 
         // Updates the calendar when a course is added
@@ -317,7 +319,9 @@ namespace CourseScheduler
                 this.courseDataBox.Text = "Code: " + selectedCourse.getCourseCode() + "\n" +
                                           "Title: " + selectedCourse.getShortTitle() + "\n" +
                                           "Day(s): " + selectedCourse.getDays() + "\n" +
-                                          "Time: " + selectedCourse.getStartTime() + " - " + selectedCourse.getEndTime();
+                                          "Time: " + selectedCourse.getStartTime() + " - " + selectedCourse.getEndTime() + "\n" +
+                                          "Building: " + selectedCourse.getBuilding() + " " + selectedCourse.getRoom() + "\n" +
+                                          "Enrollment: " + selectedCourse.getEnrollment() + "/" + selectedCourse.getCapacity();
             }
             else
             {
@@ -327,6 +331,11 @@ namespace CourseScheduler
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void courseDataBox_TextChanged(object sender, EventArgs e)
         {
 
         }

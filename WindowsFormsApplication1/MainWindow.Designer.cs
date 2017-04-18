@@ -84,6 +84,7 @@ namespace CourseScheduler
             this.courseDataBox.Size = new System.Drawing.Size(190, 113);
             this.courseDataBox.TabIndex = 4;
             this.courseDataBox.Text = "";
+            this.courseDataBox.TextChanged += new System.EventHandler(this.courseDataBox_TextChanged);
             // 
             // addCourseButton
             // 
