@@ -106,19 +106,23 @@ namespace CourseScheduler
             {
                 Console.WriteLine("ENTER PRESSED!");
                 string searchString = this.searchBox.Text;
-                if (searchType == 0)
+                if(searchType == 0)
                 {
-                    this.results = this.courseSearch.searchByCode(searchString);
+                    this.results = this.courseSearch.genericSearch(searchString);
                 }
                 else if (searchType == 1)
                 {
-                    this.results = this.courseSearch.searchByName(searchString);
+                    this.results = this.courseSearch.searchByCode(searchString);
                 }
                 else if (searchType == 2)
                 {
-                    this.results = this.courseSearch.searchByTime(searchString);
+                    this.results = this.courseSearch.searchByName(searchString);
                 }
                 else if (searchType == 3)
+                {
+                    this.results = this.courseSearch.searchByTime(searchString);
+                }
+                else if (searchType == 4)
                 {
                     this.results = this.courseSearch.searchByDepartment(searchString);
                 }
@@ -161,12 +165,9 @@ namespace CourseScheduler
             Console.WriteLine("NEW SELECTION!");
             course selectedCourse = this.results.getIndex(this.searchResultsBox.SelectedIndex);
             Console.WriteLine(selectedCourse.getCourseCode());
-            this.courseDataBox.Text = "Code: " + selectedCourse.getCourseCode() + "\n" +
-                                          "Title: " + selectedCourse.getShortTitle() + "\n" +
-                                          "Day(s): " + selectedCourse.getDays() + "\n" +
-                                          "Time: " + selectedCourse.getStartTime() + " - " + selectedCourse.getEndTime() + "\n" +
-                                          "Building: " + selectedCourse.getBuilding() + " " + selectedCourse.getRoom() + "\n" +
-                                          "Enrollment: " + selectedCourse.getEnrollment() + "/" + selectedCourse.getCapacity();
+
+            printInfo(selectedCourse);
+
         }
 
         // Updates the calendar when a course is added
@@ -315,13 +316,10 @@ namespace CourseScheduler
                 Console.WriteLine(day);
                 course selectedCourse = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString(), day);
                 Console.WriteLine(selectedCourse.getCourseCode());
-              
-                this.courseDataBox.Text = "Code: " + selectedCourse.getCourseCode() + "\n" +
-                                          "Title: " + selectedCourse.getShortTitle() + "\n" +
-                                          "Day(s): " + selectedCourse.getDays() + "\n" +
-                                          "Time: " + selectedCourse.getStartTime() + " - " + selectedCourse.getEndTime() + "\n" +
-                                          "Building: " + selectedCourse.getBuilding() + " " + selectedCourse.getRoom() + "\n" +
-                                          "Enrollment: " + selectedCourse.getEnrollment() + "/" + selectedCourse.getCapacity();
+
+
+                printInfo(selectedCourse);
+
             }
             else
             {
@@ -329,6 +327,7 @@ namespace CourseScheduler
             }
 
         }
+
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -338,6 +337,17 @@ namespace CourseScheduler
         private void courseDataBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void printInfo(course selectedCourse)
+        {
+            this.courseDataBox.Text = "Code: " + selectedCourse.getCourseCode() + "\n" +
+                                      "Title: " + selectedCourse.getShortTitle() + "\n" +
+                                      "Day(s): " + selectedCourse.getDays() + "\n" +
+                                      "Time: " + selectedCourse.getStartTime() + " - " + selectedCourse.getEndTime() + "\n" +
+                                      "Building: " + selectedCourse.getBuilding() + "\n" +
+                                      "Room: " + selectedCourse.getRoom() + "\n" +
+                                      "Current Enrollment: " + selectedCourse.getEnrollment();
         }
     }
 }

@@ -75,10 +75,7 @@ namespace CourseScheduler
         {
             return daysMeeting;
         }
-        public int getCapacity()
-        {
-            return capacity;
-        }
+
         public string getBuilding()
         {
             return building;
@@ -87,9 +84,11 @@ namespace CourseScheduler
         {
             return room;
         }
-        public int getEnrollment()
+
+        public string getEnrollment()
         {
-            return enrollment;
+            return enrollment.ToString() + "/" + capacity.ToString();
+
         }
     }
 }

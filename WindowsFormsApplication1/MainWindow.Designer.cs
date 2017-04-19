@@ -111,6 +111,7 @@ namespace CourseScheduler
             this.searchMenu.AccessibleRole = System.Windows.Forms.AccessibleRole.ComboBox;
             this.searchMenu.FormattingEnabled = true;
             this.searchMenu.Items.AddRange(new object[] {
+            "Generic",
             "Course Code",
             "Course Name",
             "Days Meeting",
