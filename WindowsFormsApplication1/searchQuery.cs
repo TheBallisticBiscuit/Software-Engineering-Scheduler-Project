@@ -162,7 +162,7 @@ namespace CourseScheduler
 
             for (int i = 0; i < lineCount; i++)
             {
-                if (this.courseList.getCourses()[i].getLongTitle().Contains(searchValue))
+                if (this.courseList.getCourses()[i].getLongTitle().Contains(searchValue) || this.courseList.getCourses()[i].getShortTitle().Contains(searchValue))
                 {
                     results.Add(courseList.getCourses()[i]);
                 }
@@ -171,7 +171,20 @@ namespace CourseScheduler
             //returns search results
             return new searchResults(results);
         }
-        
+
+        public searchResults genericSearch(string searchValue)
+        {
+            searchValue = searchValue.ToUpper();
+
+            searchResults results = new searchResults();
+
+            results = searchByCode(searchValue);
+            results.add(searchByName(searchValue));
+            results.add(searchByTime(searchValue));
+            results.add(searchByDepartment(searchValue));
+
+            return results;
+        }
         //other searches here
 
     }

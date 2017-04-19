@@ -75,5 +75,17 @@ namespace CourseScheduler
         {
             return daysMeeting;
         }
+        public string getBuilding()
+        {
+            return building;
+        }
+        public string getRoom()
+        {
+            return room;
+        }
+        public string getEnrollment()
+        {
+            return enrollment.ToString() + "/" + capacity.ToString();
+        }
     }
 }

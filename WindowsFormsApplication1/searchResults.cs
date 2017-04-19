@@ -43,5 +43,15 @@ namespace CourseScheduler
         {
             return courseList.Count;
         }
+
+        public List<course> getResultsList()
+        {
+            return courseList;
+        }
+
+        public void add(searchResults results)
+        {
+            this.courseList.AddRange(results.getResultsList());
+        }
     }
 }
