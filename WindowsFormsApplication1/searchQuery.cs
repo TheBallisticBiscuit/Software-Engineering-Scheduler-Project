@@ -183,6 +183,8 @@ namespace CourseScheduler
             results.add(searchByTime(searchValue));
             results.add(searchByDepartment(searchValue));
 
+            //var newResults = results.Distinct().ToList();
+
             return results;
         }
         //other searches here

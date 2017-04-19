@@ -349,5 +349,10 @@ namespace CourseScheduler
                                       "Room: " + selectedCourse.getRoom() + "\n" +
                                       "Current Enrollment: " + selectedCourse.getEnrollment();
         }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
