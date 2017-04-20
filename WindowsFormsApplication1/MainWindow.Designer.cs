@@ -142,8 +142,9 @@ namespace CourseScheduler
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(75, 23);
             this.exportButton.TabIndex = 9;
-            this.exportButton.Text = "Export";
+            this.exportButton.Text = "Get Codes";
             this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
             // 
             // calendarView
             // 
@@ -291,6 +292,7 @@ namespace CourseScheduler
             this.Controls.Add(this.searchResultsBox);
             this.Controls.Add(this.searchBox);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";

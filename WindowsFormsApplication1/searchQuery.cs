@@ -185,6 +185,8 @@ namespace CourseScheduler
             //results.filter();
 
 
+            //var newResults = results.Distinct().ToList();
+
             return results;
         }
         //other searches here
