@@ -266,7 +266,6 @@ namespace CourseScheduler
             this.calendarView.TabStop = false;
             this.calendarView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.calendarView_CellContentClick);
             this.calendarView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.selected_cell);
-            this.calendarView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.do_not_sort);
             // 
             // removeCourseBox
             // 

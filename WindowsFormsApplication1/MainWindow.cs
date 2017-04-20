@@ -309,12 +309,6 @@ namespace CourseScheduler
             return results;
         }
 
-        // Test attempt to prevent calendar from sorting when header is clicked
-        private void do_not_sort(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            Console.WriteLine("do not sort");
-        }
-
         // Prints info based of selected cell on on the calendar.
         private void selected_cell(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -330,17 +324,29 @@ namespace CourseScheduler
                 {
                     day = "R";
                 }
+                else if (this.calendarView.SelectedCells[0].ColumnIndex == 1)
+                {
+                    day = "M";
+                }
+                else if (this.calendarView.SelectedCells[0].ColumnIndex == 3)
+                {
+                    day = "W";
+                }
+                else if (this.calendarView.SelectedCells[0].ColumnIndex == 5)
+                {
+                    day = "F";
+                }
                 else
                 {
                     day = "MWF";
                 }
-                Console.WriteLine(day);
+                //Console.WriteLine(day);
                 course selectedCourse = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString(), day);
-                Console.WriteLine(selectedCourse.getCourseCode());
+                //Console.WriteLine(selectedCourse.getCourseCode());
 
                 
-
-                printInfo(selectedCourse);
+                if (selectedCourse != null)
+                    printInfo(selectedCourse);
 
             }
             else
