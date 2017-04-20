@@ -29,7 +29,7 @@ namespace CourseScheduler
             this.courseSearch = new searchQuery(courselist);
             this.results = new searchResults();
 
-            data = csvToTable("blankCalendar.csv", true);
+            data = csvToTable("../../blankCalendar.csv", true);
 
             calendarView.DataSource = data;
 
