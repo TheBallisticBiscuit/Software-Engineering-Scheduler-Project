@@ -41,8 +41,11 @@ namespace CourseScheduler
                         return false; 
                     }
                 }
-                courseList.Add(newCourse);
-                return true;
+                if (newCourse != null)
+                {
+                    courseList.Add(newCourse);
+                    return true;
+                }
             }
             return false;
         }

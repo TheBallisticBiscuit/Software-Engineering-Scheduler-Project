@@ -64,6 +64,7 @@ namespace CourseScheduler
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroBar = new MetroFramework.Controls.MetroProgressBar();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.calendarView)).BeginInit();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -168,6 +169,26 @@ namespace CourseScheduler
             this.editTimeslotToolStripMenuItem.Name = "editTimeslotToolStripMenuItem";
             this.editTimeslotToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.editTimeslotToolStripMenuItem.Text = "Edit Timeslot";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "csv";
+            this.saveFileDialog1.Filter = "CSV files|*.csv";
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.DefaultExt = "csv";
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "csv files|*.csv";
             // 
             // searchMenu
             // 
@@ -380,18 +401,6 @@ namespace CourseScheduler
             this.metroBar.Size = new System.Drawing.Size(190, 6);
             this.metroBar.TabIndex = 20;
             // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.DefaultExt = "csv";
-            this.saveFileDialog1.Filter = "CSV files|*.csv";
-            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.DefaultExt = "csv";
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "csv files|*.csv";
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -419,6 +428,7 @@ namespace CourseScheduler
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.calendarView)).EndInit();
             this.metroPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
