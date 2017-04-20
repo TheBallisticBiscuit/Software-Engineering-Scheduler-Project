@@ -145,7 +145,7 @@ namespace CourseScheduler
                     for (int i = 0; i < this.results.size(); i++)
                     {
                         this.searchResultsBox.Items.Add(this.results.getIndex(i).getCourseCode());
-                        metroBar.Value = i++ * 100 / this.results.size();
+                        metroBar.Value = i * 100 / this.results.size();
                         metroBar.Update();             
                     }
                     metroBar.Value = 100;
