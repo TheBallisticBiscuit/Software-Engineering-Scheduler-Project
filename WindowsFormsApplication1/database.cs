@@ -20,7 +20,7 @@ namespace CourseScheduler
             StreamReader data = null;
             try
             {
-                data = new StreamReader("CourseDB_WithFictionalCapacities.csv");
+                data = new StreamReader("../../CourseDB_WithFictionalCapacities.csv");
             }
             catch (Exception e)
             {
@@ -28,7 +28,7 @@ namespace CourseScheduler
                 Console.WriteLine(e.Message);   
             }
             
-            lineCount = File.ReadLines("CourseDB_WithFictionalCapacities.csv").Count();
+            lineCount = File.ReadLines("../../CourseDB_WithFictionalCapacities.csv").Count();
             courseDBObject = new string[lineCount,10];
             coursesList = new List<course>();
             data.ReadLine(); //Ignores titles of columns
