@@ -279,6 +279,9 @@
             this.Controls.Add(this.metroTextBox3);
             this.Controls.Add(this.metroTextBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(425, 263);
+            this.MinimumSize = new System.Drawing.Size(425, 263);
             this.Name = "ExtraCurWin";
             this.Text = "Custom Timeslot";
             this.ResumeLayout(false);

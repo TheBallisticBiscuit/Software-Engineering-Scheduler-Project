@@ -66,6 +66,8 @@
             this.DisplayHeader = false;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(255, 109);
+            this.MinimumSize = new System.Drawing.Size(255, 109);
             this.Name = "Alert";
             this.Opacity = 0.9D;
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
