@@ -506,11 +506,20 @@ namespace CourseScheduler
 
         }
 
-        private void turnOffHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void metroProgressBar1_Click(object sender, EventArgs e)
         {
 
-            this.turnOffHelpToolStripMenuItem.Text = this.turnOffHelpToolStripMenuItem.Text == "Hide Tips" ? this.turnOffHelpToolStripMenuItem.Text = "Show Tips" : this.turnOffHelpToolStripMenuItem.Text = "Hide Tips";
-            if (this.turnOffHelpToolStripMenuItem.Text == "Show Tips")
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hideTipsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.hideTipsToolStripMenuItem.Text = this.hideTipsToolStripMenuItem.Text == "Hide Tips" ? this.hideTipsToolStripMenuItem.Text = "Show Tips" : this.hideTipsToolStripMenuItem.Text = "Hide Tips";
+            if (this.hideTipsToolStripMenuItem.Text == "Show Tips")
             {
                 metroToolTip1.Active = false;
             }
@@ -518,11 +527,6 @@ namespace CourseScheduler
             {
                 metroToolTip1.Active = true;
             }
-        }
-
-        private void metroProgressBar1_Click(object sender, EventArgs e)
-        {
-
         }
 
 
