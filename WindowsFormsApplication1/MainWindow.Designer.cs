@@ -78,6 +78,7 @@ namespace CourseScheduler
             this.searchResultsBox.Size = new System.Drawing.Size(190, 270);
             this.searchResultsBox.TabIndex = 2;
             this.searchResultsBox.SelectedIndexChanged += new System.EventHandler(this.course_Description_Update);
+            this.searchResultsBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.update_calendar_add);
             // 
             // courseDataBox
             // 
@@ -274,6 +275,7 @@ namespace CourseScheduler
             this.calendarView.TabStop = false;
             this.calendarView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.calendarView_CellContentClick);
             this.calendarView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.selected_cell);
+            this.calendarView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.update_calendar_remove);
             // 
             // removeCourseBox
             // 
