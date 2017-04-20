@@ -106,13 +106,16 @@ namespace CourseScheduler
             calendarView.Rows[e.RowIndex].ReadOnly = true;
         }
 
-
         // When a query is entered into the text field and enter is pressed, the database will be searched
         private void searchBox_Enter(object sender, KeyPressEventArgs e)
         {
+            metroBar.Value = 0;
+            metroBar.Update();
             if (e.KeyChar == (char)Keys.Return)
             {
                 Console.WriteLine("ENTER PRESSED!");
+                
+
                 string searchString = this.searchBox.Text;
                 if(searchType == 0)
                 {
@@ -144,7 +147,12 @@ namespace CourseScheduler
                     {
                         Console.WriteLine(this.results.getIndex(i).getCourseCode());
                         this.searchResultsBox.Items.Add(this.results.getIndex(i).getCourseCode());
+                        metroBar.Value = i++ * 100 / this.results.size();
+                        metroBar.Update();
+                  
                     }
+                    metroBar.Value = 100;
+                    metroBar.Update();
                 }
                 else
                 {
@@ -458,6 +466,11 @@ namespace CourseScheduler
             {
                 metroToolTip1.Active = true;
             }
+        }
+
+        private void metroProgressBar1_Click(object sender, EventArgs e)
+        {
+
         }
 
 

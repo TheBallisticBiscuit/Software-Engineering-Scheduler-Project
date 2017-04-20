@@ -56,6 +56,7 @@ namespace CourseScheduler
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.metroBar = new MetroFramework.Controls.MetroProgressBar();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.calendarView)).BeginInit();
             this.metroPanel1.SuspendLayout();
@@ -363,11 +364,19 @@ namespace CourseScheduler
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
+            // metroBar
+            // 
+            this.metroBar.Location = new System.Drawing.Point(20, 428);
+            this.metroBar.Name = "metroBar";
+            this.metroBar.Size = new System.Drawing.Size(190, 6);
+            this.metroBar.TabIndex = 20;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 714);
+            this.Controls.Add(this.metroBar);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.metroToggle1);
             this.Controls.Add(this.removeCourseBox);
@@ -420,6 +429,7 @@ namespace CourseScheduler
         private MetroFramework.Components.MetroToolTip metroToolTip1;
         private ToolStripMenuItem turnOffHelpToolStripMenuItem;
         private MetroFramework.Controls.MetroPanel metroPanel1;
+        private MetroFramework.Controls.MetroProgressBar metroBar;
 
 
     }
