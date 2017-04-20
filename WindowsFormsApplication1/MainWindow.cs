@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CourseScheduler
 {
-    public partial class MainWindow: Form
+    public partial class MainWindow: MetroForm
     {
         database courselist;
         searchQuery courseSearch;
@@ -35,19 +36,26 @@ namespace CourseScheduler
             foreach (DataGridViewColumn col in calendarView.Columns)
             {
                 col.SortMode = DataGridViewColumnSortMode.NotSortable;
+                col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopCenter;
             }
-            
+
+            courseDataBox.Enabled = false;
+
+            calendarView.Columns[0].Width = 60;
+
+            calendarView.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
 
             Console.Write(courseCalendar.fixEndTime("14:50:00"));
 
             this.searchMenu.SelectedIndex = 0;
+      
 
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+
             
-    
         }
 
 
@@ -83,7 +91,7 @@ namespace CourseScheduler
 
 
 
-            for (int i = index; i < csvData.Length; i++)
+            for (int i = index; i < csvData.Length-1; i++)
             {
                 csvTable.Rows.Add(csvData[i].Split(','));
             }
@@ -162,7 +170,7 @@ namespace CourseScheduler
         // Writes the course info based a selected class in the search results
         private void course_Description_Update(object sender, EventArgs e)
         {
-            Console.WriteLine("NEW SELECTION!");
+            //Console.WriteLine("NEW SELECTION!");
             course selectedCourse = this.results.getIndex(this.searchResultsBox.SelectedIndex);
             Console.WriteLine(selectedCourse.getCourseCode());
 
@@ -196,6 +204,8 @@ namespace CourseScheduler
                             foreach (int i in daysCols) //adding to appropriate columns
                             {
                                 dr[i] = c.getCourseCode();
+                                
+                                
                             }
                         }
                         else if (dr[0].ToString() == fixedStartTime) //this starts the loop of adding to time slots
@@ -203,7 +213,9 @@ namespace CourseScheduler
                             foreach (int i in daysCols)
                             {
                                 dr[i] = c.getCourseCode(); //add first timeslot
+                               
                             }
+                            
                             inSession = true; //set up to add to all timeslots
                         }
                         else if(dr[0].ToString() == fixedEndTime) //this ends the loop of adding to timeslots
@@ -215,7 +227,9 @@ namespace CourseScheduler
             }
             else
             { Console.WriteLine("Course could not be added due to a conflict"); }
+
         }
+
 
         // Updates the calendar when a course is removed
         private void update_calendar_remove(object sender, EventArgs e)
@@ -299,7 +313,6 @@ namespace CourseScheduler
             if (this.calendarView.SelectedCells.Count == 1 && this.courseCalendar.hasCourse(this.calendarView.SelectedCells[0].Value.ToString()))
             {
                 
-               // List<course> selectedCourses = new List<course>();
                 string day;
                 if (this.calendarView.SelectedCells[0].ColumnIndex == 2)
                 {
@@ -317,6 +330,7 @@ namespace CourseScheduler
                 course selectedCourse = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString(), day);
                 Console.WriteLine(selectedCourse.getCourseCode());
 
+                
 
                 printInfo(selectedCourse);
 
@@ -327,7 +341,6 @@ namespace CourseScheduler
             }
 
         }
-
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -348,11 +361,70 @@ namespace CourseScheduler
                                       "Building: " + selectedCourse.getBuilding() + "\n" +
                                       "Room: " + selectedCourse.getRoom() + "\n" +
                                       "Current Enrollment: " + selectedCourse.getEnrollment();
+            courseDataBox.SelectAll();
+            courseDataBox.SelectionColor = Color.Black;
         }
 
         private void exportButton_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void metroPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void metroTile1_Click(object sender, EventArgs e)
+        {
+            this.Theme = this.Theme == MetroFramework.MetroThemeStyle.Light ? MetroFramework.MetroThemeStyle.Dark : MetroFramework.MetroThemeStyle.Light;
+            this.Refresh();
+        }
+
+        private void metroLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroToggle1_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Theme = this.Theme == MetroFramework.MetroThemeStyle.Light ? MetroFramework.MetroThemeStyle.Dark : MetroFramework.MetroThemeStyle.Light;
+            if (this.Theme == MetroFramework.MetroThemeStyle.Dark)
+            {
+                this.calendarView.Theme = MetroFramework.MetroThemeStyle.Dark;
+                this.calendarView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+                calendarView.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
+            }
+            else
+            {
+                this.calendarView.Theme = MetroFramework.MetroThemeStyle.Light;
+                this.calendarView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+                calendarView.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
+            }
+
+            this.Refresh();
+        }
+
+        private void compareButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void metroToolTip1_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
+
+        private void turnOffHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            metroToolTip1.Active = false;
+        }
+
+
     }
 }
