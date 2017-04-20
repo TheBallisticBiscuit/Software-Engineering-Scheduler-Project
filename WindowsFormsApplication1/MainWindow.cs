@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace CourseScheduler
 {
-    public partial class MainWindow: Form
+    public partial class MainWindow: MetroForm
     {
         database courselist;
         searchQuery courseSearch;
@@ -36,19 +37,26 @@ namespace CourseScheduler
             foreach (DataGridViewColumn col in calendarView.Columns)
             {
                 col.SortMode = DataGridViewColumnSortMode.NotSortable;
+                col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopCenter;
             }
-            
 
-           // Console.Write(courseCalendar.fixEndTime("14:50:00"));
+            courseDataBox.Enabled = false;
+
+            calendarView.Columns[0].Width = 60;
+
+            calendarView.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
+
+            Console.Write(courseCalendar.fixEndTime("14:50:00"));
 
             this.searchMenu.SelectedIndex = 0;
+      
 
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+
             
-    
         }
 
 
@@ -84,7 +92,7 @@ namespace CourseScheduler
 
 
 
-            for (int i = index; i < csvData.Length; i++)
+            for (int i = index; i < csvData.Length-1; i++)
             {
                 csvTable.Rows.Add(csvData[i].Split(','));
             }
@@ -99,10 +107,11 @@ namespace CourseScheduler
             calendarView.Rows[e.RowIndex].ReadOnly = true;
         }
 
-
         // When a query is entered into the text field and enter is pressed, the database will be searched
         private void searchBox_Enter(object sender, KeyPressEventArgs e)
         {
+            metroBar.Value = 0;
+            metroBar.Update();
             if (e.KeyChar == (char)Keys.Return)
             {
                 //Console.WriteLine("ENTER PRESSED!");
@@ -137,7 +146,12 @@ namespace CourseScheduler
                     {
                         //Console.WriteLine(this.results.getIndex(i).getCourseCode());
                         this.searchResultsBox.Items.Add(this.results.getIndex(i).getCourseCode());
+                        metroBar.Value = i++ * 100 / this.results.size();
+                        metroBar.Update();
+                  
                     }
+                    metroBar.Value = 100;
+                    metroBar.Update();
                 }
                 else
                 {
@@ -189,6 +203,7 @@ namespace CourseScheduler
             { //Console.WriteLine("Course could not be added due to a conflict"); 
             }
         }
+
 
         // Updates the calendar when a course is removed
         private void update_calendar_remove(object sender, EventArgs e)
@@ -309,19 +324,12 @@ namespace CourseScheduler
             return results;
         }
 
-        // Test attempt to prevent calendar from sorting when header is clicked
-        private void do_not_sort(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //Console.WriteLine("do not sort");
-        }
-
         // Prints info based of selected cell on on the calendar.
         private void selected_cell(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (this.calendarView.SelectedCells.Count == 1 && this.courseCalendar.hasCourse(this.calendarView.SelectedCells[0].Value.ToString()))
             {
                 
-               // List<course> selectedCourses = new List<course>();
                 string day;
                 if (this.calendarView.SelectedCells[0].ColumnIndex == 2)
                 {
@@ -331,6 +339,18 @@ namespace CourseScheduler
                 {
                     day = "R";
                 }
+                else if (this.calendarView.SelectedCells[0].ColumnIndex == 1)
+                {
+                    day = "M";
+                }
+                else if (this.calendarView.SelectedCells[0].ColumnIndex == 3)
+                {
+                    day = "W";
+                }
+                else if (this.calendarView.SelectedCells[0].ColumnIndex == 5)
+                {
+                    day = "F";
+                }
                 else
                 {
                     day = "MWF";
@@ -339,8 +359,9 @@ namespace CourseScheduler
                 course selectedCourse = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString(), day);
                 //Console.WriteLine(selectedCourse.getCourseCode());
 
-
-                printInfo(selectedCourse);
+                
+                if (selectedCourse != null)
+                    printInfo(selectedCourse);
 
             }
             else
@@ -348,7 +369,6 @@ namespace CourseScheduler
                 this.courseDataBox.Text = "";
             }
         }
-
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -368,7 +388,9 @@ namespace CourseScheduler
                                       "Time: " + selectedCourse.getStartTime() + " - " + selectedCourse.getEndTime() + "\n" +
                                       "Building: " + selectedCourse.getBuilding() + "\n" +
                                       "Room: " + selectedCourse.getRoom() + "\n" +
-                                      "Current Enrollment: " + selectedCourse.getEnrollment() + "/" + selectedCourse.getCapacity();
+                                      "Current Enrollment: " + selectedCourse.getEnrollment();
+            courseDataBox.SelectAll();
+            courseDataBox.SelectionColor = Color.Black;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -407,5 +429,102 @@ namespace CourseScheduler
         {
 
         }
+
+        private void metroPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void metroTile1_Click(object sender, EventArgs e)
+        {
+            this.Theme = this.Theme == MetroFramework.MetroThemeStyle.Light ? MetroFramework.MetroThemeStyle.Dark : MetroFramework.MetroThemeStyle.Light;
+            this.Refresh();
+        }
+
+        private void metroLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroToggle1_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Theme = this.Theme == MetroFramework.MetroThemeStyle.Light ? MetroFramework.MetroThemeStyle.Dark : MetroFramework.MetroThemeStyle.Light;
+            if (this.Theme == MetroFramework.MetroThemeStyle.Dark)
+            {
+                this.calendarView.Theme = MetroFramework.MetroThemeStyle.Dark;
+                this.calendarView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+                calendarView.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
+                this.compareButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+                this.exportButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+                this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark;
+                this.metroToggle1.Theme = MetroFramework.MetroThemeStyle.Dark;
+                this.menuStrip1.BackColor = BackColor;
+                this.menuStrip1.ForeColor = Color.LightGray;
+                this.searchBox.Theme = MetroFramework.MetroThemeStyle.Dark;
+                this.searchMenu.Theme = MetroFramework.MetroThemeStyle.Dark;
+                this.searchResultsBox.ForeColor = Color.LightGray;
+                this.searchResultsBox.BackColor = BackColor;
+                this.courseDataBox.BackColor = BackColor;
+                
+            }
+            else
+            {
+                this.calendarView.Theme = MetroFramework.MetroThemeStyle.Light;
+                this.calendarView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+                calendarView.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
+                this.compareButton.Theme = MetroFramework.MetroThemeStyle.Light;
+                this.exportButton.Theme = MetroFramework.MetroThemeStyle.Light;
+                this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Light;
+                this.metroToggle1.Theme = MetroFramework.MetroThemeStyle.Light;
+                this.menuStrip1.BackColor = Color.WhiteSmoke;
+                this.menuStrip1.ForeColor = Color.Black;
+                this.searchBox.Theme = MetroFramework.MetroThemeStyle.Light;
+                this.searchMenu.Theme = MetroFramework.MetroThemeStyle.Light;
+                this.searchResultsBox.ForeColor = Color.Black;
+                this.searchResultsBox.BackColor = BackColor;
+                this.courseDataBox.ForeColor = Color.Black;
+                this.courseDataBox.BackColor = BackColor;
+
+
+            }
+
+            this.Refresh();
+        }
+
+        private void compareButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void metroToolTip1_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
+
+        private void turnOffHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            this.turnOffHelpToolStripMenuItem.Text = this.turnOffHelpToolStripMenuItem.Text == "Hide Tips" ? this.turnOffHelpToolStripMenuItem.Text = "Show Tips" : this.turnOffHelpToolStripMenuItem.Text = "Hide Tips";
+            if (this.turnOffHelpToolStripMenuItem.Text == "Show Tips")
+            {
+                metroToolTip1.Active = false;
+            }
+            else
+            {
+                metroToolTip1.Active = true;
+            }
+        }
+
+        private void metroProgressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
