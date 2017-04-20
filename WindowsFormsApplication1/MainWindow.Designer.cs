@@ -290,6 +290,7 @@ namespace CourseScheduler
             this.exportButton.TabIndex = 17;
             this.exportButton.Text = " Get Codes";
             this.exportButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.metroToolTip1.SetToolTip(this.exportButton, "Generate a list of codes for myGCC");
             this.exportButton.UseSelectable = true;
             this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
             // 
