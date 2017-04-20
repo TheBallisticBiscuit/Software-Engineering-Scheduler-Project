@@ -422,7 +422,16 @@ namespace CourseScheduler
 
         private void turnOffHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            metroToolTip1.Active = false;
+
+            this.turnOffHelpToolStripMenuItem.Text = this.turnOffHelpToolStripMenuItem.Text == "Hide Tips" ? this.turnOffHelpToolStripMenuItem.Text = "Show Tips" : this.turnOffHelpToolStripMenuItem.Text = "Hide Tips";
+            if (this.turnOffHelpToolStripMenuItem.Text == "Show Tips")
+            {
+                metroToolTip1.Active = false;
+            }
+            else
+            {
+                metroToolTip1.Active = true;
+            }
         }
 
 
