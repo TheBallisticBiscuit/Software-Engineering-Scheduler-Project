@@ -110,11 +110,11 @@ namespace CourseScheduler
         // When a query is entered into the text field and enter is pressed, the database will be searched
         private void searchBox_Enter(object sender, KeyPressEventArgs e)
         {
+            string noResults = "";
             metroBar.Value = 0;
             metroBar.Update();
             if (e.KeyChar == (char)Keys.Return)
             {
-                //Console.WriteLine("ENTER PRESSED!");
                 string searchString = this.searchBox.Text;
                 if(searchType == 0)
                 {
@@ -144,11 +144,9 @@ namespace CourseScheduler
                     }
                     for (int i = 0; i < this.results.size(); i++)
                     {
-                        //Console.WriteLine(this.results.getIndex(i).getCourseCode());
                         this.searchResultsBox.Items.Add(this.results.getIndex(i).getCourseCode());
                         metroBar.Value = i++ * 100 / this.results.size();
-                        metroBar.Update();
-                  
+                        metroBar.Update();             
                     }
                     metroBar.Value = 100;
                     metroBar.Update();
@@ -159,7 +157,8 @@ namespace CourseScheduler
                     {
                         this.searchResultsBox.Items.Clear();
                     }
-                    //Console.WriteLine("DNE");
+                    noResults = "No results found";
+                    this.searchResultsBox.Items.Add(noResults);
                 }
             }
             this.courseDataBox.Text = "";
@@ -170,19 +169,14 @@ namespace CourseScheduler
         {
             int index = this.searchMenu.SelectedIndex;
             string str = "Selection " + index + "!";
-            //Console.WriteLine(str);
             this.searchType = index;
         }
 
         // Writes the course info based a selected class in the search results
         private void course_Description_Update(object sender, EventArgs e)
         {
-            //Console.WriteLine("NEW SELECTION!");
             course selectedCourse = this.results.getIndex(this.searchResultsBox.SelectedIndex);
-            //Console.WriteLine(selectedCourse.getCourseCode());
-
             printInfo(selectedCourse);
-
         }
 
         // Updates the calendar when a course is added
@@ -200,7 +194,7 @@ namespace CourseScheduler
                 updateCalendarGraphic();
             }
             else
-            { //Console.WriteLine("Course could not be added due to a conflict"); 
+            {
             }
         }
 
@@ -224,7 +218,6 @@ namespace CourseScheduler
                 removed = this.courseCalendar.removeCourse(toRemove);
                 if (removed == true)
                 {
-                    //Console.WriteLine("COURSE REMOVED!");
                     foreach (DataColumn col in data.Columns) //cycle through columns
                     {
                         foreach (DataRow row in data.Rows) //cycle through rows
@@ -237,8 +230,8 @@ namespace CourseScheduler
                     }
                 }
                 else
-                { //Console.WriteLine("Course could not be removed due to an error"); 
-                } //error if course trying to be removed is not there
+                {
+                }
             }
         }
 
@@ -355,9 +348,9 @@ namespace CourseScheduler
                 {
                     day = "MWF";
                 }
-                //Console.WriteLine(day);
+
                 course selectedCourse = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString(), day);
-                //Console.WriteLine(selectedCourse.getCourseCode());
+
 
                 
                 if (selectedCourse != null)
@@ -382,13 +375,20 @@ namespace CourseScheduler
 
         private void printInfo(course selectedCourse)
         {
-            this.courseDataBox.Text = "Code: " + selectedCourse.getCourseCode() + "\n" +
-                                      "Title: " + selectedCourse.getShortTitle() + "\n" +
-                                      "Day(s): " + selectedCourse.getDays() + "\n" +
-                                      "Time: " + selectedCourse.getStartTime() + " - " + selectedCourse.getEndTime() + "\n" +
-                                      "Building: " + selectedCourse.getBuilding() + "\n" +
-                                      "Room: " + selectedCourse.getRoom() + "\n" +
-                                      "Current Enrollment: " + selectedCourse.getEnrollment();
+            if (selectedCourse != null)
+            {
+                this.courseDataBox.Text = "Code: " + selectedCourse.getCourseCode() + "\n" +
+                    "Title: " + selectedCourse.getShortTitle() + "\n" +
+                    "Day(s): " + selectedCourse.getDays() + "\n" +
+                    "Time: " + selectedCourse.getStartTime() + " - " + selectedCourse.getEndTime() + "\n" +
+                    "Building: " + selectedCourse.getBuilding() + "\n" +
+                    "Room: " + selectedCourse.getRoom() + "\n" +
+                    "Current Enrollment: " + selectedCourse.getEnrollment();
+            }
+            else
+            {
+                this.courseDataBox.Text = "";
+            }
             courseDataBox.SelectAll();
             courseDataBox.SelectionColor = Color.Black;
         }

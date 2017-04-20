@@ -25,7 +25,8 @@ namespace CourseScheduler
         // returns the course based on the selected int
         public course getIndex(int index)
         {
-            return this.courseList[index];
+            if (courseList.Count > 0) { return this.courseList[index]; }
+            else { return null; }
         }
 
         // Checks to see if the courses exist in the results
