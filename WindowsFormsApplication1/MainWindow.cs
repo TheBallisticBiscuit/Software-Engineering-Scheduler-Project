@@ -394,12 +394,38 @@ namespace CourseScheduler
                 this.calendarView.Theme = MetroFramework.MetroThemeStyle.Dark;
                 this.calendarView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
                 calendarView.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
+                this.compareButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+                this.exportButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+                this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark;
+                this.metroToggle1.Theme = MetroFramework.MetroThemeStyle.Dark;
+                this.menuStrip1.BackColor = BackColor;
+                this.menuStrip1.ForeColor = Color.LightGray;
+                this.searchBox.Theme = MetroFramework.MetroThemeStyle.Dark;
+                this.searchMenu.Theme = MetroFramework.MetroThemeStyle.Dark;
+                this.searchResultsBox.ForeColor = Color.LightGray;
+                this.searchResultsBox.BackColor = BackColor;
+                this.courseDataBox.BackColor = BackColor;
+                
             }
             else
             {
                 this.calendarView.Theme = MetroFramework.MetroThemeStyle.Light;
                 this.calendarView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
                 calendarView.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
+                this.compareButton.Theme = MetroFramework.MetroThemeStyle.Light;
+                this.exportButton.Theme = MetroFramework.MetroThemeStyle.Light;
+                this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Light;
+                this.metroToggle1.Theme = MetroFramework.MetroThemeStyle.Light;
+                this.menuStrip1.BackColor = Color.WhiteSmoke;
+                this.menuStrip1.ForeColor = Color.Black;
+                this.searchBox.Theme = MetroFramework.MetroThemeStyle.Light;
+                this.searchMenu.Theme = MetroFramework.MetroThemeStyle.Light;
+                this.searchResultsBox.ForeColor = Color.Black;
+                this.searchResultsBox.BackColor = BackColor;
+                this.courseDataBox.ForeColor = Color.Black;
+                this.courseDataBox.BackColor = BackColor;
+
+
             }
 
             this.Refresh();

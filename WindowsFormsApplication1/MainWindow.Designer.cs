@@ -68,7 +68,7 @@ namespace CourseScheduler
             this.searchResultsBox.ItemHeight = 19;
             this.searchResultsBox.Location = new System.Drawing.Point(20, 160);
             this.searchResultsBox.Name = "searchResultsBox";
-            this.searchResultsBox.Size = new System.Drawing.Size(190, 308);
+            this.searchResultsBox.Size = new System.Drawing.Size(190, 270);
             this.searchResultsBox.TabIndex = 2;
             this.searchResultsBox.SelectedIndexChanged += new System.EventHandler(this.course_Description_Update);
             // 
@@ -115,25 +115,25 @@ namespace CourseScheduler
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // turnOffHelpToolStripMenuItem
             // 
             this.turnOffHelpToolStripMenuItem.Name = "turnOffHelpToolStripMenuItem";
-            this.turnOffHelpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.turnOffHelpToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.turnOffHelpToolStripMenuItem.Text = "Hide Tips";
             this.turnOffHelpToolStripMenuItem.Click += new System.EventHandler(this.turnOffHelpToolStripMenuItem_Click);
             // 
@@ -270,7 +270,7 @@ namespace CourseScheduler
             // removeCourseBox
             // 
             this.removeCourseBox.ActiveControl = null;
-            this.removeCourseBox.Location = new System.Drawing.Point(120, 604);
+            this.removeCourseBox.Location = new System.Drawing.Point(120, 568);
             this.removeCourseBox.Name = "removeCourseBox";
             this.removeCourseBox.Size = new System.Drawing.Size(90, 40);
             this.removeCourseBox.TabIndex = 17;
@@ -284,7 +284,7 @@ namespace CourseScheduler
             this.exportButton.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.exportButton.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.exportButton.Highlight = true;
-            this.exportButton.Location = new System.Drawing.Point(120, 652);
+            this.exportButton.Location = new System.Drawing.Point(120, 616);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(90, 40);
             this.exportButton.TabIndex = 17;
@@ -298,7 +298,7 @@ namespace CourseScheduler
             this.compareButton.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.compareButton.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.compareButton.Highlight = true;
-            this.compareButton.Location = new System.Drawing.Point(20, 652);
+            this.compareButton.Location = new System.Drawing.Point(20, 616);
             this.compareButton.Name = "compareButton";
             this.compareButton.Size = new System.Drawing.Size(90, 40);
             this.compareButton.TabIndex = 15;
@@ -310,7 +310,7 @@ namespace CourseScheduler
             // addCourseButton
             // 
             this.addCourseButton.ActiveControl = null;
-            this.addCourseButton.Location = new System.Drawing.Point(20, 604);
+            this.addCourseButton.Location = new System.Drawing.Point(20, 568);
             this.addCourseButton.Name = "addCourseButton";
             this.addCourseButton.Size = new System.Drawing.Size(90, 40);
             this.addCourseButton.TabIndex = 16;
@@ -321,7 +321,7 @@ namespace CourseScheduler
             // metroToggle1
             // 
             this.metroToggle1.AutoSize = true;
-            this.metroToggle1.Location = new System.Drawing.Point(120, 716);
+            this.metroToggle1.Location = new System.Drawing.Point(120, 675);
             this.metroToggle1.Name = "metroToggle1";
             this.metroToggle1.Size = new System.Drawing.Size(80, 17);
             this.metroToggle1.TabIndex = 17;
@@ -333,7 +333,7 @@ namespace CourseScheduler
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(23, 714);
+            this.metroLabel1.Location = new System.Drawing.Point(23, 673);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(70, 19);
             this.metroLabel1.TabIndex = 18;
@@ -354,7 +354,7 @@ namespace CourseScheduler
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel1.HorizontalScrollbarSize = 10;
-            this.metroPanel1.Location = new System.Drawing.Point(20, 474);
+            this.metroPanel1.Location = new System.Drawing.Point(20, 438);
             this.metroPanel1.Name = "metroPanel1";
             this.metroPanel1.Size = new System.Drawing.Size(190, 124);
             this.metroPanel1.TabIndex = 19;
@@ -366,7 +366,7 @@ namespace CourseScheduler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 753);
+            this.ClientSize = new System.Drawing.Size(798, 714);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.metroToggle1);
             this.Controls.Add(this.removeCourseBox);
