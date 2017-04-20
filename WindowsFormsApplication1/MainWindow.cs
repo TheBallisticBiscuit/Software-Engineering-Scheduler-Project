@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace CourseScheduler
 {
     public partial class MainWindow: Form
@@ -38,7 +39,7 @@ namespace CourseScheduler
             }
             
 
-            Console.Write(courseCalendar.fixEndTime("14:50:00"));
+           // Console.Write(courseCalendar.fixEndTime("14:50:00"));
 
             this.searchMenu.SelectedIndex = 0;
 
@@ -104,7 +105,7 @@ namespace CourseScheduler
         {
             if (e.KeyChar == (char)Keys.Return)
             {
-                Console.WriteLine("ENTER PRESSED!");
+                //Console.WriteLine("ENTER PRESSED!");
                 string searchString = this.searchBox.Text;
                 if(searchType == 0)
                 {
@@ -134,7 +135,7 @@ namespace CourseScheduler
                     }
                     for (int i = 0; i < this.results.size(); i++)
                     {
-                        Console.WriteLine(this.results.getIndex(i).getCourseCode());
+                        //Console.WriteLine(this.results.getIndex(i).getCourseCode());
                         this.searchResultsBox.Items.Add(this.results.getIndex(i).getCourseCode());
                     }
                 }
@@ -144,7 +145,7 @@ namespace CourseScheduler
                     {
                         this.searchResultsBox.Items.Clear();
                     }
-                    Console.WriteLine("DNE");
+                    //Console.WriteLine("DNE");
                 }
             }
             this.courseDataBox.Text = "";
@@ -155,16 +156,16 @@ namespace CourseScheduler
         {
             int index = this.searchMenu.SelectedIndex;
             string str = "Selection " + index + "!";
-            Console.WriteLine(str);
+            //Console.WriteLine(str);
             this.searchType = index;
         }
 
         // Writes the course info based a selected class in the search results
         private void course_Description_Update(object sender, EventArgs e)
         {
-            Console.WriteLine("NEW SELECTION!");
+            //Console.WriteLine("NEW SELECTION!");
             course selectedCourse = this.results.getIndex(this.searchResultsBox.SelectedIndex);
-            Console.WriteLine(selectedCourse.getCourseCode());
+            //Console.WriteLine(selectedCourse.getCourseCode());
 
             printInfo(selectedCourse);
 
@@ -182,39 +183,11 @@ namespace CourseScheduler
             added = this.courseCalendar.addCourse(this.results.getIndex(this.searchResultsBox.SelectedIndex));
             if (added == true)
             {
-                foreach (course c in courseCalendar.courseList)
-                {
-                    string fixedStartTime = courseCalendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
-                    string fixedEndTime = courseCalendar.fixEndTime(c.getEndTime());
-                    List<int> daysCols = new List<int>();
-                    daysCols = findDaysCols(c.getDays());  //find the columns we need to add this course to
-                    bool inSession = false; //used to indicate when all appropriate timeslots have been filled
-                    foreach (DataRow dr in data.Rows) //cycle through rows
-                    {
-                        if (inSession && dr[0].ToString() != fixedEndTime) //if we haven't hit the end of the class yet, add it to the calendar
-                        {
-                            foreach (int i in daysCols) //adding to appropriate columns
-                            {
-                                dr[i] = c.getCourseCode();
-                            }
-                        }
-                        else if (dr[0].ToString() == fixedStartTime) //this starts the loop of adding to time slots
-                        {
-                            foreach (int i in daysCols)
-                            {
-                                dr[i] = c.getCourseCode(); //add first timeslot
-                            }
-                            inSession = true; //set up to add to all timeslots
-                        }
-                        else if(dr[0].ToString() == fixedEndTime) //this ends the loop of adding to timeslots
-                        {
-                            inSession = false;
-                        }
-                    }
-                }
+                updateCalendarGraphic();
             }
             else
-            { Console.WriteLine("Course could not be added due to a conflict"); }
+            { //Console.WriteLine("Course could not be added due to a conflict"); 
+            }
         }
 
         // Updates the calendar when a course is removed
@@ -231,12 +204,12 @@ namespace CourseScheduler
             {
                
                 course toRemove = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString());
-                Console.WriteLine(toRemove.getCourseCode());
+                //Console.WriteLine(toRemove.getCourseCode());
                 string removeName = toRemove.getCourseCode();
                 removed = this.courseCalendar.removeCourse(toRemove);
                 if (removed == true)
                 {
-                    Console.WriteLine("COURSE REMOVED!");
+                    //Console.WriteLine("COURSE REMOVED!");
                     foreach (DataColumn col in data.Columns) //cycle through columns
                     {
                         foreach (DataRow row in data.Rows) //cycle through rows
@@ -249,7 +222,56 @@ namespace CourseScheduler
                     }
                 }
                 else
-                { Console.WriteLine("Course could not be removed due to an error"); } //error if course trying to be removed is not there
+                { //Console.WriteLine("Course could not be removed due to an error"); 
+                } //error if course trying to be removed is not there
+            }
+        }
+
+        private void updateCalendarGraphic()
+        {
+            foreach (course c in courseCalendar.courseList)
+            {
+                string fixedStartTime = courseCalendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
+                string fixedEndTime = courseCalendar.fixEndTime(c.getEndTime());
+                List<int> daysCols = new List<int>();
+                daysCols = findDaysCols(c.getDays());  //find the columns we need to add this course to
+                bool inSession = false; //used to indicate when all appropriate timeslots have been filled
+                foreach (DataRow dr in data.Rows) //cycle through rows
+                {
+                    if (inSession && dr[0].ToString() != fixedEndTime) //if we haven't hit the end of the class yet, add it to the calendar
+                    {
+                        foreach (int i in daysCols) //adding to appropriate columns
+                        {
+                            dr[i] = c.getCourseCode();
+                        }
+                    }
+                    else if (dr[0].ToString() == fixedStartTime) //this starts the loop of adding to time slots
+                    {
+                        foreach (int i in daysCols)
+                        {
+                            dr[i] = c.getCourseCode(); //add first timeslot
+                        }
+                        inSession = true; //set up to add to all timeslots
+                    }
+                    else if (dr[0].ToString() == fixedEndTime) //this ends the loop of adding to timeslots
+                    {
+                        inSession = false;
+                    }
+                }
+            }
+        }
+
+        private void clearCalendarGraphic()
+        {
+            foreach (DataColumn col in data.Columns) //cycle through columns
+            {
+                foreach (DataRow row in data.Rows) //cycle through rows
+                {
+                    if (col.ColumnName.ToString() != "Time")
+                    {
+                        row[col.ColumnName] = "";
+                    }
+                }
             }
         }
 
@@ -290,7 +312,7 @@ namespace CourseScheduler
         // Test attempt to prevent calendar from sorting when header is clicked
         private void do_not_sort(object sender, DataGridViewCellMouseEventArgs e)
         {
-            Console.WriteLine("do not sort");
+            //Console.WriteLine("do not sort");
         }
 
         // Prints info based of selected cell on on the calendar.
@@ -313,9 +335,9 @@ namespace CourseScheduler
                 {
                     day = "MWF";
                 }
-                Console.WriteLine(day);
+                //Console.WriteLine(day);
                 course selectedCourse = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString(), day);
-                Console.WriteLine(selectedCourse.getCourseCode());
+                //Console.WriteLine(selectedCourse.getCourseCode());
 
 
                 printInfo(selectedCourse);
@@ -325,7 +347,6 @@ namespace CourseScheduler
             {
                 this.courseDataBox.Text = "";
             }
-
         }
 
 
@@ -347,7 +368,39 @@ namespace CourseScheduler
                                       "Time: " + selectedCourse.getStartTime() + " - " + selectedCourse.getEndTime() + "\n" +
                                       "Building: " + selectedCourse.getBuilding() + "\n" +
                                       "Room: " + selectedCourse.getRoom() + "\n" +
-                                      "Current Enrollment: " + selectedCourse.getEnrollment();
+                                      "Current Enrollment: " + selectedCourse.getEnrollment() + "/" + selectedCourse.getCapacity();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = this.saveFileDialog1.ShowDialog();
+
+            if (result == DialogResult.OK)
+            { 
+                // Save the file
+                courseCalendar.save(this.saveFileDialog1.FileName);
+                Console.WriteLine(this.saveFileDialog1.FileName);
+            }
+
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = this.openFileDialog1.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                // Open the file
+                courseCalendar.open(this.openFileDialog1.FileName);
+                Console.WriteLine(this.openFileDialog1.FileName);
+                clearCalendarGraphic();
+                updateCalendarGraphic();
+            }
+        }
+
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }

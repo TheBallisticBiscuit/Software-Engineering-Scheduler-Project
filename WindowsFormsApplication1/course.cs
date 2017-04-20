@@ -87,8 +87,13 @@ namespace CourseScheduler
 
         public string getEnrollment()
         {
-            return enrollment.ToString() + "/" + capacity.ToString();
+            return enrollment.ToString();// +"/" + capacity.ToString();
 
+        }
+
+        public string getCapacity()
+        {
+            return capacity.ToString();
         }
     }
 }

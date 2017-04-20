@@ -16,9 +16,9 @@ namespace CourseScheduler
         public searchQuery(database data)
         {
             courseList = data;
-            Console.WriteLine(data.getCourses()[1].getCourseCode().Contains("COMP"));
+            /*Console.WriteLine(data.getCourses()[1].getCourseCode().Contains("COMP"));
             Console.WriteLine(data.getCourses()[100].getCourseCode());
-            Console.WriteLine(data.getCourses()[200].getCourseCode());
+            Console.WriteLine(data.getCourses()[200].getCourseCode());*/
             this.lineCount = data.getLineCount();
         }
 
@@ -182,6 +182,8 @@ namespace CourseScheduler
             results.add(searchByName(searchValue));
             results.add(searchByTime(searchValue));
             results.add(searchByDepartment(searchValue));
+            //results.filter();
+
 
             return results;
         }

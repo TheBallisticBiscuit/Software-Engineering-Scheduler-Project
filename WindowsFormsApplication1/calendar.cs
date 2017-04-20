@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace CourseScheduler
 {
@@ -204,5 +205,83 @@ namespace CourseScheduler
 
             return fixTime; //return the fixed time
         }
+
+        public void save(string loc)
+        {
+            StreamWriter data = null;
+            try
+            {
+                data = new StreamWriter(loc);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The file could not be written:");
+                Console.WriteLine(e.Message);   
+            }
+
+            foreach(course c in courseList)
+            {
+                string line = c.getCourseCode() + "," +
+                              c.getShortTitle() + "," +
+                              c.getLongTitle() + "," +
+                              c.getStartTime() + "," +
+                              c.getEndTime() + "," +
+                              c.getDays() + "," +
+                              c.getBuilding() + "," +
+                              c.getRoom() + "," +
+                              c.getEnrollment() + "," +
+                              c.getCapacity();
+                
+                data.WriteLine(line);
+            }
+            data.Close();
+        }
+
+        public void open(string loc)
+        {
+            StreamReader data = null;
+            try
+            {
+                data = new StreamReader(loc);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
+
+            int count = File.ReadLines(loc).Count();
+            this.courseList.Clear();
+            for (int i = 0; i < count; i++)
+            {
+                string readLn = data.ReadLine();
+                string[] splitLn = readLn.Split(',');
+
+                // Adds a course to the list
+                try
+                {
+                    this.courseList.Add(new course(Int32.Parse(splitLn[8]),
+                                                   Int32.Parse(splitLn[9]),
+                                                   splitLn[0],
+                                                   splitLn[1],
+                                                   splitLn[2],
+                                                   splitLn[3],
+                                                   splitLn[4],
+                                                   splitLn[5],
+                                                   splitLn[6],
+                                                   splitLn[7]));
+                }
+                catch //(Exception e)
+                {
+                    Alert AlertWin = new Alert();
+                    AlertWin.Show();
+                    AlertWin.set_text_alert("File doesn't match correct format",true);
+                    break;
+                }
+            }
+
+            data.Close();
+        }
+
     }
 }
