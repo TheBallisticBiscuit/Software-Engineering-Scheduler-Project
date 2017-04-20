@@ -53,13 +53,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MetroFramework">
-      <HintPath>..\Metro Library\MetroFramework.Demo\bin\Release\MetroFramework.dll</HintPath>
+      <HintPath>MetroFramework\MetroFramework.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework.Design">
-      <HintPath>..\Metro Library\MetroFramework.Demo\bin\Release\MetroFramework.Design.dll</HintPath>
+      <HintPath>MetroFramework\MetroFramework.Design.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework.Fonts">
-      <HintPath>..\Metro Library\MetroFramework.Demo\bin\Release\MetroFramework.Fonts.dll</HintPath>
+      <HintPath>MetroFramework\MetroFramework.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -125,6 +125,7 @@
     </Compile>
     <None Include="blankCalendar.csv" />
     <None Include="CourseDB_WithFictionalCapacities.xlsx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -157,6 +158,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\header_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MetroFramework.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
