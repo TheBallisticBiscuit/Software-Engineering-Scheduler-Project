@@ -46,7 +46,7 @@
             // 
             this.button1.DisplayFocus = true;
             this.button1.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.button1.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.button1.FontWeight = MetroFramework.MetroButtonWeight.Light;
             this.button1.Highlight = true;
             this.button1.Location = new System.Drawing.Point(74, 62);
             this.button1.Name = "button1";

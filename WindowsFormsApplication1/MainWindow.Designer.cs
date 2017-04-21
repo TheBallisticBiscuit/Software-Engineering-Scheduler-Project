@@ -44,10 +44,11 @@ namespace CourseScheduler
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.turnOffHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createTimeslotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editTimeslotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideTipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -102,7 +103,8 @@ namespace CourseScheduler
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editToolStripMenuItem});
+            this.editToolStripMenuItem,
+            this.settingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(20, 60);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -116,8 +118,7 @@ namespace CourseScheduler
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveToolStripMenuItem,
             this.openToolStripMenuItem,
-            this.exportToolStripMenuItem,
-            this.turnOffHelpToolStripMenuItem});
+            this.exportToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -125,29 +126,22 @@ namespace CourseScheduler
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exportToolStripMenuItem.Text = "Export";
-            // 
-            // turnOffHelpToolStripMenuItem
-            // 
-            this.turnOffHelpToolStripMenuItem.Name = "turnOffHelpToolStripMenuItem";
-            this.turnOffHelpToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.turnOffHelpToolStripMenuItem.Text = "Hide Tips";
-            this.turnOffHelpToolStripMenuItem.Click += new System.EventHandler(this.turnOffHelpToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -170,6 +164,22 @@ namespace CourseScheduler
             this.editTimeslotToolStripMenuItem.Name = "editTimeslotToolStripMenuItem";
             this.editTimeslotToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.editTimeslotToolStripMenuItem.Text = "Edit Timeslot";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hideTipsToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // hideTipsToolStripMenuItem
+            // 
+            this.hideTipsToolStripMenuItem.Name = "hideTipsToolStripMenuItem";
+            this.hideTipsToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.hideTipsToolStripMenuItem.Text = "Hide Tips";
+            this.hideTipsToolStripMenuItem.Click += new System.EventHandler(this.hideTipsToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -314,7 +324,7 @@ namespace CourseScheduler
             // 
             this.exportButton.DisplayFocus = true;
             this.exportButton.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.exportButton.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.exportButton.FontWeight = MetroFramework.MetroButtonWeight.Light;
             this.exportButton.Highlight = true;
             this.exportButton.Location = new System.Drawing.Point(120, 616);
             this.exportButton.Name = "exportButton";
@@ -329,7 +339,7 @@ namespace CourseScheduler
             // compareButton
             // 
             this.compareButton.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.compareButton.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.compareButton.FontWeight = MetroFramework.MetroButtonWeight.Light;
             this.compareButton.Highlight = true;
             this.compareButton.Location = new System.Drawing.Point(20, 616);
             this.compareButton.Name = "compareButton";
@@ -462,9 +472,10 @@ namespace CourseScheduler
         private MetroFramework.Controls.MetroToggle metroToggle1;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Components.MetroToolTip metroToolTip1;
-        private ToolStripMenuItem turnOffHelpToolStripMenuItem;
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroProgressBar metroBar;
+        private ToolStripMenuItem settingsToolStripMenuItem;
+        private ToolStripMenuItem hideTipsToolStripMenuItem;
 
 
     }
