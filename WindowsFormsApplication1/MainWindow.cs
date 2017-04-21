@@ -380,7 +380,7 @@ namespace CourseScheduler
                 this.courseDataBox.Text = "Code: " + selectedCourse.getCourseCode() + "\n" +
                     "Title: " + selectedCourse.getShortTitle() + "\n" +
                     "Day(s): " + selectedCourse.getDays() + "\n" +
-                    "Time: " + selectedCourse.getStartTime() + " - " + selectedCourse.getEndTime() + "\n" +
+                    "Time: " + selectedCourse.getConvStartTime() + " - " + selectedCourse.getConvEndTime() + "\n" +
                     "Building: " + selectedCourse.getBuilding() + "\n" +
                     "Room: " + selectedCourse.getRoom() + "\n" +
                     "Current Enrollment: " + selectedCourse.getEnrollment();

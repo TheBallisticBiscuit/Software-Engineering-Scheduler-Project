@@ -95,5 +95,47 @@ namespace CourseScheduler
         {
             return capacity.ToString();
         }
+
+        public string getConvStartTime()
+        {
+            if(beginTime != "NULL")
+            {
+                string[] temp = beginTime.Split(':');
+                int newVal;
+
+                if (Int32.Parse(temp[0]) > 12)
+                {
+                    newVal = Int32.Parse(temp[0]) - 12;
+                }
+                else
+                {
+                    newVal = Int32.Parse(temp[0]);
+                }
+                temp[0] = newVal.ToString();
+             }
+            return beginTime;
+        }
+
+        public string getConvEndTime()
+        {
+            if (endTime != "NULL")
+            {
+                string[] temp = endTime.Split(':');
+                int newVal;
+
+                if (Int32.Parse(temp[0]) > 12)
+                {
+                    newVal = Int32.Parse(temp[0]) - 12;
+                }
+                else
+                {
+                    newVal = Int32.Parse(temp[0]);
+                }
+                temp[0] = newVal.ToString();
+                
+            }
+            return endTime;
+        }
+
     }
 }

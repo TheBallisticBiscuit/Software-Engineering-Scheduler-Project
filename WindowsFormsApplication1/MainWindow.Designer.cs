@@ -80,6 +80,7 @@ namespace CourseScheduler
             this.searchResultsBox.TabIndex = 2;
             this.searchResultsBox.SelectedIndexChanged += new System.EventHandler(this.course_Description_Update);
             this.searchResultsBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.update_calendar_add);
+            this.metroToolTip1.SetToolTip(this.searchResultsBox, "Select any course and double click to add");
             // 
             // courseDataBox
             // 
