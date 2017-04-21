@@ -112,6 +112,7 @@ namespace CourseScheduler
                     newVal = Int32.Parse(temp[0]);
                 }
                 temp[0] = newVal.ToString();
+                return temp[0] +":"+ temp[1];
              }
             return beginTime;
         }
@@ -132,7 +133,7 @@ namespace CourseScheduler
                     newVal = Int32.Parse(temp[0]);
                 }
                 temp[0] = newVal.ToString();
-                
+                return temp[0] +":"+ temp[1];
             }
             return endTime;
         }
