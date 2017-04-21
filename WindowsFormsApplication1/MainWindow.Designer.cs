@@ -323,7 +323,7 @@ namespace CourseScheduler
             // 
             this.exportButton.DisplayFocus = true;
             this.exportButton.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.exportButton.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.exportButton.FontWeight = MetroFramework.MetroButtonWeight.Light;
             this.exportButton.Highlight = true;
             this.exportButton.Location = new System.Drawing.Point(120, 616);
             this.exportButton.Name = "exportButton";
@@ -338,7 +338,7 @@ namespace CourseScheduler
             // compareButton
             // 
             this.compareButton.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.compareButton.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.compareButton.FontWeight = MetroFramework.MetroButtonWeight.Light;
             this.compareButton.Highlight = true;
             this.compareButton.Location = new System.Drawing.Point(20, 616);
             this.compareButton.Name = "compareButton";
