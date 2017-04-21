@@ -125,21 +125,21 @@ namespace CourseScheduler
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // editToolStripMenuItem
@@ -176,7 +176,7 @@ namespace CourseScheduler
             // hideTipsToolStripMenuItem
             // 
             this.hideTipsToolStripMenuItem.Name = "hideTipsToolStripMenuItem";
-            this.hideTipsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hideTipsToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.hideTipsToolStripMenuItem.Text = "Hide Tips";
             this.hideTipsToolStripMenuItem.Click += new System.EventHandler(this.hideTipsToolStripMenuItem_Click);
             // 

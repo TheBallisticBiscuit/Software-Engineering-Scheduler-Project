@@ -465,6 +465,7 @@ namespace CourseScheduler
                 this.searchResultsBox.ForeColor = Color.LightGray;
                 this.searchResultsBox.BackColor = BackColor;
                 this.courseDataBox.BackColor = BackColor;
+                calendarView.ForeColor = Color.WhiteSmoke;
                 
             }
             else
