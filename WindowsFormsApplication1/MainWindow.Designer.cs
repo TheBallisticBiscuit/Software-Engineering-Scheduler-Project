@@ -79,9 +79,9 @@ namespace CourseScheduler
             this.searchResultsBox.Name = "searchResultsBox";
             this.searchResultsBox.Size = new System.Drawing.Size(190, 270);
             this.searchResultsBox.TabIndex = 2;
+            this.metroToolTip1.SetToolTip(this.searchResultsBox, "Select any course and double click to add");
             this.searchResultsBox.SelectedIndexChanged += new System.EventHandler(this.course_Description_Update);
             this.searchResultsBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.update_calendar_add);
-            this.metroToolTip1.SetToolTip(this.searchResultsBox, "Select any course and double click to add");
             // 
             // courseDataBox
             // 
@@ -435,6 +435,7 @@ namespace CourseScheduler
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.Text = "Course Scheduler";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.menuStrip1.ResumeLayout(false);
