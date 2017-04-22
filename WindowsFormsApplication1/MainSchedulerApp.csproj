@@ -73,7 +73,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="activity.cs" />
     <Compile Include="Alert.cs">
       <SubType>Form</SubType>
     </Compile>
