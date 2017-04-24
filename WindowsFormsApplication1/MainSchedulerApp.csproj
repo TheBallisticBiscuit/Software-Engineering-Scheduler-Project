@@ -80,6 +80,12 @@
       <DependentUpon>Alert.cs</DependentUpon>
     </Compile>
     <Compile Include="calendar.cs" />
+    <Compile Include="codes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="codes.Designer.cs">
+      <DependentUpon>codes.cs</DependentUpon>
+    </Compile>
     <Compile Include="course.cs" />
     <Compile Include="database.cs" />
     <Compile Include="extracurricular.cs" />

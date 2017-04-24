@@ -428,7 +428,8 @@ namespace CourseScheduler
 
         private void exportButton_Click(object sender, EventArgs e)
         {
-
+            codes export = new codes();
+            export.Show();
         }
 
         private void metroPanel1_Paint(object sender, PaintEventArgs e)
