@@ -283,6 +283,7 @@ namespace CourseScheduler
             }
         }
 
+
         private void createTimeslotToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ExtraCurWin win2 = new ExtraCurWin(); //creates the new timeslot window
@@ -512,6 +513,58 @@ namespace CourseScheduler
             {
 
                 DataTable data2 = csvToTable("../../blankCalendar.csv", true);
+                DialogResult result = this.openFileDialog1.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    // Open the file
+                    courseCalendar.open(this.openFileDialog1.FileName);
+                    Console.WriteLine(this.openFileDialog1.FileName);
+
+
+                    foreach (DataColumn col in data2.Columns) //cycle through columns
+                    {
+                        foreach (DataRow row in data2.Rows) //cycle through rows
+                        {
+                            if (col.ColumnName.ToString() != "Time")
+                            {
+                                row[col.ColumnName] = "";
+                            }
+                        }
+                    }
+
+                    foreach (course c in courseCalendar.courseList)
+                    {
+                        string fixedStartTime = courseCalendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
+                        string fixedEndTime = courseCalendar.fixEndTime(c.getEndTime());
+                        List<int> daysCols = new List<int>();
+                        daysCols = findDaysCols(c.getDays());  //find the columns we need to add this course to
+                        bool inSession = false; //used to indicate when all appropriate timeslots have been filled
+                        foreach (DataRow dr in data2.Rows) //cycle through rows
+                        {
+                            if (inSession && dr[0].ToString() != fixedEndTime) //if we haven't hit the end of the class yet, add it to the calendar
+                            {
+                                foreach (int i in daysCols) //adding to appropriate columns
+                                {
+                                    dr[i] = c.getCourseCode();
+                                }
+                            }
+                            else if (dr[0].ToString() == fixedStartTime) //this starts the loop of adding to time slots
+                            {
+                                foreach (int i in daysCols)
+                                {
+                                    dr[i] = c.getCourseCode(); //add first timeslot
+                                }
+                                inSession = true; //set up to add to all timeslots
+                            }
+                            else if (dr[0].ToString() == fixedEndTime) //this ends the loop of adding to timeslots
+                            {
+                                inSession = false;
+                            }
+                        }
+                    }
+                }
+
                 calendarView2.DataSource = data2;
 
                     
