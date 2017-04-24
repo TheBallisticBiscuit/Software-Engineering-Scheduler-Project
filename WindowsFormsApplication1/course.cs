@@ -6,21 +6,20 @@ using System.Threading.Tasks;
 
 namespace CourseScheduler
 {
-    public class course : activity
+    public class course
     {
-        int enrollment;
-        int capacity;
-        string courseCode;
-        string shortTitle;
-        string longTitle;
-        string beginTime;
-        string endTime;
-        string daysMeeting;
-        string building;
-        string room;
+        protected int enrollment;
+        protected int capacity;
+        protected string courseCode;
+        protected string shortTitle;
+        protected string longTitle;
+        protected string beginTime;
+        protected string endTime;
+        protected string daysMeeting;
+        protected string building;
+        protected string room;
 
         public course()
-            : base()
         {
             //initialize course
         }
@@ -138,5 +137,6 @@ namespace CourseScheduler
             return endTime;
         }
 
+        public bool isEditable() { return false; } //overwritten in extracurricular, indicates whether the course is an extracurricular or a class
     }
 }

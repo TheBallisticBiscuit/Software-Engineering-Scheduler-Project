@@ -19,7 +19,9 @@ namespace CourseScheduler
         searchResults results;
         calendar courseCalendar = new calendar();
         DataTable data = new DataTable();
+        MetroFramework.Controls.MetroGrid calendarView2 = new MetroFramework.Controls.MetroGrid();
         int searchType = 0;
+        bool expanded = false;
 
         public MainWindow()
         {
@@ -464,6 +466,13 @@ namespace CourseScheduler
                 this.searchResultsBox.BackColor = BackColor;
                 this.courseDataBox.BackColor = BackColor;
                 calendarView.ForeColor = Color.WhiteSmoke;
+                if (expanded == true)
+                {
+                    this.calendarView2.Theme = MetroFramework.MetroThemeStyle.Dark;
+                    this.calendarView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+                    this.calendarView2.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
+                    this.calendarView2.ForeColor = Color.WhiteSmoke;
+                }
                 
             }
             else
@@ -483,6 +492,12 @@ namespace CourseScheduler
                 this.searchResultsBox.BackColor = BackColor;
                 this.courseDataBox.ForeColor = Color.Black;
                 this.courseDataBox.BackColor = BackColor;
+                if (expanded == true)
+                {
+                    this.calendarView2.Theme = MetroFramework.MetroThemeStyle.Light;
+                    this.calendarView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+                    this.calendarView2.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
+                }
 
 
             }
@@ -492,15 +507,72 @@ namespace CourseScheduler
 
         private void compareButton_Click(object sender, EventArgs e)
         {
-            this.Width *= 2;
+            
+            if (expanded == false)
+            {
 
-            MetroFramework.Controls.MetroGrid calendarView2 = new MetroFramework.Controls.MetroGrid();
-            DataTable data2 = csvToTable("../../blankCalendar.csv", true);
-            calendarView2.DataSource = data2;
-            calendarView2.Location = new Point(calendarView.Left + 550, calendarView.Top);
-            calendarView2.Width = calendarView.Width;
-            calendarView2.Height = calendarView.Height;
-            this.Controls.Add(calendarView2);
+                DataTable data2 = csvToTable("../../blankCalendar.csv", true);
+                calendarView2.DataSource = data2;
+
+                    
+                    calendarView2.Location = new Point(calendarView.Left + 575, calendarView.Top);
+                    calendarView2.AllowUserToAddRows = false;
+                    calendarView2.AllowUserToDeleteRows = false;
+                    calendarView2.AllowUserToResizeColumns = false;
+                    calendarView2.AllowUserToResizeRows = false;
+                    calendarView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                    calendarView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                    calendarView2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+                    calendarView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+                    calendarView2.EnableHeadersVisualStyles = false;
+                    calendarView2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+                    calendarView2.MultiSelect = false;
+                    calendarView2.Name = "calendarView2";
+                    calendarView2.ReadOnly = true;
+                    calendarView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+                    calendarView2.RowHeadersVisible = false;
+                    calendarView2.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+                    calendarView2.RowTemplate.ReadOnly = true;
+                    calendarView2.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+                    calendarView2.ScrollBars = System.Windows.Forms.ScrollBars.None;
+                    calendarView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+                    calendarView2.Size = new System.Drawing.Size(601, 596);
+                    calendarView2.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
+                    calendarView2.Enabled = true;
+                    this.Controls.Add(calendarView2);
+                    calendarView2.Columns[0].Width = 60;
+                    foreach (DataGridViewColumn col in calendarView2.Columns)
+                    {
+                        col.SortMode = DataGridViewColumnSortMode.NotSortable;
+                        col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopCenter;
+                    }
+                    this.WindowState = FormWindowState.Maximized;
+                    compareButton.Text = "Close";
+                    expanded = true;
+                    if (this.Theme == MetroFramework.MetroThemeStyle.Dark)
+                    {
+                        this.calendarView2.Theme = MetroFramework.MetroThemeStyle.Dark;
+                        this.calendarView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+                        this.calendarView2.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
+                        this.calendarView2.ForeColor = Color.WhiteSmoke;
+                    }
+                    else
+                    {
+                        this.calendarView2.Theme = MetroFramework.MetroThemeStyle.Light;
+                        this.calendarView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+                        this.calendarView2.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
+                    }
+                
+                
+            }
+            else
+            {
+                this.Controls.Remove(calendarView2);
+                this.WindowState = FormWindowState.Normal;
+                compareButton.Text = "Compare";
+                expanded = false;
+            }
+
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

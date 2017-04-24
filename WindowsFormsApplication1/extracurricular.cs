@@ -6,12 +6,24 @@ using System.Threading.Tasks;
 
 namespace CourseScheduler
 {
-    public class extracurricular : activity
+    public class extracurricular : course //stub class for extracurricular, child of course, primarily for organization
     {
         public extracurricular()
             : base()
+        {}
+        public extracurricular(string newShortTitle, string newBuilding, string newRoom, string newBeginTime, string newEndTime, string newDaysMeeting)
         {
-            //initialize extra-curricular
+            enrollment = 0;
+            capacity = 0;
+            courseCode = newShortTitle;
+            shortTitle = newShortTitle;
+            longTitle = null;
+            beginTime = newBeginTime;
+            endTime = newEndTime;
+            daysMeeting = newDaysMeeting;
+            building = newBuilding;
+            room = newRoom;
         }
+        public new bool isEditable() { return true; } //indicates that the object is an extracurricular
     }
 }
