@@ -517,26 +517,16 @@ namespace CourseScheduler
 
                 if (result == DialogResult.OK)
                 {
+                    calendar compCalendar = new calendar();
+
                     // Open the file
-                    courseCalendar.open(this.openFileDialog1.FileName);
+                    compCalendar.open(this.openFileDialog1.FileName);
                     Console.WriteLine(this.openFileDialog1.FileName);
 
-
-                    foreach (DataColumn col in data2.Columns) //cycle through columns
+                    foreach (course c in compCalendar.courseList)
                     {
-                        foreach (DataRow row in data2.Rows) //cycle through rows
-                        {
-                            if (col.ColumnName.ToString() != "Time")
-                            {
-                                row[col.ColumnName] = "";
-                            }
-                        }
-                    }
-
-                    foreach (course c in courseCalendar.courseList)
-                    {
-                        string fixedStartTime = courseCalendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
-                        string fixedEndTime = courseCalendar.fixEndTime(c.getEndTime());
+                        string fixedStartTime = compCalendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
+                        string fixedEndTime = compCalendar.fixEndTime(c.getEndTime());
                         List<int> daysCols = new List<int>();
                         daysCols = findDaysCols(c.getDays());  //find the columns we need to add this course to
                         bool inSession = false; //used to indicate when all appropriate timeslots have been filled
