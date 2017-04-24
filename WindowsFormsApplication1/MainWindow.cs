@@ -512,12 +512,12 @@ namespace CourseScheduler
             
             if (expanded == false)
             {
-
-                DataTable data2 = csvToTable("../../blankCalendar.csv", true);
                 DialogResult result = this.openFileDialog1.ShowDialog();
 
                 if (result == DialogResult.OK)
                 {
+                    DataTable data2 = csvToTable("../../blankCalendar.csv", true);
+
                     calendar compCalendar = new calendar();
 
                     // Open the file
@@ -554,9 +554,14 @@ namespace CourseScheduler
                             }
                         }
                     }
-                }
 
-                calendarView2.DataSource = data2;
+                    calendarView2.DataSource = data2;
+                }
+                else
+                {
+                    return;
+                }
+                
 
                     
                     calendarView2.Location = new Point(calendarView.Left + 575, calendarView.Top);
