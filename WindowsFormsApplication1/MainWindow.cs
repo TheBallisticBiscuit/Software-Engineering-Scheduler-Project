@@ -46,8 +46,6 @@ namespace CourseScheduler
 
             calendarView.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
 
-            Console.Write(courseCalendar.fixEndTime("14:50:00"));
-
             this.searchMenu.SelectedIndex = 0;
       
 
@@ -494,7 +492,15 @@ namespace CourseScheduler
 
         private void compareButton_Click(object sender, EventArgs e)
         {
+            this.Width *= 2;
 
+            MetroFramework.Controls.MetroGrid calendarView2 = new MetroFramework.Controls.MetroGrid();
+            DataTable data2 = csvToTable("../../blankCalendar.csv", true);
+            calendarView2.DataSource = data2;
+            calendarView2.Location = new Point(calendarView.Left + 550, calendarView.Top);
+            calendarView2.Width = calendarView.Width;
+            calendarView2.Height = calendarView.Height;
+            this.Controls.Add(calendarView2);
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
