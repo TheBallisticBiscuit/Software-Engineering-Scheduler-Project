@@ -23,6 +23,8 @@ namespace CourseScheduler
         int searchType = 0;
         bool expanded = false;
 
+        ExtraCurWin extraWin;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -286,8 +288,28 @@ namespace CourseScheduler
 
         private void createTimeslotToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ExtraCurWin win2 = new ExtraCurWin(); //creates the new timeslot window
-            win2.Show(); //displays the window
+            extraWin = new ExtraCurWin(); //creates the new timeslot window
+            extraWin.Show(); //displays the window
+            extraWin.metroTile1.Click += (addExtraCur);
+        }
+
+        private void addExtraCur(object sender, EventArgs e)
+        {
+            if (extraWin.okPressed)
+            {
+                Console.WriteLine("TRUE");
+                if (courseCalendar.addCourse(extraWin.newExtra))
+                {
+                    Console.WriteLine("Adding course");
+                    extraWin.Close();
+                }
+                else
+                {
+                    Alert AlertWin = new Alert();
+                    AlertWin.set_text_alert("Extracurricular conflicts with a course", true);
+                }
+            }
+            updateCalendarGraphic();
         }
 
         private List<int> findDaysCols(string days) //formats a list of days into indices in our data table
