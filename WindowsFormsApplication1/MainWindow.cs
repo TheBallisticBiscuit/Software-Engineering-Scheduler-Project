@@ -450,7 +450,8 @@ namespace CourseScheduler
 
         private void exportButton_Click(object sender, EventArgs e)
         {
-
+            codes export = new codes();
+            export.Show();
         }
 
         private void metroPanel1_Paint(object sender, PaintEventArgs e)
@@ -533,12 +534,12 @@ namespace CourseScheduler
             
             if (expanded == false)
             {
-
-                DataTable data2 = csvToTable("../../blankCalendar.csv", true);
                 DialogResult result = this.openFileDialog1.ShowDialog();
 
                 if (result == DialogResult.OK)
                 {
+                    DataTable data2 = csvToTable("../../blankCalendar.csv", true);
+
                     calendar compCalendar = new calendar();
 
                     // Open the file
@@ -575,9 +576,14 @@ namespace CourseScheduler
                             }
                         }
                     }
-                }
 
-                calendarView2.DataSource = data2;
+                    calendarView2.DataSource = data2;
+                }
+                else
+                {
+                    return;
+                }
+                
 
                     
                     calendarView2.Location = new Point(calendarView.Left + 575, calendarView.Top);
