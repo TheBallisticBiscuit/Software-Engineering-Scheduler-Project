@@ -42,8 +42,14 @@ namespace CourseScheduler
         public searchResults searchByTime(string daysChecked, string startTime, string endTime)
         {
             string[] searchComponents = daysChecked.Split(',');
-            startTime = calendar.fixStartTime(startTime);
-            endTime = calendar.fixEndTime(endTime); 
+            if (!String.IsNullOrWhiteSpace(startTime))
+            {
+                startTime = calendar.fixStartTime(startTime);
+            }
+            if (!String.IsNullOrWhiteSpace(endTime))
+            {
+                endTime = calendar.fixEndTime(endTime);
+            }
             List<course> results = new List<course>();
             List<course> daySearchResults = new List<course>();
 
@@ -58,18 +64,23 @@ namespace CourseScheduler
                     else //if there is a day that is not in the course, remove it, if it was never added in the first place this returns false
                     {
                         daySearchResults.Remove(courseList.getCourses()[i]);
+                        break;
                     }
 
                 }
             }
-            foreach(course i in daySearchResults)
+            foreach (course i in daySearchResults)
             {
-                if (startTime != null || endTime != null)
+                if (!String.IsNullOrEmpty(startTime) || !String.IsNullOrEmpty(endTime))
                 {
                     if (calendar.fixStartTime(i.getStartTime()).Contains(startTime) && calendar.fixEndTime(i.getEndTime()).Contains(endTime))
                     {
                         results.Add(i);
                     }
+                }
+                else
+                {
+                    return new searchResults(daySearchResults);
                 }
             }
             return new searchResults(results);

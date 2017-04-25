@@ -193,8 +193,6 @@ namespace CourseScheduler
         public static string fixStartTime(string oddStart)
         {
             string timeOfDay = " AM";
-            if (oddStart != null && oddStart != "NULL")
-            {
                 string[] sTime = oddStart.Split(':'); //splits the input by the ':'
 
                 int hour = Convert.ToInt32(sTime[0]); //gets the hour
@@ -230,11 +228,6 @@ namespace CourseScheduler
                 string fixTime = sTime[0] + ':' + sTime[1] + timeOfDay; //recombine the time
 
                 return fixTime; //return the fixed time
-            }
-            else
-            {
-                return null;
-            }
         }
 
         public static string fixEndTime(string oddEnd)
