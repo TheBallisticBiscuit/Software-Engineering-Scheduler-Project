@@ -56,6 +56,54 @@ namespace CourseScheduler
                 int roomNum = 0;
                 string room = "None";
                 string[] parsedLoc = location.Split(' ');
+                string startHr = startTime.Split(':')[0];
+                string endHr = endTime.Split(':')[0];
+                string startMin = ":00";
+                string endMin = ":00";
+
+                if (startTime.Split(':').Count() > 1)
+                {
+                    startMin = ":" + startTime.Split(':')[1];
+                }
+                if (endTime.Split(':').Count() > 1)
+                {
+                    endMin = ":"+endTime.Split(':')[1];
+                }
+                int start, end = 0;
+                if (Int32.TryParse(startTime, out start))
+                {
+                    if (this.metroCheckBox6.Checked)
+                    {
+                        start = start + 12;
+                    }
+                    startTime = start.ToString() + ":00";
+                }
+                else if(Int32.TryParse(startHr, out start))
+                {
+                    if (this.metroCheckBox6.Checked)
+                    {
+                        start = start + 12;
+                    }
+                    startTime = start.ToString() + startMin;
+                }
+
+                if (Int32.TryParse(endTime, out end))
+                {
+                    if (this.metroCheckBox7.Checked)
+                    {
+                        end = end + 12;
+                    }
+                    endTime = end.ToString() + ":00";
+                }
+                else if (Int32.TryParse(endHr, out start))
+                {
+                    if (this.metroCheckBox7.Checked)
+                    {
+                        end = end + 12;
+                    }
+                    endTime = end.ToString() + endMin;
+                }
+
                 foreach (string word in parsedLoc)
                 {
                     if (Int32.TryParse(word, out roomNum))

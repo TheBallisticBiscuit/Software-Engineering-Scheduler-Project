@@ -41,6 +41,8 @@
             this.metroCheckBox4 = new MetroFramework.Controls.MetroCheckBox();
             this.metroCheckBox5 = new MetroFramework.Controls.MetroCheckBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroCheckBox6 = new MetroFramework.Controls.MetroCheckBox();
+            this.metroCheckBox7 = new MetroFramework.Controls.MetroCheckBox();
             this.SuspendLayout();
             // 
             // metroTextBox1
@@ -139,7 +141,7 @@
             // 
             // 
             this.metroTextBox4.CustomButton.Image = null;
-            this.metroTextBox4.CustomButton.Location = new System.Drawing.Point(106, 1);
+            this.metroTextBox4.CustomButton.Location = new System.Drawing.Point(43, 1);
             this.metroTextBox4.CustomButton.Name = "";
             this.metroTextBox4.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox4.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -158,7 +160,7 @@
             this.metroTextBox4.SelectionLength = 0;
             this.metroTextBox4.SelectionStart = 0;
             this.metroTextBox4.ShortcutsEnabled = true;
-            this.metroTextBox4.Size = new System.Drawing.Size(128, 23);
+            this.metroTextBox4.Size = new System.Drawing.Size(65, 23);
             this.metroTextBox4.TabIndex = 17;
             this.metroTextBox4.UseSelectable = true;
             this.metroTextBox4.WaterMark = "Start Time";
@@ -171,7 +173,7 @@
             // 
             // 
             this.metroTextBox5.CustomButton.Image = null;
-            this.metroTextBox5.CustomButton.Location = new System.Drawing.Point(106, 1);
+            this.metroTextBox5.CustomButton.Location = new System.Drawing.Point(43, 1);
             this.metroTextBox5.CustomButton.Name = "";
             this.metroTextBox5.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox5.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -190,7 +192,7 @@
             this.metroTextBox5.SelectionLength = 0;
             this.metroTextBox5.SelectionStart = 0;
             this.metroTextBox5.ShortcutsEnabled = true;
-            this.metroTextBox5.Size = new System.Drawing.Size(128, 23);
+            this.metroTextBox5.Size = new System.Drawing.Size(65, 23);
             this.metroTextBox5.TabIndex = 18;
             this.metroTextBox5.UseSelectable = true;
             this.metroTextBox5.WaterMark = "End Time";
@@ -261,11 +263,33 @@
             this.metroLabel1.TabIndex = 24;
             this.metroLabel1.Text = "Day(s)";
             // 
+            // metroCheckBox6
+            // 
+            this.metroCheckBox6.AutoSize = true;
+            this.metroCheckBox6.Location = new System.Drawing.Point(160, 124);
+            this.metroCheckBox6.Name = "metroCheckBox6";
+            this.metroCheckBox6.Size = new System.Drawing.Size(41, 15);
+            this.metroCheckBox6.TabIndex = 25;
+            this.metroCheckBox6.Text = "PM";
+            this.metroCheckBox6.UseSelectable = true;
+            // 
+            // metroCheckBox7
+            // 
+            this.metroCheckBox7.AutoSize = true;
+            this.metroCheckBox7.Location = new System.Drawing.Point(295, 124);
+            this.metroCheckBox7.Name = "metroCheckBox7";
+            this.metroCheckBox7.Size = new System.Drawing.Size(41, 15);
+            this.metroCheckBox7.TabIndex = 26;
+            this.metroCheckBox7.Text = "PM";
+            this.metroCheckBox7.UseSelectable = true;
+            // 
             // ExtraCurWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(425, 263);
+            this.Controls.Add(this.metroCheckBox7);
+            this.Controls.Add(this.metroCheckBox6);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.metroCheckBox5);
             this.Controls.Add(this.metroCheckBox4);
@@ -303,5 +327,7 @@
         private MetroFramework.Controls.MetroCheckBox metroCheckBox4;
         private MetroFramework.Controls.MetroCheckBox metroCheckBox5;
         private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroCheckBox metroCheckBox6;
+        private MetroFramework.Controls.MetroCheckBox metroCheckBox7;
     }
 }
