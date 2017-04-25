@@ -179,13 +179,9 @@ namespace CourseScheduler
             searchResults results = new searchResults();
 
             results = searchByCode(searchValue);
-            results.add(searchByName(searchValue));
-            results.add(searchByTime(searchValue));
-            results.add(searchByDepartment(searchValue));
-            //results.filter();
-
-
-            //var newResults = results.Distinct().ToList();
+            results.combine(searchByName(searchValue)); //adds the results of searching the same term by name
+            results.combine(searchByTime(searchValue)); //adds the results of searching the same term by time
+            results.combine(searchByDepartment(searchValue)); //adds the results of searching the same term by department
 
             return results;
         }

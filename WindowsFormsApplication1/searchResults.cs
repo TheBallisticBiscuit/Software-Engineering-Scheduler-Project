@@ -90,9 +90,35 @@ namespace CourseScheduler
 
         public void filter()
         {
-            //course toBeFiltered = new course();
-            this.courseList.Distinct().ToList();
-            
+
+            for (int i = 0; i < size(); i++)
+            {
+                for (int j = 1; j < size(); j++)
+                {
+                    if (this.courseList[i].getCourseCode() == this.courseList[j].getCourseCode())
+                    {
+                      this.courseList.RemoveAt(j);
+                    }
+                }
+            }
+   
+        }
+
+        public void combine(searchResults list2)
+        {
+
+            for (int i = 0; i < this.size(); i++)
+            {
+                for (int j = 0; j < list2.size(); j++)
+                {
+                    if (this.courseList[i].getCourseCode() == list2.courseList[j].getCourseCode()) //checks if for duplicates
+                    {
+                        list2.courseList.RemoveAt(j); //if a duplicate is found, remove it from the second list
+                    }
+                }
+            }
+
+            this.courseList.AddRange(list2.courseList); // combine the two lists
         }
 
     }
