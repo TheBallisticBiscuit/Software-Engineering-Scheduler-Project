@@ -39,47 +39,34 @@ namespace CourseScheduler
             return new searchResults(results);
         }
 
-        public searchResults searchByTime(string searchValue)
+        public searchResults searchByTime(string daysChecked, string startTime, string endTime)
         {
-            searchValue = searchValue.ToUpper();
-            char[] delimiterChars = { ' ', ',', '-', '.' };
-            string[] searchComponents = searchValue.Split(delimiterChars); //splitting string into individual words
+            string[] searchComponents = daysChecked.Split(',');
+            startTime = calendar.fixStartTime(startTime);
+            endTime = calendar.fixEndTime(endTime); 
             List<course> results = new List<course>();
-            string mapResult = "";
-
-            var map = new Dictionary<string, string>(); //maps abbreviations and variants to day values to check
-            map["MONDAY"] = "M";
-            map["MON"] = "M";
-            map["TUESDAY"] = "T";
-            map["TUE"] = "T";
-            map["TUES"] = "T";
-            map["WEDNESDAY"] = "W";
-            map["WED"] = "W";
-            map["THURSDAY"] = "R";
-            map["TH"] = "R";
-            map["THU"] = "R";
-            map["THUR"] = "R";
-            map["THURS"] = "R";
-            map["FRIDAY"] = "F";
-            map["FRI"] = "F";
+            List<course> daySearchResults = new List<course>();
 
             for (int i = 0; i < lineCount; i++) //cycles through database
             {
-                foreach (string j in searchComponents) //for each day input
+                foreach (string j in searchComponents)
                 {
-                    if (!map.TryGetValue(j, out mapResult)) //if it's already in MWF format, simply set the checked variable to the string
+                    if (courseList.getCourses()[i].getDays().Contains(j))
                     {
-                        mapResult = j;
-                    }
-                    if (courseList.getCourses()[i].getDays().Contains(mapResult)) //if the course meets on entered day, add it
-                    {
-                        results.Add(courseList.getCourses()[i]);
+                        daySearchResults.Add(courseList.getCourses()[i]);
                     }
                     else //if there is a day that is not in the course, remove it, if it was never added in the first place this returns false
                     {
-                        results.Remove(courseList.getCourses()[i]);
-                        break; //avoids errors with unordered days
+                        daySearchResults.Remove(courseList.getCourses()[i]);
                     }
+
+                }
+            }
+            foreach(course i in daySearchResults)
+            {
+                if (calendar.fixStartTime(i.getStartTime()).Contains(startTime) && calendar.fixEndTime(i.getEndTime()).Contains(endTime))
+                {
+                    results.Add(i);
                 }
             }
             return new searchResults(results);
@@ -180,7 +167,7 @@ namespace CourseScheduler
 
             results = searchByCode(searchValue);
             results.combine(searchByName(searchValue)); //adds the results of searching the same term by name
-            results.combine(searchByTime(searchValue)); //adds the results of searching the same term by time
+            results.combine(searchByTime(searchValue, null, null)); //adds the results of searching the same term by time
             results.combine(searchByDepartment(searchValue)); //adds the results of searching the same term by department
 
             return results;

@@ -132,7 +132,28 @@ namespace CourseScheduler
                 }
                 else if (searchType == 3)
                 {
-                    this.results = this.courseSearch.searchByTime(searchString);
+                    searchString = "";
+                    if (mondayCheckBox.Checked)
+                    {
+                        searchString += "M,";
+                    }
+                    if (tuesdayCheckBox.Checked)
+                    {
+                        searchString += "T,";
+                    }
+                    if (wednesdayCheckBox.Checked)
+                    {
+                        searchString += "W,";
+                    }
+                    if (thursdayCheckBox.Checked)
+                    {
+                        searchString += "R,";
+                    }
+                    if (fridayCheckBox.Checked)
+                    {
+                        searchString += "F";
+                    }
+                    this.results = this.courseSearch.searchByTime(searchString, startTimeBox.Text, endTimeBox.Text);
                 }
                 else if (searchType == 4)
                 {
@@ -241,8 +262,8 @@ namespace CourseScheduler
         {
             foreach (course c in courseCalendar.courseList)
             {
-                string fixedStartTime = courseCalendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
-                string fixedEndTime = courseCalendar.fixEndTime(c.getEndTime());
+                string fixedStartTime = calendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
+                string fixedEndTime = calendar.fixEndTime(c.getEndTime());
                 List<int> daysCols = new List<int>();
                 daysCols = findDaysCols(c.getDays());  //find the columns we need to add this course to
                 bool inSession = false; //used to indicate when all appropriate timeslots have been filled
@@ -548,8 +569,8 @@ namespace CourseScheduler
 
                     foreach (course c in compCalendar.courseList)
                     {
-                        string fixedStartTime = compCalendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
-                        string fixedEndTime = compCalendar.fixEndTime(c.getEndTime());
+                        string fixedStartTime = calendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
+                        string fixedEndTime = calendar.fixEndTime(c.getEndTime());
                         List<int> daysCols = new List<int>();
                         daysCols = findDaysCols(c.getDays());  //find the columns we need to add this course to
                         bool inSession = false; //used to indicate when all appropriate timeslots have been filled
@@ -678,7 +699,5 @@ namespace CourseScheduler
                 metroToolTip1.Active = true;
             }
         }
-
-
     }
 }

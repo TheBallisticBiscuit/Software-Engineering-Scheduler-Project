@@ -190,7 +190,7 @@ namespace CourseScheduler
             return null;
         }
 
-        public string fixStartTime(string oddStart)
+        public static string fixStartTime(string oddStart)
         {
             string timeOfDay = " AM";
 
@@ -231,7 +231,7 @@ namespace CourseScheduler
             return fixTime; //return the fixed time
         }
 
-        public string fixEndTime(string oddEnd)
+        public static string fixEndTime(string oddEnd)
         {
             string timeOfDay = " AM";
 
