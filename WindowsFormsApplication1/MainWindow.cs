@@ -58,7 +58,6 @@ namespace CourseScheduler
         private void MainWindow_Load(object sender, EventArgs e)
         {
 
-            
         }
 
 
@@ -193,6 +192,33 @@ namespace CourseScheduler
             int index = this.searchMenu.SelectedIndex;
             string str = "Selection " + index + "!";
             this.searchType = index;
+            if (index == 3)
+            {
+                int oldHeight = searchResultsBox.Height;
+                Point oldLoc = searchResultsBox.Location;
+                mondayCheckBox.Visible = true;
+                tuesdayCheckBox.Visible = true;
+                wednesdayCheckBox.Visible = true;
+                thursdayCheckBox.Visible = true;
+                fridayCheckBox.Visible = true;
+                startTimeBox.Visible = true;
+                endTimeBox.Visible = true;
+                searchResultsBox.Height = 213;
+                searchResultsBox.Location = new Point(20, 217);
+            }
+            else
+            {
+                searchResultsBox.Height = 270;
+                searchResultsBox.Location = new Point(20, 160);
+                mondayCheckBox.Visible = false;
+                tuesdayCheckBox.Visible = false;
+                wednesdayCheckBox.Visible = false;
+                thursdayCheckBox.Visible = false;
+                fridayCheckBox.Visible = false;
+                startTimeBox.Visible = false;
+                endTimeBox.Visible = false;
+
+            }
         }
 
         // Writes the course info based a selected class in the search results
@@ -698,6 +724,11 @@ namespace CourseScheduler
             {
                 metroToolTip1.Active = true;
             }
+        }
+
+        private void pmCheckBox2_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -64,9 +64,12 @@ namespace CourseScheduler
             }
             foreach(course i in daySearchResults)
             {
-                if (calendar.fixStartTime(i.getStartTime()).Contains(startTime) && calendar.fixEndTime(i.getEndTime()).Contains(endTime))
+                if (startTime != null || endTime != null)
                 {
-                    results.Add(i);
+                    if (calendar.fixStartTime(i.getStartTime()).Contains(startTime) && calendar.fixEndTime(i.getEndTime()).Contains(endTime))
+                    {
+                        results.Add(i);
+                    }
                 }
             }
             return new searchResults(results);

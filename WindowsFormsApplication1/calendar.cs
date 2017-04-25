@@ -193,83 +193,95 @@ namespace CourseScheduler
         public static string fixStartTime(string oddStart)
         {
             string timeOfDay = " AM";
-
-            string[] sTime = oddStart.Split(':'); //splits the input by the ':'
-
-            int hour = Convert.ToInt32(sTime[0]); //gets the hour
-            int minute = Convert.ToInt32(sTime[1]); //gets the minute
-
-            if (minute <= 15) //if the class starts before quater past, we say it starts on the hour
-                minute = 0;
-            else if (minute > 15 && minute <= 45) //if the class starts between quarter past and quarter till, we
-                minute = 30;                      //say it starts at half past
-            else if (minute > 45) //if the class starts after quarter till, we say it starts at the top of the next hour
+            if (oddStart != null && oddStart != "NULL")
             {
-                minute = 0;
-                hour++;
-            }
+                string[] sTime = oddStart.Split(':'); //splits the input by the ':'
 
-            if (hour >= 12)
-            {
-                hour = hour - 12;
-                if (hour == 0)
+                int hour = Convert.ToInt32(sTime[0]); //gets the hour
+                int minute = Convert.ToInt32(sTime[1]); //gets the minute
+
+                if (minute <= 15) //if the class starts before quater past, we say it starts on the hour
+                    minute = 0;
+                else if (minute > 15 && minute <= 45) //if the class starts between quarter past and quarter till, we
+                    minute = 30;                      //say it starts at half past
+                else if (minute > 45) //if the class starts after quarter till, we say it starts at the top of the next hour
                 {
-                    hour = 12;
+                    minute = 0;
+                    hour++;
                 }
-                timeOfDay = " PM";
+
+                if (hour >= 12)
+                {
+                    hour = hour - 12;
+                    if (hour == 0)
+                    {
+                        hour = 12;
+                    }
+                    timeOfDay = " PM";
+                }
+
+                sTime[0] = Convert.ToString(hour); //convert the hour back to a string
+
+                if (minute < 10) //if minute is less than 10 (read 0), we stick an extra 0 in front to maintain the format
+                    sTime[1] = '0' + Convert.ToString(minute);
+                else
+                    sTime[1] = Convert.ToString(minute); //otherwise, just convert minutes back to a string
+
+                string fixTime = sTime[0] + ':' + sTime[1] + timeOfDay; //recombine the time
+
+                return fixTime; //return the fixed time
             }
-
-            sTime[0] = Convert.ToString(hour); //convert the hour back to a string
-
-            if (minute < 10) //if minute is less than 10 (read 0), we stick an extra 0 in front to maintain the format
-                sTime[1] = '0' + Convert.ToString(minute);
             else
-                sTime[1] = Convert.ToString(minute); //otherwise, just convert minutes back to a string
-
-            string fixTime = sTime[0] + ':' + sTime[1] + timeOfDay; //recombine the time
-
-            return fixTime; //return the fixed time
+            {
+                return null;
+            }
         }
 
         public static string fixEndTime(string oddEnd)
         {
             string timeOfDay = " AM";
-
-            string[] sTime = oddEnd.Split(':'); //split the input by the ':'
-
-            int hour = Convert.ToInt32(sTime[0]); //get the hour
-            int minute = Convert.ToInt32(sTime[1]); //get the minute
-
-            if (minute < 15) //if the class ends before quarter past, we say it ends at the top of the hour
-                minute = 0;
-            else if (minute >= 15 && minute <= 30) //if the class ends after quarter past, but before half past
-                minute = 30;                       //we say it ends at half past
-            else if (minute > 30) //if the class ends after half past, we say it ends at the top of the following hour
+            if (oddEnd != null && oddEnd != "NULL")
             {
-                minute = 0;
-                hour++;
-            }
+                string[] sTime = oddEnd.Split(':'); //split the input by the ':'
 
-            if (hour >= 12)
-            {
-                hour = hour - 12;
-                if(hour == 0)
+                int hour = Convert.ToInt32(sTime[0]); //get the hour
+                int minute = Convert.ToInt32(sTime[1]); //get the minute
+
+                if (minute < 15) //if the class ends before quarter past, we say it ends at the top of the hour
+                    minute = 0;
+                else if (minute >= 15 && minute <= 30) //if the class ends after quarter past, but before half past
+                    minute = 30;                       //we say it ends at half past
+                else if (minute > 30) //if the class ends after half past, we say it ends at the top of the following hour
                 {
-                    hour = 12;
+                    minute = 0;
+                    hour++;
                 }
-                timeOfDay = " PM";
+
+                if (hour >= 12)
+                {
+                    hour = hour - 12;
+                    if (hour == 0)
+                    {
+                        hour = 12;
+                    }
+                    timeOfDay = " PM";
+                }
+
+                sTime[0] = Convert.ToString(hour); //convert the hour back into a string
+
+                if (minute < 10) //if the minute is less than 10, stick a '0' in front to maintain the format
+                    sTime[1] = '0' + Convert.ToString(minute);
+                else
+                    sTime[1] = Convert.ToString(minute); //otherwise just convert it to a string
+
+                string fixTime = sTime[0] + ':' + sTime[1] + timeOfDay; //recombine the time
+
+                return fixTime; //return the fixed time
             }
-
-            sTime[0] = Convert.ToString(hour); //convert the hour back into a string
-
-            if (minute < 10) //if the minute is less than 10, stick a '0' in front to maintain the format
-                sTime[1] = '0' + Convert.ToString(minute);
             else
-                sTime[1] = Convert.ToString(minute); //otherwise just convert it to a string
-
-            string fixTime = sTime[0] + ':' + sTime[1] + timeOfDay; //recombine the time
-
-            return fixTime; //return the fixed time
+            {
+                return null;
+            }
         }
 
         public void save(string loc)

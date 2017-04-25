@@ -70,9 +70,7 @@ namespace CourseScheduler
             this.thursdayCheckBox = new MetroFramework.Controls.MetroCheckBox();
             this.fridayCheckBox = new MetroFramework.Controls.MetroCheckBox();
             this.startTimeBox = new MetroFramework.Controls.MetroTextBox();
-            this.pmCheckBox1 = new MetroFramework.Controls.MetroCheckBox();
             this.endTimeBox = new MetroFramework.Controls.MetroTextBox();
-            this.pmCheckBox2 = new MetroFramework.Controls.MetroCheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.calendarView)).BeginInit();
@@ -84,9 +82,9 @@ namespace CourseScheduler
             this.searchResultsBox.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchResultsBox.FormattingEnabled = true;
             this.searchResultsBox.ItemHeight = 19;
-            this.searchResultsBox.Location = new System.Drawing.Point(20, 210);
+            this.searchResultsBox.Location = new System.Drawing.Point(20, 160);
             this.searchResultsBox.Name = "searchResultsBox";
-            this.searchResultsBox.Size = new System.Drawing.Size(190, 213);
+            this.searchResultsBox.Size = new System.Drawing.Size(190, 270);
             this.searchResultsBox.TabIndex = 2;
             this.metroToolTip1.SetToolTip(this.searchResultsBox, "Select any course and double click to add");
             this.searchResultsBox.SelectedIndexChanged += new System.EventHandler(this.course_Description_Update);
@@ -430,6 +428,7 @@ namespace CourseScheduler
             this.mondayCheckBox.TabIndex = 21;
             this.mondayCheckBox.Text = "M";
             this.mondayCheckBox.UseSelectable = true;
+            this.mondayCheckBox.Visible = false;
             // 
             // tuesdayCheckBox
             // 
@@ -440,6 +439,7 @@ namespace CourseScheduler
             this.tuesdayCheckBox.TabIndex = 22;
             this.tuesdayCheckBox.Text = "T";
             this.tuesdayCheckBox.UseSelectable = true;
+            this.tuesdayCheckBox.Visible = false;
             // 
             // wednesdayCheckBox
             // 
@@ -450,6 +450,7 @@ namespace CourseScheduler
             this.wednesdayCheckBox.TabIndex = 23;
             this.wednesdayCheckBox.Text = "W";
             this.wednesdayCheckBox.UseSelectable = true;
+            this.wednesdayCheckBox.Visible = false;
             // 
             // thursdayCheckBox
             // 
@@ -460,6 +461,7 @@ namespace CourseScheduler
             this.thursdayCheckBox.TabIndex = 24;
             this.thursdayCheckBox.Text = "R";
             this.thursdayCheckBox.UseSelectable = true;
+            this.thursdayCheckBox.Visible = false;
             // 
             // fridayCheckBox
             // 
@@ -470,6 +472,7 @@ namespace CourseScheduler
             this.fridayCheckBox.TabIndex = 25;
             this.fridayCheckBox.Text = "F";
             this.fridayCheckBox.UseSelectable = true;
+            this.fridayCheckBox.Visible = false;
             // 
             // startTimeBox
             // 
@@ -477,7 +480,7 @@ namespace CourseScheduler
             // 
             // 
             this.startTimeBox.CustomButton.Image = null;
-            this.startTimeBox.CustomButton.Location = new System.Drawing.Point(39, 1);
+            this.startTimeBox.CustomButton.Location = new System.Drawing.Point(68, 1);
             this.startTimeBox.CustomButton.Name = "";
             this.startTimeBox.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.startTimeBox.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -486,7 +489,7 @@ namespace CourseScheduler
             this.startTimeBox.CustomButton.UseSelectable = true;
             this.startTimeBox.CustomButton.Visible = false;
             this.startTimeBox.Lines = new string[0];
-            this.startTimeBox.Location = new System.Drawing.Point(13, 182);
+            this.startTimeBox.Location = new System.Drawing.Point(20, 182);
             this.startTimeBox.MaxLength = 32767;
             this.startTimeBox.Name = "startTimeBox";
             this.startTimeBox.PasswordChar = '\0';
@@ -496,22 +499,13 @@ namespace CourseScheduler
             this.startTimeBox.SelectionLength = 0;
             this.startTimeBox.SelectionStart = 0;
             this.startTimeBox.ShortcutsEnabled = true;
-            this.startTimeBox.Size = new System.Drawing.Size(61, 23);
+            this.startTimeBox.Size = new System.Drawing.Size(90, 23);
             this.startTimeBox.TabIndex = 26;
             this.startTimeBox.UseSelectable = true;
+            this.startTimeBox.Visible = false;
             this.startTimeBox.WaterMark = "Start Time";
             this.startTimeBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.startTimeBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // pmCheckBox1
-            // 
-            this.pmCheckBox1.AutoSize = true;
-            this.pmCheckBox1.Location = new System.Drawing.Point(74, 186);
-            this.pmCheckBox1.Name = "pmCheckBox1";
-            this.pmCheckBox1.Size = new System.Drawing.Size(41, 15);
-            this.pmCheckBox1.TabIndex = 27;
-            this.pmCheckBox1.Text = "PM";
-            this.pmCheckBox1.UseSelectable = true;
             // 
             // endTimeBox
             // 
@@ -519,7 +513,7 @@ namespace CourseScheduler
             // 
             // 
             this.endTimeBox.CustomButton.Image = null;
-            this.endTimeBox.CustomButton.Location = new System.Drawing.Point(39, 1);
+            this.endTimeBox.CustomButton.Location = new System.Drawing.Point(72, 1);
             this.endTimeBox.CustomButton.Name = "";
             this.endTimeBox.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.endTimeBox.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -528,7 +522,7 @@ namespace CourseScheduler
             this.endTimeBox.CustomButton.UseSelectable = true;
             this.endTimeBox.CustomButton.Visible = false;
             this.endTimeBox.Lines = new string[0];
-            this.endTimeBox.Location = new System.Drawing.Point(112, 182);
+            this.endTimeBox.Location = new System.Drawing.Point(116, 182);
             this.endTimeBox.MaxLength = 32767;
             this.endTimeBox.Name = "endTimeBox";
             this.endTimeBox.PasswordChar = '\0';
@@ -538,31 +532,21 @@ namespace CourseScheduler
             this.endTimeBox.SelectionLength = 0;
             this.endTimeBox.SelectionStart = 0;
             this.endTimeBox.ShortcutsEnabled = true;
-            this.endTimeBox.Size = new System.Drawing.Size(61, 23);
+            this.endTimeBox.Size = new System.Drawing.Size(94, 23);
             this.endTimeBox.TabIndex = 28;
             this.endTimeBox.UseSelectable = true;
+            this.endTimeBox.Visible = false;
             this.endTimeBox.WaterMark = "End Time";
             this.endTimeBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.endTimeBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // pmCheckBox2
-            // 
-            this.pmCheckBox2.AutoSize = true;
-            this.pmCheckBox2.Location = new System.Drawing.Point(173, 185);
-            this.pmCheckBox2.Name = "pmCheckBox2";
-            this.pmCheckBox2.Size = new System.Drawing.Size(41, 15);
-            this.pmCheckBox2.TabIndex = 29;
-            this.pmCheckBox2.Text = "PM";
-            this.pmCheckBox2.UseSelectable = true;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 714);
-            this.Controls.Add(this.pmCheckBox2);
+            this.Controls.Add(this.searchResultsBox);
             this.Controls.Add(this.endTimeBox);
-            this.Controls.Add(this.pmCheckBox1);
             this.Controls.Add(this.startTimeBox);
             this.Controls.Add(this.fridayCheckBox);
             this.Controls.Add(this.thursdayCheckBox);
@@ -579,7 +563,6 @@ namespace CourseScheduler
             this.Controls.Add(this.calendarView);
             this.Controls.Add(this.searchBox);
             this.Controls.Add(this.searchMenu);
-            this.Controls.Add(this.searchResultsBox);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.metroPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -634,9 +617,7 @@ namespace CourseScheduler
         private MetroFramework.Controls.MetroCheckBox thursdayCheckBox;
         private MetroFramework.Controls.MetroCheckBox fridayCheckBox;
         private MetroFramework.Controls.MetroTextBox startTimeBox;
-        private MetroFramework.Controls.MetroCheckBox pmCheckBox1;
         private MetroFramework.Controls.MetroTextBox endTimeBox;
-        private MetroFramework.Controls.MetroCheckBox pmCheckBox2;
     }
 }
 
