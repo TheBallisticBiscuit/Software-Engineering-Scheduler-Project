@@ -216,7 +216,7 @@ namespace CourseScheduler
             "General",
             "Course Code",
             "Course Name",
-            "Days Meeting",
+            "Date/Time",
             "Department"});
             this.searchMenu.Location = new System.Drawing.Point(20, 125);
             this.searchMenu.Name = "searchMenu";
