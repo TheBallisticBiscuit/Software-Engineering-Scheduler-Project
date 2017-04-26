@@ -11,7 +11,6 @@ namespace CourseScheduler
     public class searchQuery
     {
         database courseList;
-        string currentSearch = null;
         int lineCount;
         public searchQuery(database data)
         {
