@@ -28,18 +28,18 @@ namespace CourseScheduler
             }
             else
             {
-                for(int i = 0; i < courseList.Count; i++)
+                for (int i = 0; i < courseList.Count; i++)
                 {
 
-                    if (containsDays(courseList[i].getDays(),newCourse.getDays()) && courseList[i].getStartTime() == newCourse.getStartTime() || checkInbetweenTimes(newCourse.getStartTime(), newCourse.getEndTime(),newCourse.getDays()) )
+                    if (containsDays(courseList[i].getDays(), newCourse.getDays()) && courseList[i].getStartTime() == newCourse.getStartTime() || checkInbetweenTimes(newCourse.getStartTime(), newCourse.getEndTime(), newCourse.getDays()))
                     {
                         //
                         Console.WriteLine("Date/Time conflict");
                         Alert AlertWin = new Alert();
                         AlertWin.Show();
-                        string txt = "Date/Time conflict with this course at\nDay(s): " + newCourse.getDays() + " Time: " + newCourse.getStartTime(); 
-                        AlertWin.set_text_alert(txt,true);
-                        return false; 
+                        string txt = "Date/Time conflict with this course at\nDay(s): " + newCourse.getDays() + " Time: " + newCourse.getStartTime();
+                        AlertWin.set_text_alert(txt, true);
+                        return false;
                     }
                 }
                 if (newCourse != null)
@@ -61,7 +61,7 @@ namespace CourseScheduler
                 }
             }
 
-            return false;        
+            return false;
         }
 
         // Checks to see if current course trying to be added exsist 
@@ -70,7 +70,7 @@ namespace CourseScheduler
         {
             foreach (course c in courseList)
             {
-                if(containsDays(c.getDays(), days))
+                if (containsDays(c.getDays(), days))
                 {
                     // If the course being added has a longer time than the an exisiting course
 
@@ -86,7 +86,7 @@ namespace CourseScheduler
 
                     // If the course being added start time exsists between the start and stop
                     // times of an exsisting course.
-                    if(Int32.Parse(c.getStartTime().Split(':')[0]) < Int32.Parse(startTime.Split(':')[0]) && Int32.Parse(startTime.Split(':')[0]) < Int32.Parse(c.getEndTime().Split(':')[0]))
+                    if (Int32.Parse(c.getStartTime().Split(':')[0]) < Int32.Parse(startTime.Split(':')[0]) && Int32.Parse(startTime.Split(':')[0]) < Int32.Parse(c.getEndTime().Split(':')[0]))
                     {
                         // Checks minutes: this may be unnecessary
                         if (Int32.Parse(c.getStartTime().Split(':')[1]) < Int32.Parse(startTime.Split(':')[1]))
@@ -120,7 +120,7 @@ namespace CourseScheduler
             //string code = oldCourse.getCourseCode();
             int count = 0;
             List<course> toBeRemoved = new List<course>();
-            for(int i = 0; i < courseList.Count;i++)
+            for (int i = 0; i < courseList.Count; i++)
             {
                 if (courseList[i].getCourseCode() == oldCourse.getCourseCode())
                 {
@@ -167,7 +167,7 @@ namespace CourseScheduler
         // returns a course based on course code
         public course getCourse(string courseCode)
         {
-            for(int i = 0; i < courseList.Count; i++)
+            for (int i = 0; i < courseList.Count; i++)
             {
                 if (courseList[i].getCourseCode() == courseCode)
                 {
@@ -193,41 +193,47 @@ namespace CourseScheduler
         public static string fixStartTime(string oddStart)
         {
             string timeOfDay = " AM";
-                string[] sTime = oddStart.Split(':'); //splits the input by the ':'
+            string[] sTime = oddStart.Split(':'); //splits the input by the ':'
+            int hour, minute;
+            if (!String.IsNullOrEmpty(sTime[0]) && sTime[0] != "NULL")
+            {
+                hour = Convert.ToInt32(sTime[0]); //gets the hour
+                minute = Convert.ToInt32(sTime[1]); //gets the minute
+            }
+            else
+            {
+                return "NULL";
+            }
+            if (minute <= 15) //if the class starts before quater past, we say it starts on the hour
+                minute = 0;
+            else if (minute > 15 && minute <= 45) //if the class starts between quarter past and quarter till, we
+                minute = 30;                      //say it starts at half past
+            else if (minute > 45) //if the class starts after quarter till, we say it starts at the top of the next hour
+            {
+                minute = 0;
+                hour++;
+            }
 
-                int hour = Convert.ToInt32(sTime[0]); //gets the hour
-                int minute = Convert.ToInt32(sTime[1]); //gets the minute
-
-                if (minute <= 15) //if the class starts before quater past, we say it starts on the hour
-                    minute = 0;
-                else if (minute > 15 && minute <= 45) //if the class starts between quarter past and quarter till, we
-                    minute = 30;                      //say it starts at half past
-                else if (minute > 45) //if the class starts after quarter till, we say it starts at the top of the next hour
+            if (hour >= 12)
+            {
+                hour = hour - 12;
+                if (hour == 0)
                 {
-                    minute = 0;
-                    hour++;
+                    hour = 12;
                 }
+                timeOfDay = " PM";
+            }
 
-                if (hour >= 12)
-                {
-                    hour = hour - 12;
-                    if (hour == 0)
-                    {
-                        hour = 12;
-                    }
-                    timeOfDay = " PM";
-                }
+            sTime[0] = Convert.ToString(hour); //convert the hour back to a string
 
-                sTime[0] = Convert.ToString(hour); //convert the hour back to a string
+            if (minute < 10) //if minute is less than 10 (read 0), we stick an extra 0 in front to maintain the format
+                sTime[1] = '0' + Convert.ToString(minute);
+            else
+                sTime[1] = Convert.ToString(minute); //otherwise, just convert minutes back to a string
 
-                if (minute < 10) //if minute is less than 10 (read 0), we stick an extra 0 in front to maintain the format
-                    sTime[1] = '0' + Convert.ToString(minute);
-                else
-                    sTime[1] = Convert.ToString(minute); //otherwise, just convert minutes back to a string
+            string fixTime = sTime[0] + ':' + sTime[1] + timeOfDay; //recombine the time
 
-                string fixTime = sTime[0] + ':' + sTime[1] + timeOfDay; //recombine the time
-
-                return fixTime; //return the fixed time
+            return fixTime; //return the fixed time
         }
 
         public static string fixEndTime(string oddEnd)
@@ -287,10 +293,10 @@ namespace CourseScheduler
             catch (Exception e)
             {
                 Console.WriteLine("The file could not be written:");
-                Console.WriteLine(e.Message);   
+                Console.WriteLine(e.Message);
             }
 
-            foreach(course c in courseList)
+            foreach (course c in courseList)
             {
                 string line = c.getCourseCode() + "," +
                               c.getShortTitle() + "," +
@@ -302,7 +308,7 @@ namespace CourseScheduler
                               c.getRoom() + "," +
                               c.getEnrollment() + "," +
                               c.getCapacity();
-                
+
                 data.WriteLine(line);
             }
             data.Close();
@@ -346,7 +352,7 @@ namespace CourseScheduler
                 {
                     Alert AlertWin = new Alert();
                     AlertWin.Show();
-                    AlertWin.set_text_alert("File doesn't match correct format",true);
+                    AlertWin.set_text_alert("File doesn't match correct format", true);
                     break;
                 }
             }
