@@ -71,6 +71,7 @@
             this.Name = "Alert";
             this.Opacity = 0.9D;
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
+            this.Resizable = false;
             this.Text = "Alert";
             this.Load += new System.EventHandler(this.Alert_Load);
             this.ResumeLayout(false);
