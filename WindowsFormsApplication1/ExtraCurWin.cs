@@ -95,13 +95,33 @@ namespace CourseScheduler
                     }
                     endTime = end.ToString() + ":00";
                 }
-                else if (Int32.TryParse(endHr, out start))
+                else if (Int32.TryParse(endHr, out end))
                 {
                     if (this.metroCheckBox7.Checked)
                     {
                         end = end + 12;
                     }
                     endTime = end.ToString() + endMin;
+                }
+
+                if (start > end)
+                {
+                    return null;
+                }
+                else if (start == end)
+                {
+                    int testSMin,testEMin;
+                    if (Int32.TryParse(startMin.Split(':')[0], out testSMin) && Int32.TryParse(endMin.Split(':')[0], out testEMin))
+                    {
+                        if (testSMin > testEMin)
+                        {
+                            return null;
+                        }
+                    }
+                }
+                else if (start > 18 || start < 8 || end > 24 || end < 8 || startTime == "" || endTime == "")
+                {
+                    return null;                
                 }
 
                 foreach (string word in parsedLoc)

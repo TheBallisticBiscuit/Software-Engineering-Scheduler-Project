@@ -137,6 +137,29 @@ namespace CourseScheduler
             return endTime;
         }
 
+        public bool correctTime()
+        {
+            string[] strt = this.getStartTime().Split(':');
+            string[] end = this.getEndTime().Split(':');
+            int strtInt,endInt ;
+            foreach (string str in strt)
+            {
+                if (!Int32.TryParse(str, out strtInt))
+                {
+                    return true;
+                }
+            }
+            foreach (string str in end)
+            {
+                if (!Int32.TryParse(str, out endInt))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public bool isEditable() { return false; } //overwritten in extracurricular, indicates whether the course is an extracurricular or a class
     }
 }

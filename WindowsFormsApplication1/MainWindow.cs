@@ -344,10 +344,10 @@ namespace CourseScheduler
         {
             if (extraWin.okPressed)
             {
-                Console.WriteLine("TRUE");
+                //Console.WriteLine("TRUE");
                 if (courseCalendar.addCourse(extraWin.newExtra))
                 {
-                    Console.WriteLine("Adding course");
+                    //Console.WriteLine("Adding course");
                     extraWin.Close();
                 }
                 else

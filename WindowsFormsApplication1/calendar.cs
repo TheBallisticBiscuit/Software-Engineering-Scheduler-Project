@@ -44,10 +44,31 @@ namespace CourseScheduler
                 }
                 if (newCourse != null)
                 {
+                    if (newCourse.getDays() == "" || newCourse.getStartTime() == "" || newCourse.getEndTime() == "" || newCourse.correctTime())
+                    {
+                        Alert AlertWin = new Alert();
+                        AlertWin.Show();
+                        AlertWin.set_text_alert("Extra Curricular contains invalid information!", true);
+                        return false;
+                    }
+                    if (newCourse.getDays() == "NULL" || newCourse.getStartTime() == "NULL")
+                    {
+                        Alert AlertWin = new Alert();
+                        AlertWin.Show();
+                        AlertWin.set_text_alert("Course being added will not\nappear on the calendar!", true);
+                    }
+
                     courseList.Add(newCourse);
                     return true;
                 }
+                else 
+                {
+                    Alert AlertWin = new Alert();
+                    AlertWin.Show();
+                    AlertWin.set_text_alert("Incorrect Times! \n(Check start and Stop Times)", false);
+                }
             }
+            
             return false;
         }
 
@@ -136,12 +157,6 @@ namespace CourseScheduler
             {
                 return true;
             }
-            // Old way of removing courses
-            /*if (courseList.Contains(oldCourse))
-            {
-                courseList.Remove(oldCourse);
-                return true;
-            }*/
             return false;
         }
 

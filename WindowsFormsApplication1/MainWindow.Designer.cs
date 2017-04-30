@@ -76,6 +76,7 @@ namespace CourseScheduler
             ((System.ComponentModel.ISupportInitialize)(this.calendarView)).BeginInit();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
+
             // 
             // searchResultsBox
             // 
@@ -429,6 +430,7 @@ namespace CourseScheduler
             this.mondayCheckBox.Text = "M";
             this.mondayCheckBox.UseSelectable = true;
             this.mondayCheckBox.Visible = false;
+            this.mondayCheckBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_Enter);
             // 
             // tuesdayCheckBox
             // 
@@ -440,6 +442,7 @@ namespace CourseScheduler
             this.tuesdayCheckBox.Text = "T";
             this.tuesdayCheckBox.UseSelectable = true;
             this.tuesdayCheckBox.Visible = false;
+            this.tuesdayCheckBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_Enter);
             // 
             // wednesdayCheckBox
             // 
@@ -451,6 +454,7 @@ namespace CourseScheduler
             this.wednesdayCheckBox.Text = "W";
             this.wednesdayCheckBox.UseSelectable = true;
             this.wednesdayCheckBox.Visible = false;
+            this.wednesdayCheckBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_Enter);
             // 
             // thursdayCheckBox
             // 
@@ -462,6 +466,7 @@ namespace CourseScheduler
             this.thursdayCheckBox.Text = "R";
             this.thursdayCheckBox.UseSelectable = true;
             this.thursdayCheckBox.Visible = false;
+            this.thursdayCheckBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_Enter);
             // 
             // fridayCheckBox
             // 
@@ -473,6 +478,7 @@ namespace CourseScheduler
             this.fridayCheckBox.Text = "F";
             this.fridayCheckBox.UseSelectable = true;
             this.fridayCheckBox.Visible = false;
+            this.fridayCheckBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_Enter);
             // 
             // startTimeBox
             // 
@@ -506,6 +512,7 @@ namespace CourseScheduler
             this.startTimeBox.WaterMark = "Start Time";
             this.startTimeBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.startTimeBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.startTimeBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_Enter);
             // 
             // endTimeBox
             // 
@@ -539,6 +546,7 @@ namespace CourseScheduler
             this.endTimeBox.WaterMark = "End Time";
             this.endTimeBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.endTimeBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.endTimeBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_Enter);
             // 
             // MainWindow
             // 
