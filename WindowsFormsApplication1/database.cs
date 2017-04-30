@@ -48,17 +48,7 @@ namespace CourseScheduler
                 // Adds a new course to the list
                 coursesList.Add(new CourseScheduler.course(enrollment, capacity, courseDBObject[i, 0],courseDBObject[i, 1],courseDBObject[i, 2],courseDBObject[i, 3],courseDBObject[i, 4],courseDBObject[i, 5],courseDBObject[i, 6],courseDBObject[i, 7]));
             }
-
             data.Close();
-
-            //creates structure
-            /*
-            testCoursesList = new List<course>();
-            testCoursesList.Add(new WindowsFormsApplication1.course(10, 30, "course1", "course1Short", "course1Long", "10:00", "10:50", "MWF", "STEM", "376"));
-            testCoursesList.Add(new WindowsFormsApplication1.course(10, 30, "course2", "course2Short", "course2Long", "10:00", "10:50", "MWF", "STEM", "376"));
-            testCoursesList.Add(new WindowsFormsApplication1.course(10, 30, "course3", "course3Short", "course3Long", "10:00", "10:50", "MWF", "STEM", "376"));
-            testCoursesList.Add(new WindowsFormsApplication1.course(10, 30, "course4", "course4Short", "course4Long", "10:05", "11:15", "TH", "STEM", "376"));
-            */
         }
 
         // Gets the list of courses
@@ -66,11 +56,6 @@ namespace CourseScheduler
         {
             return coursesList;
         }
-        /*public List<course> getTestCourses()
-        {
-            //return courseDBObject;
-            return testCoursesList;
-        }*/
 
         // Returns the number of courses in the database
         public int getLineCount()

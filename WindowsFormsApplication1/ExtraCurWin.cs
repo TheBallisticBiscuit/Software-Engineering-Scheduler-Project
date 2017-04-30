@@ -28,27 +28,17 @@ namespace CourseScheduler
             this.Close();  //kills the window without saving anything
         }
 
-        private void startTimeBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void metroDateTime1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void okButton_Click(object sender, EventArgs e)
         {
             okPressed = true;
             newExtra = returnCourse();
         }
 
+        // Based on the data entered 
         private extracurricular returnCourse()
         {
             if (this.metroTextBox1.Text != "")
             {
-
                 string title = this.metroTextBox1.Text;
                 string location = this.metroTextBox3.Text;
                 string startTime = this.metroTextBox4.Text;
@@ -60,7 +50,9 @@ namespace CourseScheduler
                 string endHr = endTime.Split(':')[0];
                 string startMin = ":00";
                 string endMin = ":00";
-
+                
+                // Checks to see if only a single int or a string with
+                // in the format was HH:MM
                 if (startTime.Split(':').Count() > 1)
                 {
                     startMin = ":" + startTime.Split(':')[1];
@@ -70,6 +62,8 @@ namespace CourseScheduler
                     endMin = ":"+endTime.Split(':')[1];
                 }
                 int start, end = 0;
+
+                // Checks to see if an int was entered for start hours and converts it to military time
                 if (Int32.TryParse(startTime, out start))
                 {
                     if (this.metroCheckBox6.Checked)
@@ -87,6 +81,7 @@ namespace CourseScheduler
                     startTime = start.ToString() + startMin;
                 }
 
+                // Checks to see if an int was entered for end hours and converts it to military time
                 if (Int32.TryParse(endTime, out end))
                 {
                     if (this.metroCheckBox7.Checked)
@@ -103,11 +98,14 @@ namespace CourseScheduler
                     }
                     endTime = end.ToString() + endMin;
                 }
-
+                
+                // If the start time is greater than the end time
+                // it returns early since this course has bad inputs for time
                 if (start > end)
                 {
                     return null;
                 }
+                // if the hours are the same, the minutes are checked just in case.
                 else if (start == end)
                 {
                     int testSMin,testEMin;
@@ -119,11 +117,13 @@ namespace CourseScheduler
                         }
                     }
                 }
+                // If the times are off the calendar in the program
                 else if (start > 18 || start < 8 || end > 24 || end < 8 || startTime == "" || endTime == "")
                 {
                     return null;                
                 }
 
+                // Checks to see if there was a room number entered
                 foreach (string word in parsedLoc)
                 {
                     if (Int32.TryParse(word, out roomNum))
@@ -140,6 +140,7 @@ namespace CourseScheduler
             return null;
         }
 
+        // Sets the extra curricular to be on Monday
         private void metroCheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (metroCheckBox1.Checked)
@@ -152,6 +153,7 @@ namespace CourseScheduler
             }
         }
 
+        // Sets the extra curricular to be on Tuesday
         private void metroCheckBox2_CheckedChanged(object sender, EventArgs e)
         {
             if (metroCheckBox2.Checked)
@@ -164,6 +166,7 @@ namespace CourseScheduler
             }
         }
 
+        // Sets the extra curricular to be on Wednesday
         private void metroCheckBox3_CheckedChanged(object sender, EventArgs e)
         {
             if (metroCheckBox3.Checked)
@@ -176,6 +179,7 @@ namespace CourseScheduler
             }
         }
 
+        // Sets the extra curricular to be on Thursday
         private void metroCheckBox4_CheckedChanged(object sender, EventArgs e)
         {
             if (metroCheckBox4.Checked)
@@ -188,6 +192,7 @@ namespace CourseScheduler
             }
         }
 
+        // Sets the extra curricular to be on Friday
         private void metroCheckBox5_CheckedChanged(object sender, EventArgs e)
         {
             if (metroCheckBox5.Checked)

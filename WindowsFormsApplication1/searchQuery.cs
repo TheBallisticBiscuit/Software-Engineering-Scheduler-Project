@@ -15,9 +15,6 @@ namespace CourseScheduler
         public searchQuery(database data)
         {
             courseList = data;
-            /*Console.WriteLine(data.getCourses()[1].getCourseCode().Contains("COMP"));
-            Console.WriteLine(data.getCourses()[100].getCourseCode());
-            Console.WriteLine(data.getCourses()[200].getCourseCode());*/
             this.lineCount = data.getLineCount();
         }
 
@@ -38,6 +35,8 @@ namespace CourseScheduler
             return new searchResults(results);
         }
 
+
+        // Search the courses by day and/or time
         public searchResults searchByTime(string daysChecked, string startTime, string endTime)
         {
             string[] searchComponents = daysChecked.Split(',');
@@ -154,6 +153,7 @@ namespace CourseScheduler
             return new searchResults(results);
         }
 
+        // Searchs courses by short and long name
         public searchResults searchByName(string searchValue)
         {
             searchValue = searchValue.ToUpper();
@@ -172,6 +172,7 @@ namespace CourseScheduler
             return new searchResults(results);
         }
 
+        // Generic search that does all searches.
         public searchResults genericSearch(string searchValue)
         {
             searchValue = searchValue.ToUpper();
@@ -185,7 +186,5 @@ namespace CourseScheduler
 
             return results;
         }
-        //other searches here
-
     }
 }

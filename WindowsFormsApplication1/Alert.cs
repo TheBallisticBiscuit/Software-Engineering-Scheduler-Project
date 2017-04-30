@@ -22,7 +22,8 @@ namespace CourseScheduler
         {
 
         }
-
+        
+        // When ok is pressed, close it.
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -40,11 +41,6 @@ namespace CourseScheduler
                 this.label1.Location = new System.Drawing.Point(40, 21);
             }
             this.label1.Text = txt;
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

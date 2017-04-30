@@ -86,7 +86,7 @@ namespace CourseScheduler
 
         public string getEnrollment()
         {
-            return enrollment.ToString();// +"/" + capacity.ToString();
+            return enrollment.ToString();
 
         }
 
@@ -95,6 +95,7 @@ namespace CourseScheduler
             return capacity.ToString();
         }
 
+        // Gets the start time from military to regular time.
         public string getConvStartTime()
         {
             if(beginTime != "NULL")
@@ -116,6 +117,7 @@ namespace CourseScheduler
             return beginTime;
         }
 
+        // Gets the end time from military to regular time.
         public string getConvEndTime()
         {
             if (endTime != "NULL")
@@ -137,6 +139,9 @@ namespace CourseScheduler
             return endTime;
         }
 
+        // Checks to see if valid times are entered in the course.
+        // Used to check to see if an extracurricular was entered with
+        // correct parameters.
         public bool correctTime()
         {
             string[] strt = this.getStartTime().Split(':');

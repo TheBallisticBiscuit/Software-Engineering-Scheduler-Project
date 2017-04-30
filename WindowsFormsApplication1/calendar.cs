@@ -21,7 +21,6 @@ namespace CourseScheduler
         {
             if (courseList.Contains(newCourse))
             {
-                Console.WriteLine("COURSE ALREADY EXISTS");
                 Alert AlertWin = new Alert();
                 AlertWin.Show();
                 AlertWin.set_text_alert("Course already added.");
@@ -30,11 +29,9 @@ namespace CourseScheduler
             {
                 for (int i = 0; i < courseList.Count; i++)
                 {
-
+                    // Checks to see if there is a time conflict during a particular day.
                     if (containsDays(courseList[i].getDays(), newCourse.getDays()) && courseList[i].getStartTime() == newCourse.getStartTime() || checkInbetweenTimes(newCourse.getStartTime(), newCourse.getEndTime(), newCourse.getDays()))
                     {
-                        //
-                        Console.WriteLine("Date/Time conflict");
                         Alert AlertWin = new Alert();
                         AlertWin.Show();
                         string txt = "Date/Time conflict with this course at\nDay(s): " + newCourse.getDays() + " Time: " + newCourse.getStartTime();
@@ -44,6 +41,7 @@ namespace CourseScheduler
                 }
                 if (newCourse != null)
                 {
+                    // If an extracurricular has empty times or days parameters
                     if (newCourse.getDays() == "" || newCourse.getStartTime() == "" || newCourse.getEndTime() == "" || newCourse.correctTime())
                     {
                         Alert AlertWin = new Alert();
@@ -51,6 +49,9 @@ namespace CourseScheduler
                         AlertWin.set_text_alert("Extra Curricular contains invalid information!", true);
                         return false;
                     }
+
+                    // Alerts the user that a class is added, but won't be seen on the calendar since
+                    // it has NULL time or days
                     if (newCourse.getDays() == "NULL" || newCourse.getStartTime() == "NULL")
                     {
                         Alert AlertWin = new Alert();
@@ -63,15 +64,18 @@ namespace CourseScheduler
                 }
                 else 
                 {
+
+                    // If there is some invalid time entered or the title is empty.
                     Alert AlertWin = new Alert();
                     AlertWin.Show();
-                    AlertWin.set_text_alert("Incorrect Times! \n(Check start and Stop Times)", false);
+                    AlertWin.set_text_alert("Incorrect Times or missing title! \n(Check start and Stop Times)", false);
                 }
             }
             
             return false;
         }
-
+        
+        // Checks to see if two courses exist on the same day
         private bool containsDays(string course1Days, string course2Days)
         {
             foreach (char c in course2Days)
@@ -205,6 +209,8 @@ namespace CourseScheduler
             return null;
         }
 
+        // Fixes the start times from miltary to regular
+        // Makes it so the start time extends to the earliest half hour.
         public static string fixStartTime(string oddStart)
         {
             string timeOfDay = " AM";
@@ -251,6 +257,8 @@ namespace CourseScheduler
             return fixTime; //return the fixed time
         }
 
+        // Fixes end time from military to regular. 
+        // Makes it so the end time extends to the nearest half hour past the end time.
         public static string fixEndTime(string oddEnd)
         {
             string timeOfDay = " AM";
@@ -298,6 +306,7 @@ namespace CourseScheduler
             }
         }
 
+        // Saves the schedule to a .csv file
         public void save(string loc)
         {
             StreamWriter data = null;
@@ -329,6 +338,7 @@ namespace CourseScheduler
             data.Close();
         }
 
+        // Opens and loads a .csv file to the software
         public void open(string loc)
         {
             StreamReader data = null;
@@ -363,7 +373,7 @@ namespace CourseScheduler
                                                    splitLn[6],
                                                    splitLn[7]));
                 }
-                catch //(Exception e)
+                catch
                 {
                     Alert AlertWin = new Alert();
                     AlertWin.Show();

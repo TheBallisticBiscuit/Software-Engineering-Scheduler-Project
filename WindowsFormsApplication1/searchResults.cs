@@ -39,71 +39,21 @@ namespace CourseScheduler
             return false;
         }
 
-        // Size of the list
+        // Returns the size of the list
         public int size()
         {
             return courseList.Count;
         }
 
+        // Gets the course list
         public List<course> getResultsList()
         {
             return courseList;
         }
-
-        public void add(searchResults results)
-        {
-           /* foreach (course c in results.getResultsList())
-            {
-                if (this.courseList.Contains(c) == false)
-                {
-                    this.courseList.Add(c);
-                }
-                else
-                {
-                    Console.WriteLine(c.getCourseCode());
-                }
-            }*/
-
-            List<course> temp = results.getResultsList();
-
-            bool found = false;
-            for (int i = 0; i < temp.Count; i++)
-            {
-                for (int j = 0; j < this.courseList.Count; j++)
-                {
-                    if (temp[i].getCourseCode() == this.courseList[j].getCourseCode())
-                    {
-                        found = true;
-                    }
-                }
-                if (found)
-                { 
-                    this.courseList.Add(temp[i]);
-                }
-                found = false;
-            }
-
-            //List<course> temp = this.courseList.Union(results.getResultsList());
-
-            //this.courseList.AddRange(results.getResultsList());
-        }
-
-        public void filter()
-        {
-
-            for (int i = 0; i < size(); i++)
-            {
-                for (int j = 1; j < size(); j++)
-                {
-                    if (this.courseList[i].getCourseCode() == this.courseList[j].getCourseCode())
-                    {
-                      this.courseList.RemoveAt(j);
-                    }
-                }
-            }
-   
-        }
-
+        
+        // During a general search, this function will filter out the 
+        // duplicates and adds only the courses that are new to the search
+        // results list.
         public void combine(searchResults list2)
         {
 
