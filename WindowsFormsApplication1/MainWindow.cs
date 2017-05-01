@@ -498,6 +498,11 @@ namespace CourseScheduler
         private void exportButton_Click(object sender, EventArgs e)
         {
             codes export = new codes();
+            for (int i = 0; i < courseCalendar.courseList.Count(); i++)
+            {
+                export.listBox1.Items.Add(this.courseCalendar.courseList[i].getCourseCode());
+                //export.listBox1 = searchResultsBox;
+            }
             export.Show();
         }
 
