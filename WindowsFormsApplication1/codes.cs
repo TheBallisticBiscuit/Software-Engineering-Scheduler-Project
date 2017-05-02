@@ -17,5 +17,26 @@ namespace CourseScheduler
         {
             InitializeComponent();
         }
+
+        private void htmlLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(listBox1.SelectedItem.ToString());
+        }
+
+        private void codes_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(listBox1.SelectedItem.ToString());
+        }
+        
     }
 }
