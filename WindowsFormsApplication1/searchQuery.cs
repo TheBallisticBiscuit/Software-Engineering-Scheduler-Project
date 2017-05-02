@@ -67,7 +67,7 @@ namespace CourseScheduler
             {
                 if (!String.IsNullOrEmpty(startTime))
                 {
-                    if (calendar.fixStartTime(i.getStartTime()).Contains(startTime))
+                    if (calendar.fixStartTime(i.getStartTime()) == startTime)
                     {
                         results.Add(i);
                     }
