@@ -219,13 +219,23 @@ namespace CourseScheduler
             if (!String.IsNullOrEmpty(sTime[0]) && sTime[0] != "NULL")
             {
                 hour = Convert.ToInt32(sTime[0]); //gets the hour
-                minute = Convert.ToInt32(sTime[1]); //gets the minute
+                if (sTime.Length > 1)
+                {
+                    minute = Convert.ToInt32(sTime[1]); //gets the minute
+                }
+                else
+                {
+                    minute = 0;
+                    string[] extendedString = new string[2];
+                    extendedString[0] = sTime[0];
+                    sTime = extendedString;
+                }
             }
             else
             {
                 return "NULL";
             }
-            if (minute <= 15) //if the class starts before quater past, we say it starts on the hour
+            if (minute <= 15) //if the class starts before quarter past, we say it starts on the hour
                 minute = 0;
             else if (minute > 15 && minute <= 45) //if the class starts between quarter past and quarter till, we
                 minute = 30;                      //say it starts at half past

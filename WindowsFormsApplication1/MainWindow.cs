@@ -163,7 +163,7 @@ namespace CourseScheduler
                     {
                         hour += 12;
                         searchTime = Convert.ToString(hour) + ":";
-                        if (!String.IsNullOrWhiteSpace(splitResult[1]))
+                        if (splitResult.Length > 1 && !String.IsNullOrWhiteSpace(splitResult[1]))
                         {
                             searchTime += splitResult[1];
                         }
