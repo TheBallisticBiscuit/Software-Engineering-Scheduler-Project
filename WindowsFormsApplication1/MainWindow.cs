@@ -132,6 +132,7 @@ namespace CourseScheduler
                 else if (searchType == 3)
                 {
                     searchString = "";
+                    string searchTime = startTimeBox.Text;
                     if (mondayCheckBox.Checked)
                     {
                         searchString += "M,";
@@ -152,7 +153,26 @@ namespace CourseScheduler
                     {
                         searchString += "F";
                     }
-                    this.results = this.courseSearch.searchByTime(searchString, startTimeBox.Text, endTimeBox.Text);
+                    string[] splitResult = searchTime.Split(':');
+                    int hour = 0;
+                    if (String.IsNullOrWhiteSpace(splitResult[0]) || !int.TryParse(splitResult[0], out hour))
+                    {
+                        return;
+                    }
+                    if (PMCheckBox1.Checked)
+                    {
+                        hour += 12;
+                        searchTime = Convert.ToString(hour) + ":";
+                        if (!String.IsNullOrWhiteSpace(splitResult[1]))
+                        {
+                            searchTime += splitResult[1];
+                        }
+                        else
+                        {
+                            searchTime += "00";
+                        }
+                    }
+                    this.results = this.courseSearch.searchByTime(searchString, searchTime);
                 }
                 else if (searchType == 4)
                 {
@@ -202,7 +222,7 @@ namespace CourseScheduler
                 thursdayCheckBox.Visible = true;
                 fridayCheckBox.Visible = true;
                 startTimeBox.Visible = true;
-                endTimeBox.Visible = true;
+                PMCheckBox1.Visible = true;
                 searchResultsBox.Height = 213;
                 searchResultsBox.Location = new Point(20, 217);
             }
@@ -216,8 +236,7 @@ namespace CourseScheduler
                 thursdayCheckBox.Visible = false;
                 fridayCheckBox.Visible = false;
                 startTimeBox.Visible = false;
-                endTimeBox.Visible = false;
-
+                PMCheckBox1.Visible = false;
             }
         }
 

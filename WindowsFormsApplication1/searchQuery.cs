@@ -37,16 +37,12 @@ namespace CourseScheduler
 
 
         // Search the courses by day and/or time
-        public searchResults searchByTime(string daysChecked, string startTime, string endTime)
+        public searchResults searchByTime(string daysChecked, string startTime)
         {
             string[] searchComponents = daysChecked.Split(',');
             if (!String.IsNullOrWhiteSpace(startTime))
             {
                 startTime = calendar.fixStartTime(startTime);
-            }
-            if (!String.IsNullOrWhiteSpace(endTime))
-            {
-                endTime = calendar.fixEndTime(endTime);
             }
             List<course> results = new List<course>();
             List<course> daySearchResults = new List<course>();
@@ -69,9 +65,9 @@ namespace CourseScheduler
             }
             foreach (course i in daySearchResults)
             {
-                if (!String.IsNullOrEmpty(startTime) || !String.IsNullOrEmpty(endTime))
+                if (!String.IsNullOrEmpty(startTime))
                 {
-                    if (calendar.fixStartTime(i.getStartTime()).Contains(startTime) && calendar.fixEndTime(i.getEndTime()).Contains(endTime))
+                    if (calendar.fixStartTime(i.getStartTime()).Contains(startTime))
                     {
                         results.Add(i);
                     }
@@ -181,7 +177,7 @@ namespace CourseScheduler
 
             results = searchByCode(searchValue);
             results.combine(searchByName(searchValue)); //adds the results of searching the same term by name
-            results.combine(searchByTime(searchValue, null, null)); //adds the results of searching the same term by time
+            results.combine(searchByTime(searchValue, null)); //adds the results of searching the same term by time
             results.combine(searchByDepartment(searchValue)); //adds the results of searching the same term by department
 
             return results;
