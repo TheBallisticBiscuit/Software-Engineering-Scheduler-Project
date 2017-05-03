@@ -86,6 +86,12 @@
     <Compile Include="codes.Designer.cs">
       <DependentUpon>codes.cs</DependentUpon>
     </Compile>
+    <Compile Include="CourseListWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CourseListWin.Designer.cs">
+      <DependentUpon>CourseListWin.cs</DependentUpon>
+    </Compile>
     <Compile Include="course.cs" />
     <Compile Include="database.cs" />
     <Compile Include="extracurricular.cs" />
@@ -111,6 +117,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="codes.resx">
       <DependentUpon>codes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CourseListWin.resx">
+      <DependentUpon>CourseListWin.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

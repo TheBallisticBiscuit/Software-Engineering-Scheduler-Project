@@ -43,10 +43,9 @@ namespace CourseScheduler
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createTimeslotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editTimeslotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewCourseListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideTipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -71,6 +70,7 @@ namespace CourseScheduler
             this.fridayCheckBox = new MetroFramework.Controls.MetroCheckBox();
             this.startTimeBox = new MetroFramework.Controls.MetroTextBox();
             this.PMCheckBox1 = new MetroFramework.Controls.MetroCheckBox();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.calendarView)).BeginInit();
@@ -125,7 +125,7 @@ namespace CourseScheduler
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveToolStripMenuItem,
             this.openToolStripMenuItem,
-            this.exportToolStripMenuItem});
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -133,28 +133,22 @@ namespace CourseScheduler
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
-            // exportToolStripMenuItem
-            // 
-            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.exportToolStripMenuItem.Text = "Export";
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createTimeslotToolStripMenuItem,
-            this.editTimeslotToolStripMenuItem});
+            this.viewCourseListToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -162,15 +156,16 @@ namespace CourseScheduler
             // createTimeslotToolStripMenuItem
             // 
             this.createTimeslotToolStripMenuItem.Name = "createTimeslotToolStripMenuItem";
-            this.createTimeslotToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.createTimeslotToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.createTimeslotToolStripMenuItem.Text = "Create Timeslot";
             this.createTimeslotToolStripMenuItem.Click += new System.EventHandler(this.createTimeslotToolStripMenuItem_Click);
             // 
-            // editTimeslotToolStripMenuItem
+            // viewCourseListToolStripMenuItem
             // 
-            this.editTimeslotToolStripMenuItem.Name = "editTimeslotToolStripMenuItem";
-            this.editTimeslotToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.editTimeslotToolStripMenuItem.Text = "Edit Timeslot";
+            this.viewCourseListToolStripMenuItem.Name = "viewCourseListToolStripMenuItem";
+            this.viewCourseListToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.viewCourseListToolStripMenuItem.Text = "View Course List";
+            this.viewCourseListToolStripMenuItem.Click += new System.EventHandler(this.viewCourseListToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -225,6 +220,7 @@ namespace CourseScheduler
             this.metroToolTip1.SetToolTip(this.searchMenu, "Narrow your search results");
             this.searchMenu.UseSelectable = true;
             this.searchMenu.SelectedIndexChanged += new System.EventHandler(this.searchMenu_NewSelect);
+            this.searchMenu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_Enter);
             // 
             // searchBox
             // 
@@ -522,6 +518,14 @@ namespace CourseScheduler
             this.PMCheckBox1.TabIndex = 27;
             this.PMCheckBox1.Text = "PM";
             this.PMCheckBox1.UseSelectable = true;
+            this.PMCheckBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_Enter);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -573,10 +577,8 @@ namespace CourseScheduler
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem saveToolStripMenuItem;
         private ToolStripMenuItem openToolStripMenuItem;
-        private ToolStripMenuItem exportToolStripMenuItem;
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem createTimeslotToolStripMenuItem;
-        private ToolStripMenuItem editTimeslotToolStripMenuItem;
         private PictureBox pictureBox1;
         private SaveFileDialog saveFileDialog1;
         private OpenFileDialog openFileDialog1;
@@ -601,6 +603,8 @@ namespace CourseScheduler
         private MetroFramework.Controls.MetroCheckBox fridayCheckBox;
         private MetroFramework.Controls.MetroTextBox startTimeBox;
         private MetroFramework.Controls.MetroCheckBox PMCheckBox1;
+        private ToolStripMenuItem viewCourseListToolStripMenuItem;
+        private ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

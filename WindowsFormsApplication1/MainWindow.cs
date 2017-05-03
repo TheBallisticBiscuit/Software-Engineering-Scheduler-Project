@@ -25,6 +25,8 @@ namespace CourseScheduler
 
         ExtraCurWin extraWin;
 
+        CourseListWin courseWin;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -131,6 +133,7 @@ namespace CourseScheduler
                 }
                 else if (searchType == 3)
                 {
+                    this.searchBox.Text = "";
                     searchString = "";
                     string searchTime = startTimeBox.Text;
                     if (mondayCheckBox.Checked)
@@ -753,6 +756,18 @@ namespace CourseScheduler
         private void pmCheckBox2_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void viewCourseListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            courseWin = new CourseListWin(); //creates the new timeslot window
+            courseWin.Show(); //displays the window
+            this.courseWin.view_courses(this.courseCalendar.courseList);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

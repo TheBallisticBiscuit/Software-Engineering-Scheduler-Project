@@ -54,11 +54,20 @@ namespace CourseScheduler
                     // it has NULL time or days
                     if (newCourse.getDays() == "NULL" || newCourse.getStartTime() == "NULL")
                     {
+                        foreach (course c in courseList)
+                        {
+                            if (newCourse.getCourseCode() == c.getCourseCode())
+                            {
+                                Alert AlertWin1 = new Alert();
+                                AlertWin1.Show();
+                                AlertWin1.set_text_alert("Course already added!", false);
+                                return false;
+                            }
+                        }
                         Alert AlertWin = new Alert();
                         AlertWin.Show();
                         AlertWin.set_text_alert("Course being added will not\nappear on the calendar!", true);
                     }
-
                     courseList.Add(newCourse);
                     return true;
                 }
