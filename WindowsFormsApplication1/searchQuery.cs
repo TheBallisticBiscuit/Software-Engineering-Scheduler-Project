@@ -49,11 +49,16 @@ namespace CourseScheduler
 
             for (int i = 0; i < lineCount; i++) //cycles through database
             {
+                bool added = false;
                 foreach (string j in searchComponents)
                 {
                     if (courseList.getCourses()[i].getDays().Contains(j))
                     {
-                        daySearchResults.Add(courseList.getCourses()[i]);
+                        if (!added)
+                        {
+                            daySearchResults.Add(courseList.getCourses()[i]);
+                            added = true;
+                        }
                     }
                     else //if there is a day that is not in the course, remove it, if it was never added in the first place this returns false
                     {

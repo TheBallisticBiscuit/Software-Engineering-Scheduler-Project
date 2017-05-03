@@ -147,9 +147,9 @@ namespace CourseScheduler
                     int hour = 0;
                     if (String.IsNullOrWhiteSpace(splitResult[0]) || !int.TryParse(splitResult[0], out hour))
                     {
-                        return;
+                        searchTime = "";
                     }
-                    if (PMCheckBox1.Checked)
+                    else if (PMCheckBox1.Checked)
                     {
                         hour += 12;
                         searchTime = Convert.ToString(hour) + ":";
