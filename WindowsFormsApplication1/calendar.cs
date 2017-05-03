@@ -34,7 +34,7 @@ namespace CourseScheduler
                     {
                         Alert AlertWin = new Alert();
                         AlertWin.Show();
-                        string txt = "Date/Time conflict with this course at\nDay(s): " + newCourse.getDays() + " Time: " + newCourse.getStartTime();
+                        string txt = "Date/Time conflict with this course at\nDay(s): " + courseList[i].getDays() + " Time: " + fixStartTime(courseList[i].getStartTime());
                         AlertWin.set_text_alert(txt, true);
                         return false;
                     }
