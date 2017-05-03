@@ -475,7 +475,7 @@ namespace CourseScheduler
                     "Time: " + selectedCourse.getConvStartTime() + " - " + selectedCourse.getConvEndTime() + "\n" +
                     "Building: " + selectedCourse.getBuilding() + "\n" +
                     "Room: " + selectedCourse.getRoom() + "\n" +
-                    "Current Enrollment: " + selectedCourse.getEnrollment();
+                    "Current Enrollment: " + selectedCourse.getEnrollment() +"/" + selectedCourse.getCapacity();
             }
             else
             {
