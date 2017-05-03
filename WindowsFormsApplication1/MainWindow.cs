@@ -53,8 +53,6 @@ namespace CourseScheduler
             calendarView.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
 
             this.searchMenu.SelectedIndex = 0;
-      
-
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -62,7 +60,7 @@ namespace CourseScheduler
 
         }
 
-
+        // Converts a blank .csv file to be used for our calendar view.
         public static DataTable csvToTable(string file, bool isRowOneHeader)
         {
             DataTable csvTable = new DataTable();
@@ -92,22 +90,11 @@ namespace CourseScheduler
                     csvTable.Columns.Add("col" + (i + 1).ToString(), typeof(string));
                 }
             }
-
-
-
             for (int i = index; i < csvData.Length-1; i++)
             {
                 csvTable.Rows.Add(csvData[i].Split(','));
             }
-
             return csvTable;
-        }
-
-
-        private void calendarView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex == -1) return;
-            calendarView.Rows[e.RowIndex].ReadOnly = true;
         }
 
         // When a query is entered into the text field and enter is pressed, the database will be searched
@@ -209,7 +196,7 @@ namespace CourseScheduler
             this.courseDataBox.Text = "";
         }
 
-        // Changes the search type
+        // Changes the search type - checks for day/time search
         private void searchMenu_NewSelect(object sender, EventArgs e)
         {
             int index = this.searchMenu.SelectedIndex;
@@ -284,6 +271,7 @@ namespace CourseScheduler
             }
         }
 
+        // Updates the calendar on adds and remvoes
         private void updateCalendarGraphic(bool remove = false, string str = "")
         {
             if (remove)
@@ -340,6 +328,7 @@ namespace CourseScheduler
             }
         }
 
+        // Clears the calendar
         private void clearCalendarGraphic()
         {
             foreach (DataColumn col in data.Columns) //cycle through columns
@@ -354,7 +343,7 @@ namespace CourseScheduler
             }
         }
 
-
+        // Opens up the extra-curricular window
         private void createTimeslotToolStripMenuItem_Click(object sender, EventArgs e)
         {
             extraWin = new ExtraCurWin(); //creates the new timeslot window
@@ -362,6 +351,7 @@ namespace CourseScheduler
             extraWin.metroTile1.Click += (addExtraCur);
         }
 
+        // Adds an extra-curricular to the calendar
         private void addExtraCur(object sender, EventArgs e)
         {
             if (extraWin.okPressed)
@@ -381,7 +371,8 @@ namespace CourseScheduler
             updateCalendarGraphic();
         }
 
-        private List<int> findDaysCols(string days) //formats a list of days into indices in our data table
+        // Formats a list of days into indices in our data table
+        private List<int> findDaysCols(string days) 
         {
             char[] toFind = days.ToCharArray();
             List<int> results = new List<int>();
@@ -440,14 +431,11 @@ namespace CourseScheduler
                 {
                     day = "MWF";
                 }
-
                 course selectedCourse = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString(), day);
-
-
-                
                 if (selectedCourse != null)
+                {
                     printInfo(selectedCourse);
-
+                }
             }
             else
             {
@@ -455,16 +443,7 @@ namespace CourseScheduler
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void courseDataBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        // Prints the course info of a selected course to be displayed to the user.
         private void printInfo(course selectedCourse)
         {
             if (selectedCourse != null)
@@ -485,6 +464,7 @@ namespace CourseScheduler
             courseDataBox.SelectionColor = Color.Black;
         }
 
+        // Opens up the file browswer to save files
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = this.saveFileDialog1.ShowDialog();
@@ -493,11 +473,12 @@ namespace CourseScheduler
             { 
                 // Save the file
                 courseCalendar.save(this.saveFileDialog1.FileName);
-                Console.WriteLine(this.saveFileDialog1.FileName);
+                //Console.WriteLine(this.saveFileDialog1.FileName);
             }
 
         }
 
+        // Opens up the file browswer to open files
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = this.openFileDialog1.ShowDialog();
@@ -506,44 +487,33 @@ namespace CourseScheduler
             {
                 // Open the file
                 courseCalendar.open(this.openFileDialog1.FileName);
-                Console.WriteLine(this.openFileDialog1.FileName);
+                //Console.WriteLine(this.openFileDialog1.FileName);
                 clearCalendarGraphic();
                 updateCalendarGraphic();
             }
         }
 
-        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
-
+        // The Get Codes button shows the course on the schedule and allows you to
+        // click to copy the code to the clipboard and then paste it within the browser
+        // within the software.
         private void exportButton_Click(object sender, EventArgs e)
         {
             codes export = new codes();
             for (int i = 0; i < courseCalendar.courseList.Count(); i++)
             {
                 export.listBox1.Items.Add(this.courseCalendar.courseList[i].getCourseCode());
-                //export.listBox1 = searchResultsBox;
             }
             export.Show();
         }
 
-        private void metroPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        // Toggles the regular/dark mode.
         private void metroTile1_Click(object sender, EventArgs e)
         {
             this.Theme = this.Theme == MetroFramework.MetroThemeStyle.Light ? MetroFramework.MetroThemeStyle.Dark : MetroFramework.MetroThemeStyle.Light;
             this.Refresh();
         }
 
-        private void metroLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        // Changes the theme from regular to dark mode
         private void metroToggle1_CheckedChanged(object sender, EventArgs e)
         {
             this.Theme = this.Theme == MetroFramework.MetroThemeStyle.Light ? MetroFramework.MetroThemeStyle.Dark : MetroFramework.MetroThemeStyle.Light;
@@ -570,8 +540,7 @@ namespace CourseScheduler
                     this.calendarView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
                     this.calendarView2.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
                     this.calendarView2.ForeColor = Color.WhiteSmoke;
-                }
-                
+                }   
             }
             else
             {
@@ -596,13 +565,11 @@ namespace CourseScheduler
                     this.calendarView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
                     this.calendarView2.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
                 }
-
-
             }
-
             this.Refresh();
         }
 
+        // Opens up a second calendar to compare to the working calendar.
         private void compareButton_Click(object sender, EventArgs e)
         {
             
@@ -657,9 +624,6 @@ namespace CourseScheduler
                 {
                     return;
                 }
-                
-
-                    
                     calendarView2.Location = new Point(calendarView.Left + 575, calendarView.Top);
                     calendarView2.AllowUserToAddRows = false;
                     calendarView2.AllowUserToDeleteRows = false;
@@ -707,8 +671,6 @@ namespace CourseScheduler
                         this.calendarView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
                         this.calendarView2.CellBorderStyle = DataGridViewCellBorderStyle.RaisedVertical;
                     }
-                
-                
             }
             else
             {
@@ -717,29 +679,9 @@ namespace CourseScheduler
                 compareButton.Text = "Compare";
                 expanded = false;
             }
-
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void metroToolTip1_Popup(object sender, PopupEventArgs e)
-        {
-
-        }
-
-        private void metroProgressBar1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        // Sets the tooltips on or off.
         private void hideTipsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.hideTipsToolStripMenuItem.Text = this.hideTipsToolStripMenuItem.Text == "Hide Tips" ? this.hideTipsToolStripMenuItem.Text = "Show Tips" : this.hideTipsToolStripMenuItem.Text = "Hide Tips";
@@ -776,4 +718,7 @@ namespace CourseScheduler
             this.Close();
         }
     }
+
+
+
 }

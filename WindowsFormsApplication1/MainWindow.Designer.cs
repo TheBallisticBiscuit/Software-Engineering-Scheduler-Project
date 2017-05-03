@@ -104,7 +104,6 @@ namespace CourseScheduler
             this.courseDataBox.Size = new System.Drawing.Size(188, 124);
             this.courseDataBox.TabIndex = 4;
             this.courseDataBox.Text = "";
-            this.courseDataBox.TextChanged += new System.EventHandler(this.courseDataBox_TextChanged);
             // 
             // menuStrip1
             // 
@@ -118,7 +117,6 @@ namespace CourseScheduler
             this.menuStrip1.Size = new System.Drawing.Size(758, 24);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -174,7 +172,6 @@ namespace CourseScheduler
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // hideTipsToolStripMenuItem
             // 
@@ -195,7 +192,6 @@ namespace CourseScheduler
             // 
             this.saveFileDialog1.DefaultExt = "csv";
             this.saveFileDialog1.Filter = "CSV files|*.csv";
-            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
             // openFileDialog1
             // 
@@ -308,7 +304,7 @@ namespace CourseScheduler
             this.calendarView.Size = new System.Drawing.Size(561, 596);
             this.calendarView.TabIndex = 10;
             this.calendarView.TabStop = false;
-            this.calendarView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.calendarView_CellContentClick);
+            //this.calendarView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.calendarView_CellContentClick);
             this.calendarView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.selected_cell);
             this.calendarView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.update_calendar_remove);
             // 
@@ -385,7 +381,6 @@ namespace CourseScheduler
             this.metroLabel1.TabIndex = 18;
             this.metroLabel1.Text = "Night Shift";
             this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroLabel1.Click += new System.EventHandler(this.metroLabel1_Click);
             // 
             // metroToolTip1
             // 

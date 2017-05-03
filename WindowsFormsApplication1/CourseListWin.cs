@@ -24,6 +24,7 @@ namespace CourseScheduler
             
         }
 
+        // Refreshes the list with courses in the calendar class
         public void view_courses(List<course> courseList)
         {
             this.listBox1.Items.Clear();
@@ -33,6 +34,7 @@ namespace CourseScheduler
             }
         }
 
+        // Returns the selected item in the list
         public string get_selected_item()
         {
             Console.WriteLine(this.listBox1.SelectedItem.ToString());
