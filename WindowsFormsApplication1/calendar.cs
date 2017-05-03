@@ -42,7 +42,7 @@ namespace CourseScheduler
                 if (newCourse != null)
                 {
                     // If an extracurricular has empty times or days parameters
-                    if (newCourse.getDays() == "" || newCourse.getStartTime() == "" || newCourse.getEndTime() == "" || newCourse.correctTime())
+                    if ((newCourse.getDays() == "" || newCourse.getStartTime() == "" || newCourse.getEndTime() == "" || newCourse.correctTime()) && (newCourse.getDays() != "NULL" && newCourse.getStartTime() != "NULL"))
                     {
                         Alert AlertWin = new Alert();
                         AlertWin.Show();
