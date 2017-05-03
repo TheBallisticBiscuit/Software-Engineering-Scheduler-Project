@@ -40,6 +40,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(153, 225);
             this.listBox1.TabIndex = 0;
+            //this.listBox1.DoubleClick += new System.EventHandler();
             // 
             // metroTile1
             // 
@@ -74,7 +75,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
+        public System.Windows.Forms.ListBox listBox1;
         public MetroFramework.Controls.MetroTile metroTile1;
 
     }

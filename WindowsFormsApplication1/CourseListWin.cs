@@ -33,6 +33,13 @@ namespace CourseScheduler
             }
         }
 
+        public string get_selected_item()
+        {
+            Console.WriteLine(this.listBox1.SelectedItem.ToString());
+            return this.listBox1.SelectedItem.ToString();
+            
+        }
+
         private void okButton_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -264,16 +264,12 @@ namespace CourseScheduler
             {
                 updateCalendarGraphic();
             }
-            else
-            {
-            }
         }
 
 
         // Updates the calendar when a course is removed
         private void update_calendar_remove(object sender, EventArgs e)
         {
-            bool removed = false;
             // Ensures only one cell is selected to removed a certain course
             if (this.calendarView.SelectedCells.Count != 1)
             {
@@ -282,11 +278,19 @@ namespace CourseScheduler
 
             else if (this.calendarView.SelectedCells.Count == 1 && this.courseCalendar.hasCourse(this.calendarView.SelectedCells[0].Value.ToString()))
             {
-               
-                course toRemove = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString());
-                //Console.WriteLine(toRemove.getCourseCode());
+
+                updateCalendarGraphic(true, this.calendarView.SelectedCells[0].Value.ToString());
+                
+            }
+        }
+
+        private void updateCalendarGraphic(bool remove = false, string str = "")
+        {
+            if (remove)
+            {
+                course toRemove = this.courseCalendar.getCourse(str);
                 string removeName = toRemove.getCourseCode();
-                removed = this.courseCalendar.removeCourse(toRemove);
+                bool removed = this.courseCalendar.removeCourse(toRemove);
                 if (removed == true)
                 {
                     foreach (DataColumn col in data.Columns) //cycle through columns
@@ -300,41 +304,37 @@ namespace CourseScheduler
                         }
                     }
                 }
-                else
-                {
-                }
             }
-        }
-
-        private void updateCalendarGraphic()
-        {
-            foreach (course c in courseCalendar.courseList)
+            else
             {
-                string fixedStartTime = calendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
-                string fixedEndTime = calendar.fixEndTime(c.getEndTime());
-                List<int> daysCols = new List<int>();
-                daysCols = findDaysCols(c.getDays());  //find the columns we need to add this course to
-                bool inSession = false; //used to indicate when all appropriate timeslots have been filled
-                foreach (DataRow dr in data.Rows) //cycle through rows
+                foreach (course c in courseCalendar.courseList)
                 {
-                    if (inSession && dr[0].ToString() != fixedEndTime) //if we haven't hit the end of the class yet, add it to the calendar
+                    string fixedStartTime = calendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
+                    string fixedEndTime = calendar.fixEndTime(c.getEndTime());
+                    List<int> daysCols = new List<int>();
+                    daysCols = findDaysCols(c.getDays());  //find the columns we need to add this course to
+                    bool inSession = false; //used to indicate when all appropriate timeslots have been filled
+                    foreach (DataRow dr in data.Rows) //cycle through rows
                     {
-                        foreach (int i in daysCols) //adding to appropriate columns
+                        if (inSession && dr[0].ToString() != fixedEndTime) //if we haven't hit the end of the class yet, add it to the calendar
                         {
-                            dr[i] = c.getCourseCode();
+                            foreach (int i in daysCols) //adding to appropriate columns
+                            {
+                                dr[i] = c.getCourseCode();
+                            }
                         }
-                    }
-                    else if (dr[0].ToString() == fixedStartTime) //this starts the loop of adding to time slots
-                    {
-                        foreach (int i in daysCols)
+                        else if (dr[0].ToString() == fixedStartTime) //this starts the loop of adding to time slots
                         {
-                            dr[i] = c.getCourseCode(); //add first timeslot
+                            foreach (int i in daysCols)
+                            {
+                                dr[i] = c.getCourseCode(); //add first timeslot
+                            }
+                            inSession = true; //set up to add to all timeslots
                         }
-                        inSession = true; //set up to add to all timeslots
-                    }
-                    else if (dr[0].ToString() == fixedEndTime) //this ends the loop of adding to timeslots
-                    {
-                        inSession = false;
+                        else if (dr[0].ToString() == fixedEndTime) //this ends the loop of adding to timeslots
+                        {
+                            inSession = false;
+                        }
                     }
                 }
             }
@@ -753,18 +753,24 @@ namespace CourseScheduler
             }
         }
 
-        private void pmCheckBox2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        // Opens up the course list menu
         private void viewCourseListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             courseWin = new CourseListWin(); //creates the new timeslot window
             courseWin.Show(); //displays the window
             this.courseWin.view_courses(this.courseCalendar.courseList);
+            this.courseWin.listBox1.DoubleClick += removeCourseWin;
         }
 
+        // Removes the selected course from the 
+        private void removeCourseWin(object sender, EventArgs e)
+        {
+            updateCalendarGraphic(true,this.courseWin.get_selected_item());
+            // Updates the list
+            this.courseWin.view_courses(this.courseCalendar.courseList);
+        }
+
+        // Close the application
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
