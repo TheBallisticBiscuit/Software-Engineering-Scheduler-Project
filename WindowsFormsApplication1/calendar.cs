@@ -19,7 +19,14 @@ namespace CourseScheduler
         // Adds a selected course to the calander class
         public bool addCourse(course newCourse)
         {
-            if (courseList.Contains(newCourse))
+
+            if (newCourse == null)
+            {
+                Alert AlertWin = new Alert();
+                AlertWin.Show();
+                AlertWin.set_text_alert("Outside time range. \n(8:00 AM - 9:00 PM)");
+            }
+            else if (courseList.Contains(newCourse))
             {
                 Alert AlertWin = new Alert();
                 AlertWin.Show();
@@ -71,7 +78,7 @@ namespace CourseScheduler
                     courseList.Add(newCourse);
                     return true;
                 }
-                else 
+                else
                 {
 
                     // If there is some invalid time entered or the title is empty.
