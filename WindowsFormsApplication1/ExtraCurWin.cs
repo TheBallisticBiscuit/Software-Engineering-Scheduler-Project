@@ -116,9 +116,10 @@ namespace CourseScheduler
                             return null;
                         }
                     }
+                    return null;
                 }
                 // If the times are off the calendar in the program
-                else if (start > 18 || start < 8 || end > 24 || end < 8 || startTime == "" || endTime == "")
+                else if (start > 21 || start < 8 || end > 21 || end < 8 || startTime == "" || endTime == "")
                 {
                     return null;                
                 }

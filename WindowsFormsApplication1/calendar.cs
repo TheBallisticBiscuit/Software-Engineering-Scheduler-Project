@@ -20,13 +20,14 @@ namespace CourseScheduler
         public bool addCourse(course newCourse)
         {
 
-            if (newCourse == null)
+            /*if (newCourse == null)
             {
                 Alert AlertWin = new Alert();
                 AlertWin.Show();
                 AlertWin.set_text_alert("Outside time range. \n(8:00 AM - 9:00 PM)");
             }
-            else if (courseList.Contains(newCourse))
+            else*/
+            if (courseList.Contains(newCourse))
             {
                 Alert AlertWin = new Alert();
                 AlertWin.Show();
