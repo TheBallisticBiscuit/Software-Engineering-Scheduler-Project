@@ -80,6 +80,7 @@
       <DependentUpon>Alert.cs</DependentUpon>
     </Compile>
     <Compile Include="calendar.cs" />
+    <Compile Include="TestClass.cs" />
     <Compile Include="codes.cs">
       <SubType>Form</SubType>
     </Compile>
