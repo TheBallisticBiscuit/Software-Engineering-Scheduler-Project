@@ -707,9 +707,13 @@ namespace CourseScheduler
         // Removes the selected course from the 
         private void removeCourseWin(object sender, EventArgs e)
         {
-            updateCalendarGraphic(true,this.courseWin.get_selected_item());
-            // Updates the list
-            this.courseWin.view_courses(this.courseCalendar.courseList);
+            string courseToBeRemoved = this.courseWin.get_selected_item();
+            if(courseToBeRemoved != "")
+            {
+                updateCalendarGraphic(true,courseToBeRemoved);
+                // Updates the list
+                this.courseWin.view_courses(this.courseCalendar.courseList);
+            }
         }
 
         // Close the application

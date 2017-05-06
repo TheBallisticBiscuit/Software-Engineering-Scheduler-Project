@@ -37,7 +37,8 @@ namespace CourseScheduler
         // Based on the data entered 
         private extracurricular returnCourse()
         {
-            if (this.metroTextBox1.Text != "")
+            string days = M + T + W + R + F;
+            if (this.metroTextBox1.Text != "" || this.metroCheckBox4.Text != "" || this.metroCheckBox5.Text != "" || days != "")
             {
                 string title = this.metroTextBox1.Text;
                 string location = this.metroTextBox3.Text;
@@ -66,17 +67,33 @@ namespace CourseScheduler
                 // Checks to see if an int was entered for start hours and converts it to military time
                 if (Int32.TryParse(startTime, out start))
                 {
-                    if (this.metroCheckBox6.Checked)
+                    if (this.metroCheckBox6.Checked && start != 12)
                     {
                         start = start + 12;
+                    }
+                    else if (this.metroCheckBox6.Checked && start == 12)
+                    {
+                        start = 12;
+                    }
+                    else if (!this.metroCheckBox6.Checked && start == 12)
+                    {
+                        start = 0;
                     }
                     startTime = start.ToString() + ":00";
                 }
                 else if(Int32.TryParse(startHr, out start))
                 {
-                    if (this.metroCheckBox6.Checked)
+                    if (this.metroCheckBox6.Checked && start != 12)
                     {
                         start = start + 12;
+                    }
+                    else if (this.metroCheckBox6.Checked && start == 12)
+                    {
+                        start = 12;
+                    }
+                    else if (!this.metroCheckBox6.Checked && start == 12)
+                    {
+                        start = 0;
                     }
                     startTime = start.ToString() + startMin;
                 }
@@ -84,17 +101,33 @@ namespace CourseScheduler
                 // Checks to see if an int was entered for end hours and converts it to military time
                 if (Int32.TryParse(endTime, out end))
                 {
-                    if (this.metroCheckBox7.Checked)
+                    if (this.metroCheckBox7.Checked && end != 12)
                     {
                         end = end + 12;
+                    }
+                    else if (this.metroCheckBox6.Checked && end == 12)
+                    {
+                        end = 12;
+                    }
+                    else if (!this.metroCheckBox7.Checked && end == 12)
+                    {
+                        end = 0;
                     }
                     endTime = end.ToString() + ":00";
                 }
                 else if (Int32.TryParse(endHr, out end))
                 {
-                    if (this.metroCheckBox7.Checked)
+                    if (this.metroCheckBox7.Checked && end != 12)
                     {
                         end = end + 12;
+                    }
+                    else if (this.metroCheckBox7.Checked && end == 12)
+                    {
+                        end = 12;
+                    }
+                    else if (!this.metroCheckBox7.Checked && end == 12)
+                    {
+                        end = 0;
                     }
                     endTime = end.ToString() + endMin;
                 }
@@ -106,7 +139,7 @@ namespace CourseScheduler
                     return null;
                 }
                 // if the hours are the same, the minutes are checked just in case.
-                else if (start == end)
+                else if (start == end && endMin == startMin)
                 {
                     int testSMin,testEMin;
                     if (Int32.TryParse(startMin.Split(':')[0], out testSMin) && Int32.TryParse(endMin.Split(':')[0], out testEMin))
@@ -132,8 +165,6 @@ namespace CourseScheduler
                         room = roomNum.ToString();
                     }
                 }
-
-                string days = M + T + W + R + F;
 
                 return new extracurricular(title, location, room, startTime, endTime, days);
             }
