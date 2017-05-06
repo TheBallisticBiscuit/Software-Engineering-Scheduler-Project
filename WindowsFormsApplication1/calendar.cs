@@ -245,7 +245,7 @@ namespace CourseScheduler
             if (!String.IsNullOrEmpty(sTime[0]) && sTime[0] != "NULL")
             {
                 hour = Convert.ToInt32(sTime[0]); //gets the hour
-                if (sTime.Length > 1)
+                if (sTime.Length > 1 && int.TryParse(sTime[1], out minute))
                 {
                     minute = Convert.ToInt32(sTime[1]); //gets the minute
                 }
