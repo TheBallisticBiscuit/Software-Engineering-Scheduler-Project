@@ -23,7 +23,8 @@ namespace CourseScheduler
             daysMeeting = newDaysMeeting;
             building = newBuilding;
             room = newRoom;
+            editable = true;
         }
-        public new bool isEditable() { return true; } //indicates that the object is an extracurricular
+        public new bool isEditable() { return editable; } //indicates that the object is an extracurricular
     }
 }

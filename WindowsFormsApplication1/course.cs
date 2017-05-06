@@ -19,6 +19,8 @@ namespace CourseScheduler
         protected string building;
         protected string room;
 
+        protected bool editable = false;
+
         public course()
         {
             //initialize course
@@ -165,6 +167,6 @@ namespace CourseScheduler
             return false;
         }
 
-        public bool isEditable() { return false; } //overwritten in extracurricular, indicates whether the course is an extracurricular or a class
+        public bool isEditable() { return editable; } //overwritten in extracurricular, indicates whether the course is an extracurricular or a class
     }
 }

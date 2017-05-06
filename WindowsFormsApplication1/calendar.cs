@@ -39,7 +39,7 @@ namespace CourseScheduler
                 foreach(course c in courseList)// (int i = 0; i < courseList.Count; i++)
                 {
                     // Checks to see if there is a time conflict during a particular day.
-                    if (containsDays(c.getDays(), newCourse.getDays()) && c.getStartTime() == newCourse.getStartTime() || checkInbetweenTimes(newCourse.getStartTime(), newCourse.getEndTime(), newCourse.getDays()))
+                    if (containsDays(c.getDays(), newCourse.getDays()) && c.getStartTime() == newCourse.getStartTime() || checkInbetweenTimes(newCourse.getStartTime(), newCourse.getEndTime(), newCourse.getDays(), c))
                     {
                         Alert AlertWin = new Alert();
                         AlertWin.Show();
@@ -51,7 +51,7 @@ namespace CourseScheduler
                 if (newCourse != null)
                 {
                     // If an extracurricular has empty times or days parameters
-                    if ((newCourse.getDays() == "" || newCourse.getStartTime() == "" || newCourse.getEndTime() == "" || newCourse.correctTime()) && (newCourse.getDays() != "NULL" && newCourse.getStartTime() != "NULL"))
+                    if (( (newCourse.getDays() == "" && newCourse.isEditable()) || newCourse.getStartTime() == "" || newCourse.getEndTime() == "" || newCourse.correctTime())) // && (newCourse.getDays() != "" && newCourse.getStartTime() != ""))
                     {
                         Alert AlertWin = new Alert();
                         AlertWin.Show();
@@ -61,7 +61,7 @@ namespace CourseScheduler
 
                     // Alerts the user that a class is added, but won't be seen on the calendar since
                     // it has NULL time or days
-                    if (newCourse.getDays() == "NULL" || newCourse.getStartTime() == "NULL")
+                    if ((newCourse.getDays() == "" && !newCourse.isEditable()) || newCourse.getDays() == "NULL" || newCourse.getStartTime() == "NULL")
                     {
                         foreach (course c in courseList)
                         {
@@ -101,65 +101,64 @@ namespace CourseScheduler
 
         // Checks to see if current course trying to be added exsist 
         // in between course times or vice versa
-        private bool checkInbetweenTimes(string startTime, string endTime, string days)
+        private bool checkInbetweenTimes(string startTime, string endTime, string days, course c)
         {
-            foreach (course c in courseList)
+
+            if (containsDays(c.getDays(), days))
             {
-                if (containsDays(c.getDays(), days))
+                // If the course being added has a longer time than the an exisiting course
+
+                if (Int32.Parse(startTime.Split(':')[0]) < Int32.Parse(c.getStartTime().Split(':')[0]) && Int32.Parse(endTime.Split(':')[0]) > Int32.Parse(c.getEndTime().Split(':')[0]))
                 {
-                    // If the course being added has a longer time than the an exisiting course
+                    return true;
+                }
 
-                    if (Int32.Parse(startTime.Split(':')[0]) < Int32.Parse(c.getStartTime().Split(':')[0]) && Int32.Parse(endTime.Split(':')[0]) > Int32.Parse(c.getEndTime().Split(':')[0]))
+                // If the course being added start time exsists between the start and stop
+                // times of an exsisting course.
+                if (Int32.Parse(c.getStartTime().Split(':')[0]) < Int32.Parse(startTime.Split(':')[0]) && Int32.Parse(startTime.Split(':')[0]) < Int32.Parse(c.getEndTime().Split(':')[0]))
+                {
+                    return true;
+                }
+
+                // If the course being added end time exsists between the start and stop
+                // times of an exsisting course.
+                if (Int32.Parse(c.getStartTime().Split(':')[0]) < Int32.Parse(endTime.Split(':')[0]) && Int32.Parse(endTime.Split(':')[0]) < Int32.Parse(c.getEndTime().Split(':')[0]))
+                {
+                    return true;
+                }
+
+                // If the start is the same as the begining or end
+                if (Int32.Parse(startTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]) || Int32.Parse(startTime.Split(':')[0]) == Int32.Parse(c.getEndTime().Split(':')[0]))
+                {
+                    if (Int32.Parse(startTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]))// && Int32.Parse(startTime.Split(':')[1]) < Int32.Parse(c.getStartTime().Split(':')[1]))
                     {
                         return true;
                     }
-
-                    // If the course being added start time exsists between the start and stop
-                    // times of an exsisting course.
-                    if (Int32.Parse(c.getStartTime().Split(':')[0]) < Int32.Parse(startTime.Split(':')[0]) && Int32.Parse(startTime.Split(':')[0]) < Int32.Parse(c.getEndTime().Split(':')[0]))
-                    {
-                        return true;
-                    }
-
-                    // If the course being added end time exsists between the start and stop
-                    // times of an exsisting course.
-                    if (Int32.Parse(c.getStartTime().Split(':')[0]) < Int32.Parse(endTime.Split(':')[0]) && Int32.Parse(endTime.Split(':')[0]) < Int32.Parse(c.getEndTime().Split(':')[0]))
-                    {
-                        return true;
-                    }
-
-                    // If the start is the same as the begining or end
-                    if (Int32.Parse(startTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]) || Int32.Parse(startTime.Split(':')[0]) == Int32.Parse(c.getEndTime().Split(':')[0]))
-                    {
-                        if (Int32.Parse(startTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]))// && Int32.Parse(startTime.Split(':')[1]) < Int32.Parse(c.getStartTime().Split(':')[1]))
-                        {
-                            return true;
-                        }
-                        if (Int32.Parse(startTime.Split(':')[0]) == Int32.Parse(c.getEndTime().Split(':')[0]) && Int32.Parse(startTime.Split(':')[1]) < Int32.Parse(c.getEndTime().Split(':')[1]))
-                        {
-                            return true;
-                        }
-                    }
-
-                    // If the end is the same as the begining or end
-                    if (Int32.Parse(endTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]) || Int32.Parse(endTime.Split(':')[0]) == Int32.Parse(c.getEndTime().Split(':')[0]))
-                    {
-                        if (Int32.Parse(endTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]) && Int32.Parse(endTime.Split(':')[1]) > Int32.Parse(c.getStartTime().Split(':')[1]))
-                        {
-                            return true;
-                        }
-                        if (Int32.Parse(endTime.Split(':')[0]) == Int32.Parse(c.getEndTime().Split(':')[0])) // && Int32.Parse(endTime.Split(':')[1]) < Int32.Parse(c.getEndTime().Split(':')[1]))
-                        {
-                            return true;
-                        }
-                    }
-
-                    // If the start and stop dates are the same
-                    if (Int32.Parse(startTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]) && Int32.Parse(endTime.Split(':')[0]) == Int32.Parse(c.getEndTime().Split(':')[0]))
+                    if (Int32.Parse(startTime.Split(':')[0]) == Int32.Parse(c.getEndTime().Split(':')[0]) && Int32.Parse(startTime.Split(':')[1]) < Int32.Parse(c.getEndTime().Split(':')[1]))
                     {
                         return true;
                     }
                 }
+
+                // If the end is the same as the begining or end
+                if (Int32.Parse(endTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]) || Int32.Parse(endTime.Split(':')[0]) == Int32.Parse(c.getEndTime().Split(':')[0]))
+                {
+                    if (Int32.Parse(endTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]) && Int32.Parse(endTime.Split(':')[1]) > Int32.Parse(c.getStartTime().Split(':')[1]))
+                    {
+                        return true;
+                    }
+                    if (Int32.Parse(endTime.Split(':')[0]) == Int32.Parse(c.getEndTime().Split(':')[0])) // && Int32.Parse(endTime.Split(':')[1]) < Int32.Parse(c.getEndTime().Split(':')[1]))
+                    {
+                        return true;
+                    }
+                }
+
+                // If the start and stop dates are the same
+                if (Int32.Parse(startTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]) && Int32.Parse(endTime.Split(':')[0]) == Int32.Parse(c.getEndTime().Split(':')[0]))
+                {
+                    return true;
+                }
+            
             }
             return false;
         }
