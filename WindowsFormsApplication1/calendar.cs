@@ -128,7 +128,7 @@ namespace CourseScheduler
                         return true;
                     }
 
-                    // If the start and stop dates are the same
+                    // If the start is the same as the begining or end
                     if (Int32.Parse(startTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]) || Int32.Parse(startTime.Split(':')[0]) == Int32.Parse(c.getEndTime().Split(':')[0]))
                     {
                         if (Int32.Parse(startTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]))// && Int32.Parse(startTime.Split(':')[1]) < Int32.Parse(c.getStartTime().Split(':')[1]))
@@ -140,7 +140,8 @@ namespace CourseScheduler
                             return true;
                         }
                     }
-                    // If the start and stop dates are the same
+
+                    // If the end is the same as the begining or end
                     if (Int32.Parse(endTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]) || Int32.Parse(endTime.Split(':')[0]) == Int32.Parse(c.getEndTime().Split(':')[0]))
                     {
                         if (Int32.Parse(endTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]) && Int32.Parse(endTime.Split(':')[1]) > Int32.Parse(c.getStartTime().Split(':')[1]))
@@ -152,6 +153,7 @@ namespace CourseScheduler
                             return true;
                         }
                     }
+
                     // If the start and stop dates are the same
                     if (Int32.Parse(startTime.Split(':')[0]) == Int32.Parse(c.getStartTime().Split(':')[0]) && Int32.Parse(endTime.Split(':')[0]) == Int32.Parse(c.getEndTime().Split(':')[0]))
                     {

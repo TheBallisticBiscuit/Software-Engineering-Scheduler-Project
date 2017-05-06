@@ -25,7 +25,18 @@ namespace CourseScheduler
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(listBox1.SelectedItem.ToString());
+            if (listBox1.SelectedIndex >= 0)
+            {
+                Clipboard.SetText(listBox1.SelectedItem.ToString());
+            }
+        }
+
+        private void listBox1_Double_Click(object sender, MouseEventArgs e)
+        {
+            if (listBox1.SelectedIndex >= 0)
+            {
+                Clipboard.SetText(listBox1.SelectedItem.ToString());
+            }
         }
 
         private void codes_Load(object sender, EventArgs e)

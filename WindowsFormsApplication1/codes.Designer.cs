@@ -56,6 +56,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(154, 199);
             this.listBox1.TabIndex = 1;
+            this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(listBox1_Double_Click);
             // 
             // metroButton1
             // 

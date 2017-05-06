@@ -1,4 +1,13 @@
---INSTALL.txt--
+
+--------------------------INSTALL.txt---------------------------
+-----------------------COURSE SCHEDULER-------------------------
+---------------------OBJECTIVELY THE BEST-----------------------
+
+DEVELOPMENT TEAM MEMBERS
+- JONATHAN BENSING
+- JARED GRACE
+- NOAH NEWELL
+- TIMOTHY PANYARD
 
 Instructions
 
@@ -13,4 +22,7 @@ or
 2. In this level open up TestCSharp.sln file in Visual Studio 2012. Once opened, press the start button to run the program.
 
 Notes: 
-- The Search by Day/Time was revised to simply search by Days only due to some complications in the search functionality. 
+- UNIT TEST: The unit test is found in the TestClass.cs file. This class tests the search functionality of the the SearchQuery class, and the functions to add and remove the courses from a calendar in the calendar.cs file.
+
+
+
