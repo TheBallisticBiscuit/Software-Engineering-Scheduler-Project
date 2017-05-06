@@ -25,10 +25,10 @@ namespace CourseScheduler
         }
 
         // Refreshes the list with courses in the calendar class
-        public void view_courses(List<course> courseList)
+        public void view_courses(List<Course> courseList)
         {
             this.listBox1.Items.Clear();
-            foreach(course c in courseList)
+            foreach(Course c in courseList)
             {
                 this.listBox1.Items.Add(c.getCourseCode());
             }

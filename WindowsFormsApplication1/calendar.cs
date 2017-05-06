@@ -8,16 +8,16 @@ using System.IO;
 
 namespace CourseScheduler
 {
-    public class calendar
+    public class Calendar
     {
-        public List<course> courseList;
+        public List<Course> courseList;
 
-        public calendar()
+        public Calendar()
         {
-            courseList = new List<course>();
+            courseList = new List<Course>();
         }
         // Adds a selected course to the calander class
-        public bool addCourse(course newCourse)
+        public bool addCourse(Course newCourse)
         {
 
             if (newCourse == null)
@@ -36,7 +36,7 @@ namespace CourseScheduler
             }
             else
             {
-                foreach(course c in courseList)// (int i = 0; i < courseList.Count; i++)
+                foreach(Course c in courseList)// (int i = 0; i < courseList.Count; i++)
                 {
                     // Checks to see if there is a time conflict during a particular day.
                     if (containsDays(c.getDays(), newCourse.getDays()) && c.getStartTime() == newCourse.getStartTime() || checkInbetweenTimes(newCourse.getStartTime(), newCourse.getEndTime(), newCourse.getDays(), c))
@@ -63,7 +63,7 @@ namespace CourseScheduler
                     // it has NULL time or days
                     if ((newCourse.getDays() == "" && !newCourse.isEditable()) || newCourse.getDays() == "NULL" || newCourse.getStartTime() == "NULL")
                     {
-                        foreach (course c in courseList)
+                        foreach (Course c in courseList)
                         {
                             if (newCourse.getCourseCode() == c.getCourseCode())
                             {
@@ -101,7 +101,7 @@ namespace CourseScheduler
 
         // Checks to see if current course trying to be added exsist 
         // in between course times or vice versa
-        private bool checkInbetweenTimes(string startTime, string endTime, string days, course c)
+        private bool checkInbetweenTimes(string startTime, string endTime, string days, Course c)
         {
 
             if (containsDays(c.getDays(), days))
@@ -166,11 +166,11 @@ namespace CourseScheduler
         // Removes a selected course from the calander class
         // Removes all courses given a course it will remove all
         // courses with the same course code.
-        public bool removeCourse(course oldCourse)
+        public bool removeCourse(Course oldCourse)
         {
             //string code = oldCourse.getCourseCode();
             int count = 0;
-            List<course> toBeRemoved = new List<course>();
+            List<Course> toBeRemoved = new List<Course>();
             for (int i = 0; i < courseList.Count; i++)
             {
                 if (courseList[i].getCourseCode() == oldCourse.getCourseCode())
@@ -191,7 +191,7 @@ namespace CourseScheduler
         }
 
         // Returns the lists of courses in the calander class
-        public List<course> returnList()
+        public List<Course> returnList()
         {
             return courseList;
         }
@@ -210,7 +210,7 @@ namespace CourseScheduler
         }
 
         // returns a course based on course code
-        public course getCourse(string courseCode)
+        public Course getCourse(string courseCode)
         {
             for (int i = 0; i < courseList.Count; i++)
             {
@@ -223,7 +223,7 @@ namespace CourseScheduler
         }
 
         // returns a course based on course code and day the course is active
-        public course getCourse(string courseCode, string day)
+        public Course getCourse(string courseCode, string day)
         {
             for (int i = 0; i < courseList.Count; i++)
             {
@@ -356,7 +356,7 @@ namespace CourseScheduler
                 Console.WriteLine(e.Message);
             }
 
-            foreach (course c in courseList)
+            foreach (Course c in courseList)
             {
                 string line = c.getCourseCode() + "," +
                               c.getShortTitle() + "," +
@@ -398,7 +398,7 @@ namespace CourseScheduler
                 // Adds a course to the list
                 try
                 {
-                    this.courseList.Add(new course(Int32.Parse(splitLn[8]),
+                    this.courseList.Add(new Course(Int32.Parse(splitLn[8]),
                                                    Int32.Parse(splitLn[9]),
                                                    splitLn[0],
                                                    splitLn[1],

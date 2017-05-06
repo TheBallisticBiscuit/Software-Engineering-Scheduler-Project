@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace CourseScheduler
 {
-    public class extracurricular : course //stub class for extracurricular, child of course, primarily for organization
+    public class Extracurricular : Course //stub class for extracurricular, child of course, primarily for organization
     {
-        public extracurricular()
+        public Extracurricular()
             : base()
         {}
-        public extracurricular(string newShortTitle, string newBuilding, string newRoom, string newBeginTime, string newEndTime, string newDaysMeeting)
+        public Extracurricular(string newShortTitle, string newBuilding, string newRoom, string newBeginTime, string newEndTime, string newDaysMeeting)
         {
             enrollment = 0;
             capacity = 0;

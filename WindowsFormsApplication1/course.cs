@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseScheduler
 {
-    public class course
+    public class Course
     {
         protected int enrollment;
         protected int capacity;
@@ -21,11 +21,11 @@ namespace CourseScheduler
 
         protected bool editable = false;
 
-        public course()
+        public Course()
         {
             //initialize course
         }
-        public course(int newEnrollment, int newCapacity, string newCourseCode, string newShortTitle, string newLongTitle, string newBeginTime, string newEndTime, string newDaysMeeting,
+        public Course(int newEnrollment, int newCapacity, string newCourseCode, string newShortTitle, string newLongTitle, string newBeginTime, string newEndTime, string newDaysMeeting,
         string newBuilding, string newRoom)
         {
             enrollment = newEnrollment;
@@ -39,7 +39,7 @@ namespace CourseScheduler
             building = newBuilding;
             room = newRoom;
         }
-        public course(course copyCourse)
+        public Course(Course copyCourse)
         {
             enrollment = copyCourse.enrollment;
             capacity = copyCourse.capacity;

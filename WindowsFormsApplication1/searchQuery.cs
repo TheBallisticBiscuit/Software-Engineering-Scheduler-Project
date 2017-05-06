@@ -8,44 +8,44 @@ using CourseScheduler;
 namespace CourseScheduler
 {
     // searchQuery class is used to determine which search will be used to parse the database.
-    public class searchQuery
+    public class SearchQuery
     {
-        database courseList;
+        Database courseList;
         int lineCount;
-        public searchQuery(database data)
+        public SearchQuery(Database data)
         {
             courseList = data;
             this.lineCount = data.getLineCount();
         }
 
         // search by course code
-        public searchResults searchByCode(string searchValue)
+        public SearchResults searchByCode(string searchValue)
         {
             searchValue = searchValue.ToUpper();
 
-            List<course> results = new List<course>();
+            List<Course> results = new List<Course>();
 
             for (int i = 0; i < lineCount; i++)
             {
                 if (courseList.getCourses()[i].getCourseCode().Contains(searchValue))
                 {
-                    results.Add(new course(courseList.getCourses()[i]));
+                    results.Add(new Course(courseList.getCourses()[i]));
                 }
             }
-            return new searchResults(results);
+            return new SearchResults(results);
         }
 
 
         // Search the courses by day and/or time
-        public searchResults searchByTime(string daysChecked, string startTime)
+        public SearchResults searchByTime(string daysChecked, string startTime)
         {
             string[] searchComponents = daysChecked.Split(',');
             if (!String.IsNullOrWhiteSpace(startTime))
             {
-                startTime = calendar.fixStartTime(startTime);
+                startTime = Calendar.fixStartTime(startTime);
             }
-            List<course> results = new List<course>();
-            List<course> daySearchResults = new List<course>();
+            List<Course> results = new List<Course>();
+            List<Course> daySearchResults = new List<Course>();
 
             for (int i = 0; i < lineCount; i++) //cycles through database
             {
@@ -68,25 +68,25 @@ namespace CourseScheduler
 
                 }
             }
-            foreach (course i in daySearchResults)
+            foreach (Course i in daySearchResults)
             {
                 if (!String.IsNullOrEmpty(startTime))
                 {
-                    if (calendar.fixStartTime(i.getStartTime()) == startTime)
+                    if (Calendar.fixStartTime(i.getStartTime()) == startTime)
                     {
                         results.Add(i);
                     }
                 }
                 else
                 {
-                    return new searchResults(daySearchResults);
+                    return new SearchResults(daySearchResults);
                 }
             }
-            return new searchResults(results);
+            return new SearchResults(results);
         }
 
         //Search by department
-        public searchResults searchByDepartment(string searchValue)
+        public SearchResults searchByDepartment(string searchValue)
         {
             string mapResult = "";
             var map = new Dictionary<string, string>();
@@ -141,7 +141,7 @@ namespace CourseScheduler
             {
                 mapResult = "DNE";
             }
-            List<course> results = new List<course>();
+            List<Course> results = new List<Course>();
             for (int i = 0; i < lineCount; i++)
             {
                 if (courseList.getCourses()[i].getCourseCode().Contains(mapResult))
@@ -151,15 +151,15 @@ namespace CourseScheduler
             }
 
             //returns search results
-            return new searchResults(results);
+            return new SearchResults(results);
         }
 
         // Searchs courses by short and long name
-        public searchResults searchByName(string searchValue)
+        public SearchResults searchByName(string searchValue)
         {
             searchValue = searchValue.ToUpper();
 
-            List<course> results = new List<course>();
+            List<Course> results = new List<Course>();
 
             for (int i = 0; i < lineCount; i++)
             {
@@ -170,15 +170,15 @@ namespace CourseScheduler
             }
 
             //returns search results
-            return new searchResults(results);
+            return new SearchResults(results);
         }
 
         // Generic search that does all searches.
-        public searchResults genericSearch(string searchValue)
+        public SearchResults genericSearch(string searchValue)
         {
             searchValue = searchValue.ToUpper();
 
-            searchResults results = new searchResults();
+            SearchResults results = new SearchResults();
 
             results = searchByCode(searchValue);
             results.combine(searchByName(searchValue)); //adds the results of searching the same term by name

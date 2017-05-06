@@ -14,10 +14,10 @@ namespace CourseScheduler
 {
     public partial class MainWindow: MetroForm
     {
-        database courselist;
-        searchQuery courseSearch;
-        searchResults results;
-        calendar courseCalendar = new calendar();
+        Database courselist;
+        SearchQuery courseSearch;
+        SearchResults results;
+        Calendar courseCalendar = new Calendar();
         DataTable data = new DataTable();
         MetroFramework.Controls.MetroGrid calendarView2 = new MetroFramework.Controls.MetroGrid();
         int searchType = 0;
@@ -31,9 +31,9 @@ namespace CourseScheduler
         {
             InitializeComponent();
 
-            this.courselist = new database();
-            this.courseSearch = new searchQuery(courselist);
-            this.results = new searchResults();
+            this.courselist = new Database();
+            this.courseSearch = new SearchQuery(courselist);
+            this.results = new SearchResults();
 
             data = csvToTable("../../blankCalendar.csv", true);
 
@@ -233,7 +233,7 @@ namespace CourseScheduler
         // Writes the course info based a selected class in the search results
         private void course_Description_Update(object sender, EventArgs e)
         {
-            course selectedCourse = this.results.getIndex(this.searchResultsBox.SelectedIndex);
+            Course selectedCourse = this.results.getIndex(this.searchResultsBox.SelectedIndex);
             printInfo(selectedCourse);
         }
 
@@ -276,7 +276,7 @@ namespace CourseScheduler
         {
             if (remove)
             {
-                course toRemove = this.courseCalendar.getCourse(str);
+                Course toRemove = this.courseCalendar.getCourse(str);
                 string removeName = toRemove.getCourseCode();
                 bool removed = this.courseCalendar.removeCourse(toRemove);
                 if (removed == true)
@@ -295,10 +295,10 @@ namespace CourseScheduler
             }
             else
             {
-                foreach (course c in courseCalendar.courseList)
+                foreach (Course c in courseCalendar.courseList)
                 {
-                    string fixedStartTime = calendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
-                    string fixedEndTime = calendar.fixEndTime(c.getEndTime());
+                    string fixedStartTime = Calendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
+                    string fixedEndTime = Calendar.fixEndTime(c.getEndTime());
                     List<int> daysCols = new List<int>();
                     daysCols = findDaysCols(c.getDays());  //find the columns we need to add this course to
                     bool inSession = false; //used to indicate when all appropriate timeslots have been filled
@@ -431,7 +431,7 @@ namespace CourseScheduler
                 {
                     day = "MWF";
                 }
-                course selectedCourse = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString(), day);
+                Course selectedCourse = this.courseCalendar.getCourse(this.calendarView.SelectedCells[0].Value.ToString(), day);
                 if (selectedCourse != null)
                 {
                     printInfo(selectedCourse);
@@ -444,7 +444,7 @@ namespace CourseScheduler
         }
 
         // Prints the course info of a selected course to be displayed to the user.
-        private void printInfo(course selectedCourse)
+        private void printInfo(Course selectedCourse)
         {
             if (selectedCourse != null)
             {
@@ -498,7 +498,7 @@ namespace CourseScheduler
         // within the software.
         private void exportButton_Click(object sender, EventArgs e)
         {
-            codes export = new codes();
+            Codes export = new Codes();
             for (int i = 0; i < courseCalendar.courseList.Count(); i++)
             {
                 export.listBox1.Items.Add(this.courseCalendar.courseList[i].getCourseCode());
@@ -581,16 +581,16 @@ namespace CourseScheduler
                 {
                     DataTable data2 = csvToTable("../../blankCalendar.csv", true);
 
-                    calendar compCalendar = new calendar();
+                    Calendar compCalendar = new Calendar();
 
                     // Open the file
                     compCalendar.open(this.openFileDialog1.FileName);
                     Console.WriteLine(this.openFileDialog1.FileName);
 
-                    foreach (course c in compCalendar.courseList)
+                    foreach (Course c in compCalendar.courseList)
                     {
-                        string fixedStartTime = calendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
-                        string fixedEndTime = calendar.fixEndTime(c.getEndTime());
+                        string fixedStartTime = Calendar.fixStartTime(c.getStartTime()); //these functions make the times in the proper format
+                        string fixedEndTime = Calendar.fixEndTime(c.getEndTime());
                         List<int> daysCols = new List<int>();
                         daysCols = findDaysCols(c.getDays());  //find the columns we need to add this course to
                         bool inSession = false; //used to indicate when all appropriate timeslots have been filled

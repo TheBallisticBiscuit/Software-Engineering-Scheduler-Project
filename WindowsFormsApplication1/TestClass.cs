@@ -9,16 +9,16 @@ namespace CourseScheduler
 {
     class TestClass
     {
-        database courselist;
-        searchQuery courseSearch;
-        searchResults results;
-        calendar courseCalendar = new calendar();
+        Database courselist;
+        SearchQuery courseSearch;
+        SearchResults results;
+        Calendar courseCalendar = new Calendar();
 
         public TestClass()
         {
-            this.courselist = new database();
-            this.courseSearch = new searchQuery(courselist);
-            this.results = new searchResults();
+            this.courselist = new Database();
+            this.courseSearch = new SearchQuery(courselist);
+            this.results = new SearchResults();
         }
 
         public void run()
@@ -44,16 +44,16 @@ namespace CourseScheduler
 
         public void TestCalendarAdd()
         {
-            course testCourse = new course(10, 20, "TEST 101", "TEST COURSE", "TESTING COURSE TEST COURSE", "10:00", "11:00", "MWF", "BUILDING","100");
+            Course testCourse = new Course(10, 20, "TEST 101", "TEST COURSE", "TESTING COURSE TEST COURSE", "10:00", "11:00", "MWF", "BUILDING","100");
             Debug.Assert(this.courseCalendar.addCourse(testCourse) == true, "CLASS FAILED TO BE REMOVED");
-            testCourse = new course(10, 20, "TEST 201", "TEST COURSE 2", "TESTING COURSE TEST COURSE 2", "13:00", "15:00", "MWF", "BUILDING","20");
+            testCourse = new Course(10, 20, "TEST 201", "TEST COURSE 2", "TESTING COURSE TEST COURSE 2", "13:00", "15:00", "MWF", "BUILDING","20");
             this.courseCalendar.addCourse(testCourse);
             Debug.Assert(this.courseCalendar.getCourse("TEST 201").getCourseCode() == "TEST 201", "CLASS FAILED TO BE ADDEDD");
         }
 
         public void TestCalendarRemove()
         {
-            course testCourse = new course(10, 20, "TEST 101", "TEST COURSE", "TESTING COURSE TEST COURSE", "10:00", "11:00", "MWF", "BUILDING","100");
+            Course testCourse = new Course(10, 20, "TEST 101", "TEST COURSE", "TESTING COURSE TEST COURSE", "10:00", "11:00", "MWF", "BUILDING","100");
             Debug.Assert(this.courseCalendar.removeCourse(testCourse)==true, "CLASS FAILED TO BE REMOVED");
 
             //Debug.Assert(this.courseCalendar.removeCourse(testCourse) == false, "COURSE REMOVED"); 

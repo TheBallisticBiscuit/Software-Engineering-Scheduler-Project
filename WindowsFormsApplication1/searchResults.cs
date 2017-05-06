@@ -8,22 +8,22 @@ using System.Windows;
 namespace CourseScheduler
 {
     // searchResults is the list of course that were found from the searchQuery.
-    public class searchResults
+    public class SearchResults
     {
-        private List<course> courseList;
+        private List<Course> courseList;
 
-        public searchResults()
+        public SearchResults()
         {
-            this.courseList = new List<course>();
+            this.courseList = new List<Course>();
         }
 
-        public searchResults(List<course> courseList)
+        public SearchResults(List<Course> courseList)
         {
             this.courseList = courseList;
         }
 
         // returns the course based on the selected int
-        public course getIndex(int index)
+        public Course getIndex(int index)
         {
             if (courseList.Count > 0) { return this.courseList[index]; }
             else { return null; }
@@ -46,7 +46,7 @@ namespace CourseScheduler
         }
 
         // Gets the course list
-        public List<course> getResultsList()
+        public List<Course> getResultsList()
         {
             return courseList;
         }
@@ -54,7 +54,7 @@ namespace CourseScheduler
         // During a general search, this function will filter out the 
         // duplicates and adds only the courses that are new to the search
         // results list.
-        public void combine(searchResults list2)
+        public void combine(SearchResults list2)
         {
 
             for (int i = 0; i < this.size(); i++)

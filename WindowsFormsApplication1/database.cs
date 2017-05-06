@@ -8,12 +8,12 @@ using System.IO;
 namespace CourseScheduler
 {
     // database class is used to get the course database proved to us and store it. 
-    public class database
+    public class Database
     {
         int lineCount;
-        private List<course> coursesList;
+        private List<Course> coursesList;
         //private List<course> testCoursesList;
-        public database()
+        public Database()
         {
             string[,] courseDBObject;
             // Opens the database csv file and 
@@ -30,7 +30,7 @@ namespace CourseScheduler
             
             lineCount = File.ReadLines("../../CourseDB_WithFictionalCapacities.csv").Count();
             courseDBObject = new string[lineCount,10];
-            coursesList = new List<course>();
+            coursesList = new List<Course>();
             data.ReadLine(); //Ignores titles of columns
             for (int i = 0; i < lineCount-1; i++)
             {
@@ -46,13 +46,13 @@ namespace CourseScheduler
                 int capacity = Int32.Parse(courseDBObject[i, 9]);
                 
                 // Adds a new course to the list
-                coursesList.Add(new CourseScheduler.course(enrollment, capacity, courseDBObject[i, 0],courseDBObject[i, 1],courseDBObject[i, 2],courseDBObject[i, 3],courseDBObject[i, 4],courseDBObject[i, 5],courseDBObject[i, 6],courseDBObject[i, 7]));
+                coursesList.Add(new CourseScheduler.Course(enrollment, capacity, courseDBObject[i, 0],courseDBObject[i, 1],courseDBObject[i, 2],courseDBObject[i, 3],courseDBObject[i, 4],courseDBObject[i, 5],courseDBObject[i, 6],courseDBObject[i, 7]));
             }
             data.Close();
         }
 
         // Gets the list of courses
-        public List<course> getCourses()
+        public List<Course> getCourses()
         {
             return coursesList;
         }

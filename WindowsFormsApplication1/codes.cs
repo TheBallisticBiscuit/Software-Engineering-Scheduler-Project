@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace CourseScheduler
 {
-    public partial class codes : MetroForm
+    public partial class Codes : MetroForm
     {
-        public codes()
+        public Codes()
         {
             InitializeComponent();
         }

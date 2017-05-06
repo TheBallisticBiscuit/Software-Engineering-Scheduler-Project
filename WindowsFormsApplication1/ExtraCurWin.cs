@@ -16,7 +16,7 @@ namespace CourseScheduler
     {
         string M, T, W, R, F = "";
         public bool okPressed = false;
-        public extracurricular newExtra;
+        public Extracurricular newExtra;
 
         public ExtraCurWin()
         {
@@ -35,7 +35,7 @@ namespace CourseScheduler
         }
 
         // Based on the data entered 
-        private extracurricular returnCourse()
+        private Extracurricular returnCourse()
         {
             string days = M + T + W + R + F;
             if (this.metroTextBox1.Text != "" || this.metroCheckBox4.Text != "" || this.metroCheckBox5.Text != "" || days != "")
@@ -166,7 +166,7 @@ namespace CourseScheduler
                     }
                 }
 
-                return new extracurricular(title, location, room, startTime, endTime, days);
+                return new Extracurricular(title, location, room, startTime, endTime, days);
             }
 
             return null;
