@@ -44,6 +44,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(183, 71);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(10, 20);
             this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.ScriptErrorsSuppressed = true;
             this.webBrowser1.Size = new System.Drawing.Size(537, 481);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Url = new System.Uri("https://my.gcc.edu", System.UriKind.Absolute);
@@ -97,7 +98,7 @@
     ": Navigate to the\r\nadd/drop courses page\r\non myGCC and paste the\r\ncode into the " +
     "course \r\ncode box";
             // 
-            // codes
+            // Codes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -108,7 +109,7 @@
             this.Controls.Add(this.webBrowser1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "codes";
+            this.Name = "Codes";
             this.Resizable = false;
             this.Text = "Codes";
             this.Load += new System.EventHandler(this.codes_Load);
