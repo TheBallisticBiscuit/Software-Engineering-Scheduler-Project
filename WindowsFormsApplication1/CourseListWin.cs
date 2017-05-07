@@ -37,7 +37,7 @@ namespace CourseScheduler
         // Returns the selected item in the list
         public string get_selected_item()
         {
-            if (this.listBox1.Items.Count > 0)
+            if (this.listBox1.SelectedIndex >= 0)
             {
                 return this.listBox1.SelectedItem.ToString();
             }

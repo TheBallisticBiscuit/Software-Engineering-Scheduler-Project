@@ -55,8 +55,6 @@ namespace CourseScheduler
         {
             Course testCourse = new Course(10, 20, "TEST 101", "TEST COURSE", "TESTING COURSE TEST COURSE", "10:00", "11:00", "MWF", "BUILDING","100");
             Debug.Assert(this.courseCalendar.removeCourse(testCourse)==true, "CLASS FAILED TO BE REMOVED");
-
-            //Debug.Assert(this.courseCalendar.removeCourse(testCourse) == false, "COURSE REMOVED"); 
         }
     }
 }
