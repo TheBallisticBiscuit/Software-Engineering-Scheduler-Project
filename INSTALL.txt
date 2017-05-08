@@ -21,6 +21,9 @@ or
 
 2. In this level open up TestCSharp.sln file in Visual Studio 2012. Once opened, press the start button to run the program.
 
+Dependencies:
+- This software uses the MetroFramework to enhance parts of the GUI. It should be possible to run the software within this directory without needing to add it to Visual Studio 2012. If it has issues, the packes needed are included in the "packages" folder and can be added to Visual Studio as needed.
+
 Notes: 
 - UNIT TEST: The unit test is found in the TestClass.cs file. This class tests the search functionality of the the SearchQuery class, and the functions to add and remove the courses from a calendar in the calendar.cs file.
 

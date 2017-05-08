@@ -38,7 +38,7 @@ namespace CourseScheduler
         private Extracurricular returnCourse()
         {
             string days = M + T + W + R + F;
-            if (this.metroTextBox1.Text != "" || this.metroCheckBox4.Text != "" || this.metroCheckBox5.Text != "" || days != "")
+            if (this.metroTextBox1.Text != "" &&( this.metroCheckBox4.Text != "" || this.metroCheckBox5.Text != "" || days != ""))
             {
                 string title = this.metroTextBox1.Text;
                 string location = this.metroTextBox3.Text;
