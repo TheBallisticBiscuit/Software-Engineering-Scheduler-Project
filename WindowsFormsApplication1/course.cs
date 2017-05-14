@@ -151,14 +151,14 @@ namespace CourseScheduler
             int strtInt,endInt ;
             foreach (string str in strt)
             {
-                if (!Int32.TryParse(str, out strtInt))
+                if (Int32.TryParse(str, out strtInt))
                 {
                     return true;
                 }
             }
             foreach (string str in end)
             {
-                if (!Int32.TryParse(str, out endInt))
+                if (Int32.TryParse(str, out endInt))
                 {
                     return true;
                 }

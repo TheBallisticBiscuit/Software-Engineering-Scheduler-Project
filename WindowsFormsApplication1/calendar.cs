@@ -51,12 +51,15 @@ namespace CourseScheduler
                 if (newCourse != null)
                 {
                     // If an extracurricular has empty times or days parameters
-                    if (( (newCourse.getDays() == "" && newCourse.isEditable()) || newCourse.getStartTime() == "" || newCourse.getEndTime() == "" || newCourse.correctTime())) // && (newCourse.getDays() != "" && newCourse.getStartTime() != ""))
+                    if (((newCourse.getDays() == "" && newCourse.isEditable()) || newCourse.getStartTime() == "" || newCourse.getEndTime() == "") || (newCourse.correctTime() && newCourse.isEditable())) // && (newCourse.getDays() != "" && newCourse.getStartTime() != ""))
                     {
+                        
+                        
                         Alert AlertWin = new Alert();
                         AlertWin.Show();
                         AlertWin.set_text_alert("Extra Curricular contains invalid information!", true);
                         return false;
+                        
                     }
 
                     // Alerts the user that a class is added, but won't be seen on the calendar since
